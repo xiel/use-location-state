@@ -4,6 +4,7 @@
   "main": "dist/query-state-core.cjs.js",
   "module": "dist/query-state-core.esm.js",
   "browser": "dist/query-state-core.umd.js",
+  "types": "dist/query-state-core.d.ts",
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "keywords": [
     "location",

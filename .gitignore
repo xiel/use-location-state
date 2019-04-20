@@ -4,3 +4,4 @@ DEVNOTES.md
 lerna-debug.log
 .DS_Store
 dist
+.rpt2_cache
