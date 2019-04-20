@@ -1,0 +1,4 @@
+.idea
+node_modules
+DEVNOTES.md
+lerna-debug.log
