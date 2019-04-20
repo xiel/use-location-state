@@ -27,5 +27,8 @@
   },
   "bugs": {
     "url": "https://github.com/xiel/location-state/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
