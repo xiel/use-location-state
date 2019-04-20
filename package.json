@@ -1,10 +1,5 @@
 {
-  "name": "use-query-state",
   "private": true,
-  "description": "store and retrieve state into/from the query string of a url",
-  "repository": "https://github.com/xiel",
-  "author": "Felix Leupold <felix@xiel.de>",
-  "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
