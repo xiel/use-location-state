@@ -22,9 +22,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
-  },
   "repository": "git+https://github.com/xiel/location-state.git",
   "scripts": {
     "build": "rollup -c",
