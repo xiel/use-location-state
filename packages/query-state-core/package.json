@@ -22,10 +22,8 @@
     "merge"
   ],
   "dependencies": {
-    "ms": "^2.1.1"
   },
   "devDependencies": {
-    "@types/ms": "^0.7.30",
     "rollup": "^1.0.0",
     "rollup-plugin-typescript2": "^0.20.1",
     "ts-node": "^7.0.1",
@@ -34,8 +32,8 @@
   },
   "peerDependencies": {},
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "src",
+    "test": "test"
   },
   "files": [
     "dist"

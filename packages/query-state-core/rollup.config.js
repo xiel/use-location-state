@@ -1,6 +1,3 @@
-// adopted from:
-// - https://github.com/rollup/rollup-starter-lib/blob/typescript/rollup.config.js
-// - https://hackernoon.com/building-and-publishing-a-module-with-typescript-and-rollup-js-faa778c85396
 import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
 
@@ -25,3 +22,7 @@ export default [
 		]
 	}
 ];
+
+// rollup config with typescript was adopted from:
+// - https://github.com/rollup/rollup-starter-lib/blob/typescript/rollup.config.js
+// - https://hackernoon.com/building-and-publishing-a-module-with-typescript-and-rollup-js-faa778c85396
