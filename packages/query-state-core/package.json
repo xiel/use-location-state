@@ -1,5 +1,6 @@
 {
   "name": "query-state-core",
+  "private": true,
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "0.0.0",
   "author": "Felix Leupold <felix@xiel.de>",
@@ -31,8 +32,7 @@
     "tslib": "^1.9.3",
     "typescript": "^3.4.4"
   },
-  "ppeerDependencies": {},
-
+  "peerDependencies": {},
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -52,6 +52,5 @@
   },
   "bugs": {
     "url": "https://github.com/xiel/use-query-state/issues"
-  },
-  "private": true
+  }
 }

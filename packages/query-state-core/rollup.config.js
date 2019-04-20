@@ -13,8 +13,8 @@ export default [
 	{
 		input: 'src/query-state-core.ts',
 		external: [
-			Object.keys(pkg.dependencies ||{} ),
-			Object.keys(pkg.peerDependencies ||{} ),
+			...Object.keys(pkg.dependencies || {}),
+			...Object.keys(pkg.peerDependencies || {} ),
 		],
 		plugins: [
 			typescript(typescriptPluginOptions) // so Rollup can convert TypeScript to JavaScript
