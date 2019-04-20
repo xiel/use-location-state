@@ -1,11 +1,14 @@
 {
   "name": "query-state-core",
+  "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "0.0.0",
+  "author": "Felix Leupold <felix@xiel.de>",
+  "homepage": "https://github.com/xiel/use-query-state",
+  "license": "MIT",
   "main": "dist/query-state-core.cjs.js",
   "module": "dist/query-state-core.esm.js",
   "browser": "dist/query-state-core.umd.js",
   "types": "dist/query-state-core.d.ts",
-  "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "keywords": [
     "location",
     "url",
@@ -18,21 +21,18 @@
     "merge"
   ],
   "dependencies": {
-
+    "ms": "^2.1.1"
   },
   "devDependencies": {
     "@types/ms": "^0.7.30",
     "rollup": "^1.0.0",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-typescript2": "^0.20.1",
     "ts-node": "^7.0.1",
     "tslib": "^1.9.3",
     "typescript": "^3.4.4"
   },
-  "author": "Felix Leupold <felix@xiel.de>",
-  "homepage": "https://github.com/xiel/use-query-state",
-  "license": "MIT",
+  "ppeerDependencies": {},
+
   "directories": {
     "lib": "lib",
     "test": "__tests__"
