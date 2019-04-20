@@ -1,7 +1,7 @@
 {
   "name": "query-state-core",
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
