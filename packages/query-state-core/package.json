@@ -1,6 +1,5 @@
 {
   "name": "query-state-core",
-  "private": true,
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "0.0.1-alpha.0",
   "author": "Felix Leupold <felix@xiel.de>",
