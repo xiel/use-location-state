@@ -4,7 +4,7 @@
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "0.0.0",
   "author": "Felix Leupold <felix@xiel.de>",
-  "homepage": "https://github.com/xiel/use-query-state",
+  "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
   "main": "dist/query-state-core.cjs.js",
   "module": "dist/query-state-core.esm.js",
@@ -41,7 +41,7 @@
   "publishConfig": {
     "registry": "https://registry.yarnpkg.com"
   },
-  "repository": "git+https://github.com/xiel/use-query-state.git",
+  "repository": "git+https://github.com/xiel/location-state.git",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -49,6 +49,6 @@
     "pretest": "npm run build"
   },
   "bugs": {
-    "url": "https://github.com/xiel/use-query-state/issues"
+    "url": "https://github.com/xiel/location-state/issues"
   }
 }

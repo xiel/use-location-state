@@ -1,2 +1,2 @@
-# use-query-state
-store and retrieve state into/from the query string of a url
+# location-state
+store and get state into/from the browsers current location
