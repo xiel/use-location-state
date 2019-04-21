@@ -7,5 +7,10 @@ cache:
     - node_modules
 script:
   - yarn test
-after_success:
-  - yarn lerna version --conventional-commits
+deploy:
+  provider: script
+  script: "yarn lerna version --conventional-commits --preid beta"
+  skip_cleanup: false
+  on:
+    node: "lts/*"
+    branch: develop
