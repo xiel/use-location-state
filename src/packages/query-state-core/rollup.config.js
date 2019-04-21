@@ -2,13 +2,15 @@ import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 
 const typescriptPluginOptions = {
-  tsconfigDefaults: { compilerOptions: { declaration: true } },
+  tsconfigOverride: {
+    compilerOptions: { declaration: true, allowJs: false, isolatedModules: false },
+  },
 }
 
 export default [
   // CommonJS (for Node) and ES module (for bundlers) build
   {
-    input: 'src/query-state-core.ts',
+    input: `src/${pkg.name}.ts`,
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
     plugins: [
       typescript(typescriptPluginOptions), // so Rollup can convert TypeScript to JavaScript

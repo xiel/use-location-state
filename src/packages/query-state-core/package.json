@@ -1,0 +1,32 @@
+{
+  "name": "query-state-core",
+  "main": "dist/query-state-core.cjs.js",
+  "module": "dist/query-state-core.esm.js",
+  "types": "dist/query-state-core.d.ts",
+  "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
+  "version": "0.1.1",
+  "author": "Felix Leupold <felix@xiel.de>",
+  "homepage": "https://github.com/xiel/location-state",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^1.0.0",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.4.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": "git+https://github.com/xiel/location-state.git",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/xiel/location-state/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
