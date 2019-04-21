@@ -4,6 +4,10 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.13.3"
+    "lerna": "^3.13.3",
+    "prettier": "^1.17.0"
+  },
+  "scripts": {
+    "test": ""
   }
 }
