@@ -3,7 +3,11 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
+    "version": {
+      "allowBranch": "develop"
+    },
     "publish": {
+      "allowBranch": "master",
       "ignoreChanges": [
         "ignored-file",
         "*.md"

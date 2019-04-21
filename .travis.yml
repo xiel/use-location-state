@@ -8,4 +8,4 @@ cache:
 script:
   - yarn test
 after_success:
-  - yarn semantic-release
+  - yarn lerna version --conventional-commits
