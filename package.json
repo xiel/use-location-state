@@ -1,4 +1,5 @@
 {
+  "name": "location-state-monorepo",
   "private": true,
   "workspaces": [
     "packages/*"
