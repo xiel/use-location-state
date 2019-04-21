@@ -7,3 +7,4 @@ dist
 build
 .rpt2_cache
 yarn-error.log
+react-app-env.d.ts
