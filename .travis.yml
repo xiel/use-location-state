@@ -9,7 +9,7 @@ script:
   - yarn test
 deploy:
   provider: script
-  script: "yarn lerna version --conventional-commits --preid beta"
+  script: "yarn lerna version --conventional-commits --preid beta --yes"
   skip_cleanup: true
   on:
     node: "lts/*"
