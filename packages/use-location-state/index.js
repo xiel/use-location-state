@@ -1,12 +1,12 @@
 function useQueryState() {
-  return [Object.fromEntries(new URLSearchParams(location.search).entries())];
+  return [Object.fromEntries(new URLSearchParams(location.search).entries())]
 }
 
 function useLocationState() {
-  return [history.state];
+  return [history.state]
 }
 
 module.exports = {
   useLocationState,
-  useQueryState
-};
+  useQueryState,
+}
