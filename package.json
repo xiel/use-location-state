@@ -2,8 +2,8 @@
   "name": "location-state-monorepo",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "examples/**/*"
+    "src/packages/*",
+    "src/examples/**/*"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.11",

@@ -11,13 +11,13 @@
       "message": "chore(release): publish"
     },
     "bootstrap": {
-      "ignore": "packages/*",
+      "ignore": "src/packages/*",
       "npmClientArgs": [
         ""
       ]
     }
   },
   "packages": [
-    "packages/*"
+    "src/packages/*"
   ]
 }
