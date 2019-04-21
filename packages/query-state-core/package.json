@@ -1,13 +1,13 @@
 {
   "name": "query-state-core",
+  "main": "dist/query-state-core.cjs.js",
+  "module": "dist/query-state-core.esm.js",
+  "types": "dist/query-state-core.d.ts",
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "0.0.1-alpha.1",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
-  "main": "dist/query-state-core.cjs.js",
-  "module": "dist/query-state-core.esm.js",
-  "types": "dist/query-state-core.d.ts",
   "devDependencies": {
     "rollup": "^1.0.0",
     "rollup-plugin-typescript2": "^0.20.1",

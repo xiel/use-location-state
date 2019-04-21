@@ -1,4 +1,4 @@
-type QueryState = Record<string, unknown>
+export type QueryState = Record<string, unknown>
 
 function tryJsonParseParamValue(value: string): unknown {
   try {
