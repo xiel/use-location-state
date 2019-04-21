@@ -6,9 +6,15 @@
   ],
   "devDependencies": {
     "lerna": "^3.13.3",
-    "prettier": "^1.17.0"
+    "prettier": "^1.17.0",
+    "semantic-release": "^15.13.3"
   },
   "scripts": {
-    "test": ""
+    "semantic-release": "semantic-release"
+  },
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiel/location-state"
   }
 }
