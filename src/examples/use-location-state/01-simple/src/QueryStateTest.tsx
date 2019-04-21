@@ -11,7 +11,7 @@ export default function QueryStateTest(props: Props) {
   return (
     <div>
       <h3>Current queryState:</h3>
-      <pre className="pre-query-state">{JSON.stringify(queryState, null, '')}</pre>
+      <pre className="pre-query-state">{JSON.stringify(queryState, null, ' ')}</pre>
 
       <h4>name</h4>
       <p>
@@ -26,7 +26,7 @@ export default function QueryStateTest(props: Props) {
         </button>
       </p>
 
-      <h4>age</h4>
+      <h4>Age</h4>
       <p>
         <button type="button" onClick={() => setQueryState({ age: 30 })}>
           age: 30
