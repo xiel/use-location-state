@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "src/examples/use-location-state/01-simple/package.json",
+        "src/packages/location-state/package.json",
+        "src/packages/query-state-core/package.json",
+        "src/packages/react-router-use-location-state/package.json",
+        "src/packages/use-location-state/package.json"
+      ]
+    }
+  }
+}
