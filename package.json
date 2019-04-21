@@ -19,6 +19,7 @@
   },
   "scripts": {
     "commit": "git-cz",
+    "pretest": "yarn lerna run build",
     "test": "react-scripts test",
     "semantic-release": "semantic-release"
   },

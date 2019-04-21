@@ -2,7 +2,9 @@ import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 
 const typescriptPluginOptions = {
-  tsconfigDefaults: { compilerOptions: { declaration: true } },
+  tsconfigOverride: {
+    compilerOptions: { declaration: true, allowJs: false, isolatedModules: false },
+  },
 }
 
 export default [
