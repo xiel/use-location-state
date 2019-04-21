@@ -1,6 +1,6 @@
 {
   "name": "01-simple",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.11",
@@ -11,7 +11,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "typescript": "3.4.4",
-    "use-location-state": "^0.0.1-alpha.1"
+    "use-location-state": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
