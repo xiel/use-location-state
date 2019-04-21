@@ -1,17 +1,16 @@
 {
   "name": "query-state-core",
-  "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
-  "version": "0.0.1-alpha.1",
-  "author": "Felix Leupold <felix@xiel.de>",
-  "homepage": "https://github.com/xiel/location-state",
-  "license": "MIT",
   "main": "dist/query-state-core.cjs.js",
   "module": "dist/query-state-core.esm.js",
   "types": "dist/query-state-core.d.ts",
+  "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
+  "version": "0.1.2",
+  "author": "Felix Leupold <felix@xiel.de>",
+  "homepage": "https://github.com/xiel/location-state",
+  "license": "MIT",
   "devDependencies": {
     "rollup": "^1.0.0",
     "rollup-plugin-typescript2": "^0.20.1",
-    "ts-node": "^7.0.1",
     "tslib": "^1.9.3",
     "typescript": "^3.4.4"
   },
@@ -22,8 +21,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "ts-node test/test.ts",
-    "pretest": "npm run build"
+    "test": "echo \"Error: run tests from root\" && exit 1;"
   },
   "bugs": {
     "url": "https://github.com/xiel/location-state/issues"

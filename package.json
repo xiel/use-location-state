@@ -2,19 +2,25 @@
   "name": "location-state-monorepo",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "src/packages/*",
+    "src/examples/**/*"
   ],
   "devDependencies": {
+    "@types/jest": "^24.0.11",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
+    "jest": "^23.6.0",
     "lerna": "^3.13.3",
     "prettier": "^1.17.0",
-    "semantic-release": "^15.13.3"
+    "react-scripts": "^2.1.8",
+    "ts-jest": "^23.6.0",
+    "typescript": "^3.4.4"
   },
   "scripts": {
     "commit": "git-cz",
-    "test": "cd packages/query-state-core; yarn test;",
-    "semantic-release": "semantic-release"
+    "bumpversion": "yarn lerna version --conventional-commits",
+    "pretest": "yarn lerna run build",
+    "test": "react-scripts test"
   },
   "version": "0.0.0-development",
   "repository": {

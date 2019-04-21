@@ -7,5 +7,3 @@ cache:
     - node_modules
 script:
   - yarn test
-after_success:
-  - yarn semantic-release

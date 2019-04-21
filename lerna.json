@@ -1,9 +1,13 @@
 {
-  "version": "0.0.1-alpha.2",
+  "version": "0.1.2",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
+    "version": {
+      "allowBranch": "develop"
+    },
     "publish": {
+      "allowBranch": "master",
       "ignoreChanges": [
         "ignored-file",
         "*.md"
@@ -11,13 +15,13 @@
       "message": "chore(release): publish"
     },
     "bootstrap": {
-      "ignore": "packages/*",
+      "ignore": "src/packages/*",
       "npmClientArgs": [
         ""
       ]
     }
   },
   "packages": [
-    "packages/*"
+    "src/packages/*"
   ]
 }

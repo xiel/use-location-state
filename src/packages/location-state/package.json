@@ -1,6 +1,6 @@
 {
-  "name": "react-router-use-location-state",
-  "version": "0.0.1-alpha.2",
+  "name": "location-state",
+  "version": "0.1.2",
   "description": "TODO",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",

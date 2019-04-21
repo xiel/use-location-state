@@ -1,0 +1,40 @@
+{
+  "name": "use-location-state",
+  "main": "dist/use-location-state.cjs.js",
+  "module": "dist/use-location-state.esm.js",
+  "types": "dist/use-location-state.d.ts",
+  "description": "react hook to the browsers location (query) state",
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "dependencies": {
+    "query-state-core": "^0.1.2"
+  },
+  "version": "0.1.2",
+  "author": "Felix Leupold <felix@xiel.de>",
+  "homepage": "https://github.com/xiel/location-state",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.8.14",
+    "react": "^16.8.6",
+    "rollup": "^1.0.0",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.4.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": "git+https://github.com/xiel/location-state.git",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/xiel/location-state/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
