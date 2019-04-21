@@ -24,6 +24,12 @@ export default function QueryStateTest(props: Props) {
         <button type="button" onClick={() => setQueryState({ name: 'Sarah' })}>
           set name: "Sarah" (default value)
         </button>
+        <input
+          type="text"
+          placeholder={`${queryState.name}`}
+          onBlur={e => setQueryState({ name: e.target.value })}
+        />
+        <button type="button">☑️</button>
       </p>
 
       <h4>Age</h4>
@@ -56,12 +62,6 @@ export default function QueryStateTest(props: Props) {
         <button type="button" onClick={() => setQueryState({ name: 'Sarah', age: 25 })}>
           name: 'Sarah', age: 25
         </button>
-        <input
-          type="text"
-          placeholder={`${queryState.name}`}
-          onBlur={e => setQueryState({ name: e.target.value })}
-        />
-        <button type="button">☑️</button>
       </p>
     </div>
   )
