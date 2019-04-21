@@ -21,7 +21,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1;"
   },
   "bugs": {
     "url": "https://github.com/xiel/location-state/issues"
