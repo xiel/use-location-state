@@ -24,7 +24,7 @@
     "bumpversion": "yarn lerna version --conventional-commits",
     "release:canary": "yarn lerna publish from-package --canary",
     "release": "yarn lerna publish from-package",
-    "pretest": "yarn lerna run build",
+    "build": "yarn lerna run build",
     "test": "react-scripts test"
   },
   "version": "0.0.0-development",
