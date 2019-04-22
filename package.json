@@ -7,6 +7,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^24.0.11",
+    "codecov": "^3.3.0",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "lerna": "^3.13.3",

@@ -6,4 +6,5 @@ cache:
   directories:
     - node_modules
 script:
-  - yarn test
+  - yarn test --silent --coverage
+  - npx codecov
