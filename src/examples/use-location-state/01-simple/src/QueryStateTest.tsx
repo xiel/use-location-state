@@ -1,12 +1,15 @@
 import React from 'react'
-import { useLocationQueryParams } from 'use-location-state'
+import { useLocationQueryParams, useLocationHashQueryStringInterface } from 'use-location-state'
 
 interface Props {}
 
 const queryStateDefault = { name: 'Sarah', age: 25 }
 
 export default function QueryStateTest(props: Props) {
-  const { queryState, setQueryState } = useLocationQueryParams(queryStateDefault)
+  const locationHashQueryStringInterface = useLocationHashQueryStringInterface()
+  const { queryState, setQueryState } = useLocationQueryParams(queryStateDefault, {
+    queryStringInterface: locationHashQueryStringInterface,
+  })
 
   return (
     <div>
@@ -27,7 +30,7 @@ export default function QueryStateTest(props: Props) {
         <input
           type="text"
           placeholder={`${queryState.name}`}
-          onBlur={e => setQueryState({ name: e.target.value })}
+          onChange={e => setQueryState({ name: e.target.value })}
         />
         <button type="button">☑️</button>
       </p>
@@ -46,7 +49,7 @@ export default function QueryStateTest(props: Props) {
         <input
           type="text"
           placeholder={`${queryState.age}`}
-          onBlur={e => setQueryState({ age: parseFloat(e.target.value) })}
+          onChange={e => setQueryState({ age: parseFloat(e.target.value) })}
         />
         <button type="button">☑️</button>
       </p>
