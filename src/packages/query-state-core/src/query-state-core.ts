@@ -31,5 +31,3 @@ export function createMergedQuery(...queryStates: QueryState[]) {
   const queryString = params.toString()
   return queryString ? `?${queryString}` : ''
 }
-
-
