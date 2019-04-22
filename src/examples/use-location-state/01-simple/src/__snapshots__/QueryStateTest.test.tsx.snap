@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QueryStateTest can set name with button 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Felix",
+ "age": 25
+}
+</pre>
+`;
+
+exports[`QueryStateTest can set name with button 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Kim",
+ "age": 25
+}
+</pre>
+`;
+
+exports[`QueryStateTest can set name with button 3`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25
+}
+</pre>
+`;
