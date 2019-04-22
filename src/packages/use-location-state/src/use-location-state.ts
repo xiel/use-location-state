@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
 
 interface LocationSearchCommon {
@@ -60,6 +60,7 @@ export function useLocationQueryParams<T extends QueryState>(
   locationSearch: LocationSearch = window.location
 ) {
   const queryString = getSearch(locationSearch)
+  const [_, setLatestMergedQueryString] = useState<string>()
   const queryState: Partial<T> & QueryState = useMemo(
     () => ({
       ...defaultQueryState,
@@ -100,11 +101,10 @@ export function useLocationQueryParams<T extends QueryState>(
         ...parseQueryState(getSearch(locationSearch)),
       }
 
-      setSearch(
-        locationSearch,
-        createMergedQuery(currentQueryState || {}, newState, stripOverwrite),
-        setQueryStateOpts || {}
-      )
+      const mergedQueryString = createMergedQuery(currentQueryState || {}, newState, stripOverwrite)
+
+      setSearch(locationSearch, mergedQueryString, setQueryStateOpts || {})
+      setLatestMergedQueryString(mergedQueryString)
     },
     []
   )
