@@ -22,7 +22,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "version": "yarn lerna version --conventional-commits",
+    "bumpversion": "yarn lerna version --conventional-commits",
     "release": "yarn lerna publish from-package --canary",
     "release:stable": "yarn lerna publish from-package",
     "build": "yarn lerna run build",
