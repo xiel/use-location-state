@@ -23,6 +23,7 @@
   "scripts": {
     "commit": "git-cz",
     "release": "yarn lerna publish --canary --preid next",
+    "release:beta": "yarn lerna publish --preid beta",
     "release:stable": "yarn lerna publish",
     "build": "yarn lerna run build",
     "test": "react-scripts test"
