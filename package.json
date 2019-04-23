@@ -6,13 +6,18 @@
     "src/examples/**/*"
   ],
   "devDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "@types/jest": "^24.0.11",
     "codecov": "^3.3.0",
     "commitizen": "^3.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "lerna": "^3.13.3",
     "prettier": "^1.17.0",
+    "react-hooks-testing-library": "^0.5.0",
     "react-scripts": "^2.1.8",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^6.1.2",
     "typescript": "^3.4.4"
   },
   "scripts": {
@@ -20,7 +25,7 @@
     "bumpversion": "yarn lerna version --conventional-commits",
     "release:canary": "yarn lerna publish from-package --canary",
     "release": "yarn lerna publish from-package",
-    "pretest": "yarn lerna run build",
+    "build": "yarn lerna run build",
     "test": "react-scripts test"
   },
   "version": "0.0.0-development",
