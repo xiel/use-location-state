@@ -22,9 +22,8 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "bumpversion": "yarn lerna version --conventional-commits",
-    "release": "yarn lerna publish from-package --canary",
-    "release:stable": "yarn lerna publish from-package",
+    "release": "yarn lerna publish --canary --preid next",
+    "release:stable": "yarn lerna publish",
     "build": "yarn lerna run build",
     "test": "react-scripts test"
   },
