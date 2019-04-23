@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocationQueryParams, useLocationHashQueryStringInterface } from 'use-location-state'
+import { useLocationQueryState, useLocationHashQueryStringInterface } from 'use-location-state'
 
 interface Props {}
 
@@ -7,7 +7,7 @@ const queryStateDefault = { name: 'Sarah', age: 25 }
 
 export default function QueryStateTest(props: Props) {
   const locationHashQueryStringInterface = useLocationHashQueryStringInterface()
-  const { queryState, setQueryState } = useLocationQueryParams(queryStateDefault, {
+  const [queryState, setQueryState] = useLocationQueryState(queryStateDefault, {
     queryStringInterface: locationHashQueryStringInterface,
   })
 

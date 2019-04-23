@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
+import { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
 export { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
 
 type QueryString = string
+type ExtendedQueryState<T> = Partial<T> & QueryState
+type SetQueryStateFn<T> = (newState: Partial<T> & QueryState, opts?: SetQueryStringOptions) => void
 
 export interface QueryStringInterface {
   getQueryString: () => QueryString
@@ -14,25 +17,28 @@ export type QueryStateOpts = {
   queryStringInterface: QueryStringInterface
 }
 
+export type QueryStateOptsSetInterface = {
+  stripDefaults?: boolean
+}
+
 export interface SetQueryStringOptions {
   method?: 'push' | 'replace'
 }
 
-export function useLocationQueryParams<T extends QueryState>(
+export function useLocationQueryState<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOpts
-) {
+): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
   const queryString = queryStringInterface.getQueryString()
   const [_, setLatestMergedQueryString] = useState<string>()
-  const queryState: Partial<T> & QueryState = useMemo(
+  const queryState: ExtendedQueryState<T> = useMemo(
     () => ({
       ...defaultQueryState,
       ...parseQueryState(queryString),
     }),
     [defaultQueryState, queryString]
   )
-  type QST = typeof queryState
 
   const ref = useRef({
     defaultQueryState,
@@ -40,7 +46,7 @@ export function useLocationQueryParams<T extends QueryState>(
   })
 
   const setQueryState = useCallback(
-    (newState: Partial<T> & QueryState, opts?: SetQueryStringOptions) => {
+    (newState: ExtendedQueryState<T>, opts?: SetQueryStringOptions) => {
       const { defaultQueryState, queryStateOpts } = ref.current
       const { queryStringInterface, stripDefaults = true } = queryStateOpts
       const stripOverwrite: QueryState = {}
@@ -56,7 +62,7 @@ export function useLocationQueryParams<T extends QueryState>(
       }
 
       // retrieve the last value (by re-executing the search getter)
-      const currentQueryState: QST = {
+      const currentQueryState: ExtendedQueryState<T> = {
         ...defaultQueryState,
         ...parseQueryState(queryStringInterface.getQueryString()),
       }
@@ -78,28 +84,52 @@ export function useLocationQueryParams<T extends QueryState>(
     }
   })
 
-  // TODO: use array as well
-  return { queryState, setQueryState }
+  return [ queryState, setQueryState ]
 }
 
-export function useLocationQueryParam<T>(
-  paramName: string,
+export function useLocationHashQueryState<T extends QueryState>(
+  defaultQueryState: T,
+  queryStateOpts: QueryStateOptsSetInterface = {}
+): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
+  const hashGSI = useLocationHashQueryStringInterface()
+  return useLocationQueryState(defaultQueryState, {
+    ...queryStateOpts,
+    queryStringInterface: hashGSI
+  })
+}
+
+export function useLocationQueryStateItem<T>(
+  itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOpts
 ): [T, (newValue: T, opts?: SetQueryStringOptions) => void] {
-  const defaultQueryState = useMemo(() => ({ [paramName]: defaultValue }), [
-    paramName,
+  const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [
+    itemName,
     defaultValue,
   ])
-  const { queryState, setQueryState } = useLocationQueryParams(defaultQueryState, queryStateOpts)
-  const setParam = useCallback(
-    (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [paramName]: newValue }, opts),
-    [paramName, setQueryState]
+  // const { queryState, setQueryState } = useLocationQueryState(defaultQueryState, queryStateOpts)
+  const [queryState, setQueryState] = useLocationQueryState(defaultQueryState, queryStateOpts)
+  const setQueryStateItem = useCallback(
+    (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [itemName]: newValue }, opts),
+    [itemName, setQueryState]
   )
 
   // fallback to default value
-  const paramValue = queryState[paramName]
+  const paramValue = queryState[itemName]
   const value: T = paramValue === undefined ? defaultValue : paramValue
 
-  return [value, setParam]
+  return [value, setQueryStateItem]
+}
+
+export function useLocationHashQueryStateItem<T>(
+  itemName: string,
+  defaultValue: T,
+  queryStateOpts: QueryStateOptsSetInterface = {}
+): [T, SetQueryStateFn<T>] {
+  const hashGSI = useLocationHashQueryStringInterface()
+
+  return useLocationQueryStateItem(itemName, defaultValue, {
+    ...queryStateOpts,
+    queryStringInterface: hashGSI
+  })
 }

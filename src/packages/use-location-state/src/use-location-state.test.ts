@@ -1,5 +1,5 @@
 import { act, renderHook } from 'react-hooks-testing-library'
-import { useLocationQueryParams, useLocationHashQueryStringInterface } from './use-location-state'
+import { useLocationQueryState, useLocationHashQueryStringInterface } from './use-location-state'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -10,20 +10,21 @@ afterEach(() => {
   location.hash = ''
 })
 
-describe('useLocationQueryParams hook with hash GetSetQueryStringInterface', () => {
+describe('useLocationQueryState hook with hash GetSetQueryStringInterface', () => {
   it('TODO: ...', () => {
     const hashQSI = renderHook(() => useLocationHashQueryStringInterface())
     const { result } = renderHook(
-      props => useLocationQueryParams(props, { queryStringInterface: hashQSI.result.current }),
+      props => useLocationQueryState(props, { queryStringInterface: hashQSI.result.current }),
       {
         initialProps: { name: 'Sarah' },
       }
     )
-    expect(result.current.queryState).toEqual({ name: 'Sarah' })
 
-    act(() => result.current.setQueryState({ name: 'Kim' }))
+    expect(result.current[0]).toEqual({ name: 'Sarah' })
+
+    act(() => result.current[1]({ name: 'Kim' }))
 
     expect(location.hash).toEqual('#name=Kim')
-    expect(result.current.queryState).toEqual({ name: 'Kim' })
+    expect(result.current[0]).toEqual({ name: 'Kim' })
   })
 })
