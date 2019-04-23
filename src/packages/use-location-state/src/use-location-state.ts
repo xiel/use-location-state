@@ -5,7 +5,8 @@ export { useLocationHashQueryStringInterface } from './hooks/useLocationHashQuer
 
 type QueryString = string
 type ExtendedQueryState<T> = Partial<T> & QueryState
-type SetQueryStateFn<T> = (newState: Partial<T> & QueryState, opts?: SetQueryStringOptions) => void
+type SetQueryStateFn<T> = (newState: ExtendedQueryState<T>, opts?: SetQueryStringOptions) => void
+type SetQueryStateItemFn<T> = (newValue: T, opts?: SetQueryStringOptions) => void
 
 export interface QueryStringInterface {
   getQueryString: () => QueryString
@@ -102,12 +103,11 @@ export function useLocationQueryStateItem<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOpts
-): [T, (newValue: T, opts?: SetQueryStringOptions) => void] {
+): [T, SetQueryStateItemFn<T>] {
   const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [
     itemName,
     defaultValue,
   ])
-  // const { queryState, setQueryState } = useLocationQueryState(defaultQueryState, queryStateOpts)
   const [queryState, setQueryState] = useLocationQueryState(defaultQueryState, queryStateOpts)
   const setQueryStateItem = useCallback(
     (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [itemName]: newValue }, opts),
@@ -125,9 +125,8 @@ export function useLocationHashQueryStateItem<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
-): [T, SetQueryStateFn<T>] {
+): [T, SetQueryStateItemFn<T>] {
   const hashGSI = useLocationHashQueryStringInterface()
-
   return useLocationQueryStateItem(itemName, defaultValue, {
     ...queryStateOpts,
     queryStringInterface: hashGSI
