@@ -42,15 +42,15 @@ describe('parseQueryState parses', () => {
 
 describe('createMergedQuery', () => {
   it('overwrites same keys with later value', () => {
-    expect(createMergedQuery({ a: 'b' })).toEqual('?a=b')
+    expect(createMergedQuery({ a: 'b' })).toEqual('a=b')
   })
 
   it('overwrites same keys with later value', () => {
-    expect(createMergedQuery({ a: 'b' }, { a: 'c' })).toEqual('?a=c')
+    expect(createMergedQuery({ a: 'b' }, { a: 'c' })).toEqual('a=c')
   })
 
   it('stable sort keys', () => {
-    const abc = '?a=true&b=true&c=true'
+    const abc = 'a=true&b=true&c=true'
     expect(createMergedQuery({ a: true }, { b: true }, { c: true })).toEqual(abc)
     expect(createMergedQuery({ c: true }, { a: true }, { b: true })).toEqual(abc)
     expect(createMergedQuery({ b: true }, { c: true }, { a: true })).toEqual(abc)
@@ -58,7 +58,7 @@ describe('createMergedQuery', () => {
   })
 
   it('with boolean values', () => {
-    expect(createMergedQuery({ bool: true, bool2: false })).toEqual('?bool=true&bool2=false')
+    expect(createMergedQuery({ bool: true, bool2: false })).toEqual('bool=true&bool2=false')
   })
 
   it('with removed null values', () => {
@@ -70,11 +70,11 @@ describe('createMergedQuery', () => {
   })
 
   it('with boolean overwriting null', () => {
-    expect(createMergedQuery({ nulled: null }, { nulled: false })).toEqual('?nulled=false')
+    expect(createMergedQuery({ nulled: null }, { nulled: false })).toEqual('nulled=false')
   })
 
   it('allows empty objects', () => {
-    expect(createMergedQuery({}, { a: 'c' }, {})).toEqual('?a=c')
+    expect(createMergedQuery({}, { a: 'c' }, {})).toEqual('a=c')
   })
 
   it('with removed entries by overwrite with undefined', () => {
@@ -84,6 +84,6 @@ describe('createMergedQuery', () => {
         { notDefined: undefined },
         { otherwiseEmpty: true }
       )
-    ).toEqual('?otherwiseEmpty=true')
+    ).toEqual('otherwiseEmpty=true')
   })
 })

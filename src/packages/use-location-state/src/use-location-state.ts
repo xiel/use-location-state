@@ -1,65 +1,30 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
+export { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
 
-interface LocationSearchCommon {
+type QueryString = string
+
+export interface QueryStringInterface {
+  getQueryString: () => QueryString
+  setQueryString: (newQueryString: QueryString, opts: SetQueryStringOptions) => void
+}
+
+export type QueryStateOpts = {
   stripDefaults?: boolean
+  queryStringInterface: QueryStringInterface
 }
 
-interface LocationSearchGetterSetter extends LocationSearchCommon {
-  search: string
-}
-
-interface LocationSearchGetSetFuncs extends LocationSearchCommon {
-  getSearch: () => string
-  setSearch: (newSearch: string, setQueryStateOpts: SetQueryStateOpts) => void
-}
-
-export type LocationSearch = LocationSearchGetterSetter | LocationSearchGetSetFuncs
-
-export interface SetQueryStateOpts {
+export interface SetQueryStringOptions {
   method?: 'push' | 'replace'
-}
-
-function getSearch(locationSearch: LocationSearch) {
-  if ('getSearch' in locationSearch) {
-    return locationSearch.getSearch()
-  } else {
-    return locationSearch.search
-  }
-}
-
-function setSearch(
-  locationSearch: LocationSearch,
-  newSearch: string,
-  setQueryStateOpts: SetQueryStateOpts
-) {
-  if ('setSearch' in locationSearch) {
-    locationSearch.setSearch(newSearch, setQueryStateOpts)
-  } else {
-    locationSearch.search = newSearch
-  }
-}
-
-function checkLocationSearchArgumentType(
-  locationSearch: LocationSearch,
-  defaultQueryState: unknown
-) {
-  if ('search' in locationSearch && Object.getOwnPropertyDescriptor) {
-    const searchDesc = Object.getOwnPropertyDescriptor(locationSearch, 'search')
-    if (!(searchDesc && searchDesc.get && searchDesc.set)) {
-      console.warn(
-        'locationSearch argument should provide a getter/setter interface at useLocationQueryParam(s) with defaultValue(s):',
-        defaultQueryState
-      )
-    }
-  }
 }
 
 export function useLocationQueryParams<T extends QueryState>(
   defaultQueryState: T,
-  locationSearch: LocationSearch = window.location
+  queryStateOpts: QueryStateOpts
 ) {
-  const queryString = getSearch(locationSearch)
+  const { queryStringInterface } = queryStateOpts
+  const queryString = queryStringInterface.getQueryString()
+  const [_, setLatestMergedQueryString] = useState<string>()
   const queryState: Partial<T> & QueryState = useMemo(
     () => ({
       ...defaultQueryState,
@@ -71,18 +36,14 @@ export function useLocationQueryParams<T extends QueryState>(
 
   const ref = useRef({
     defaultQueryState,
-    locationSearch,
+    queryStateOpts,
   })
 
   const setQueryState = useCallback(
-    (newState: Partial<T> & QueryState, setQueryStateOpts?: SetQueryStateOpts) => {
-      const { defaultQueryState, locationSearch } = ref.current
-      const { stripDefaults = true } = locationSearch
+    (newState: Partial<T> & QueryState, opts?: SetQueryStringOptions) => {
+      const { defaultQueryState, queryStateOpts } = ref.current
+      const { queryStringInterface, stripDefaults = true } = queryStateOpts
       const stripOverwrite: QueryState = {}
-
-      if (process.env.NODE_ENV !== 'production') {
-        checkLocationSearchArgumentType(locationSearch, defaultQueryState)
-      }
 
       // when a params are set to the same value as in the defaults
       // we remove them to avoid having two URLs reproducing the same state unless stripDefaults === false
@@ -97,14 +58,15 @@ export function useLocationQueryParams<T extends QueryState>(
       // retrieve the last value (by re-executing the search getter)
       const currentQueryState: QST = {
         ...defaultQueryState,
-        ...parseQueryState(getSearch(locationSearch)),
+        ...parseQueryState(queryStringInterface.getQueryString()),
       }
 
-      setSearch(
-        locationSearch,
-        createMergedQuery(currentQueryState || {}, newState, stripOverwrite),
-        setQueryStateOpts || {}
-      )
+      const mergedQueryString = createMergedQuery(currentQueryState || {}, newState, stripOverwrite)
+
+      queryStringInterface.setQueryString(mergedQueryString, opts || {})
+
+      // triggers an update (in case the QueryStringInterface misses to do so)
+      setLatestMergedQueryString(mergedQueryString)
     },
     []
   )
@@ -112,7 +74,7 @@ export function useLocationQueryParams<T extends QueryState>(
   useEffect(() => {
     ref.current = {
       defaultQueryState,
-      locationSearch,
+      queryStateOpts,
     }
   })
 
@@ -123,16 +85,15 @@ export function useLocationQueryParams<T extends QueryState>(
 export function useLocationQueryParam<T>(
   paramName: string,
   defaultValue: T,
-  locationSearch?: LocationSearch
-): [T, (newValue: T, setQueryStateOpts?: SetQueryStateOpts) => void] {
+  queryStateOpts: QueryStateOpts
+): [T, (newValue: T, opts?: SetQueryStringOptions) => void] {
   const defaultQueryState = useMemo(() => ({ [paramName]: defaultValue }), [
     paramName,
     defaultValue,
   ])
-  const { queryState, setQueryState } = useLocationQueryParams(defaultQueryState, locationSearch)
+  const { queryState, setQueryState } = useLocationQueryParams(defaultQueryState, queryStateOpts)
   const setParam = useCallback(
-    (newValue: T, setQueryStateOpts?: SetQueryStateOpts) =>
-      setQueryState({ [paramName]: newValue }, setQueryStateOpts),
+    (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [paramName]: newValue }, opts),
     [paramName, setQueryState]
   )
 

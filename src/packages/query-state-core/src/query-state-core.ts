@@ -7,9 +7,16 @@ function tryJsonParseParamValue(value: string): unknown {
   return value
 }
 
+export function stripLeadingHashOrQuestionMark(s: string = '') {
+  if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
+    return s.slice(1)
+  }
+  return s
+}
+
 export function parseQueryState(queryString: string): QueryState | null {
   const queryState: QueryState = {}
-  const params = new URLSearchParams(queryString)
+  const params = new URLSearchParams(stripLeadingHashOrQuestionMark(queryString))
   params.forEach((value, key) => (queryState[key] = tryJsonParseParamValue(value)))
   return Object.keys(queryState).length ? queryState : null
 }
@@ -28,6 +35,5 @@ export function createMergedQuery(...queryStates: QueryState[]) {
     }
   })
   params.sort()
-  const queryString = params.toString()
-  return queryString ? `?${queryString}` : ''
+  return params.toString()
 }
