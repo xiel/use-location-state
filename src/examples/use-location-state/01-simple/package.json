@@ -5,12 +5,12 @@
   "devDependencies": {
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "react-scripts": "3.0.0"
   },
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0",
     "use-location-state": "^1.0.2"
   },
   "scripts": {

@@ -2,6 +2,8 @@ import React from 'react'
 import { render, fireEvent, cleanup } from 'react-testing-library'
 import QueryStateTest from './QueryStateTest'
 
+const location = window.location
+
 // reset jest mocked hash
 beforeAll(() => {
   location.hash = ''

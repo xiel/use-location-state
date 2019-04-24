@@ -1,0 +1,22 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { cleanup } from 'react-testing-library'
+import App from '../App'
+
+afterEach(() => {
+  cleanup()
+})
+
+it('renders App.tsx without crashing', () => {
+  const div = document.createElement('div')
+  ReactDOM.render(<App />, div)
+  ReactDOM.unmountComponentAtNode(div)
+})
+
+it('renders index.tsx without crashing', async () => {
+  const div = document.createElement('div')
+  div.id = 'root'
+  document.documentElement.appendChild(div)
+  const { render } = await import('../index')
+  render()
+})
