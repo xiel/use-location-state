@@ -85,7 +85,7 @@ export function useLocationQueryState<T extends QueryState>(
     }
   })
 
-  return [ queryState, setQueryState ]
+  return [queryState, setQueryState]
 }
 
 export function useLocationHashQueryState<T extends QueryState>(
@@ -95,7 +95,7 @@ export function useLocationHashQueryState<T extends QueryState>(
   const hashGSI = useLocationHashQueryStringInterface()
   return useLocationQueryState(defaultQueryState, {
     ...queryStateOpts,
-    queryStringInterface: hashGSI
+    queryStringInterface: hashGSI,
   })
 }
 
@@ -104,10 +104,7 @@ export function useLocationQueryStateItem<T>(
   defaultValue: T,
   queryStateOpts: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
-  const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [
-    itemName,
-    defaultValue,
-  ])
+  const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [itemName, defaultValue])
   const [queryState, setQueryState] = useLocationQueryState(defaultQueryState, queryStateOpts)
   const setQueryStateItem = useCallback(
     (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [itemName]: newValue }, opts),
@@ -129,6 +126,6 @@ export function useLocationHashQueryStateItem<T>(
   const hashGSI = useLocationHashQueryStringInterface()
   return useLocationQueryStateItem(itemName, defaultValue, {
     ...queryStateOpts,
-    queryStringInterface: hashGSI
+    queryStringInterface: hashGSI,
   })
 }
