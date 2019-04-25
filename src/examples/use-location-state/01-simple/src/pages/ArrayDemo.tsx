@@ -21,33 +21,35 @@ export default function ArrayDemo(props: Props) {
     <div>
       <h1>Array Demo</h1>
 
-      <label>
-        <input
-          type="checkbox"
-          value="tag-1"
-          onChange={toggleTag}
-          checked={tags.includes('tag-1')}
-        />
-        Tag 1
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="tag-2"
-          onChange={toggleTag}
-          checked={tags.includes('tag-2')}
-        />
-        Tag 2
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="tag-3"
-          onChange={toggleTag}
-          checked={tags.includes('tag-3')}
-        />
-        Tag 3
-      </label>
+      <form>
+        <label>
+          <input
+            type="checkbox"
+            value="tag-1"
+            onChange={toggleTag}
+            checked={tags.includes('tag-1')}
+          />
+          Tag 1
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="tag-2"
+            onChange={toggleTag}
+            checked={tags.includes('tag-2')}
+          />
+          Tag 2
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="tag-3"
+            onChange={toggleTag}
+            checked={tags.includes('tag-3')}
+          />
+          Tag 3
+        </label>
+      </form>
     </div>
   )
 }
