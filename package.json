@@ -17,13 +17,14 @@
     "react-hooks-testing-library": "^0.5.0",
     "react-scripts": "^3.0.0",
     "react-test-renderer": "^16.8.6",
-    "react-testing-library": "^7.0.0",
-    "typescript": "^3.4.4"
+    "react-testing-library": "7.0.0",
+    "typescript": "3.4.4"
   },
   "scripts": {
     "commit": "git-cz",
     "release": "yarn lerna publish --canary --preid next",
     "release:stable": "yarn lerna publish",
+    "start": "yarn lerna run start --parallel",
     "build": "yarn lerna run build",
     "test": "react-scripts test"
   },
@@ -31,6 +32,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/xiel/location-state.git"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "config": {
     "commitizen": {
