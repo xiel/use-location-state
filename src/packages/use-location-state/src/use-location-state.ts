@@ -92,10 +92,10 @@ export function useLocationHashQueryState<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
 ): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
-  const hashGSI = useLocationHashQueryStringInterface()
+  const hashQSI = useLocationHashQueryStringInterface()
   return useLocationQueryState(defaultQueryState, {
     ...queryStateOpts,
-    queryStringInterface: hashGSI,
+    queryStringInterface: hashQSI,
   })
 }
 
@@ -123,9 +123,9 @@ export function useLocationHashQueryStateItem<T>(
   defaultValue: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
 ): [T, SetQueryStateItemFn<T>] {
-  const hashGSI = useLocationHashQueryStringInterface()
+  const hashQSI = useLocationHashQueryStringInterface()
   return useLocationQueryStateItem(itemName, defaultValue, {
     ...queryStateOpts,
-    queryStringInterface: hashGSI,
+    queryStringInterface: hashQSI,
   })
 }

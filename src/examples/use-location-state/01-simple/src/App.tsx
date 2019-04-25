@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import Header from './components/Header/Header'
+import Header from './components/Header'
 import usePageComponent from './hooks/usePageComponent'
 // demo pages
 import QueryStateTest from './pages/QueryStateTest'

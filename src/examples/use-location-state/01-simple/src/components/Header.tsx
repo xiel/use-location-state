@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../Nav/Nav'
+import Nav from './Nav'
 
 interface Props {}
 

@@ -1,15 +1,23 @@
 import React from 'react'
 import { useLocationHashQueryState } from 'use-location-state'
+import FullQueryStateDisplay from '../components/FullQueryStateDisplay'
 
 interface Props {}
 
 export default function QueryStateTest(props: Props) {
-  const [queryState, setQueryState] = useLocationHashQueryState({ name: 'Sarah', age: 25 })
+  const defaultQueryState = { name: 'Sarah', age: 25 }
+  const [queryState, setQueryState] = useLocationHashQueryState(defaultQueryState)
 
   return (
     <div>
-      <h3>Current queryState:</h3>
-      <pre data-testid="pre-query-state">{JSON.stringify(queryState, null, ' ')}</pre>
+      <h1>useQueryState</h1>
+      <h2>Intro</h2>
+      <h3>
+        <abbr title="a brief summary">tl;dr</abbr>
+      </h3>
+      <p>Link to longer blog post</p>
+
+      <FullQueryStateDisplay defaultQueryState={defaultQueryState} />
 
       <h4>name</h4>
       <p>
