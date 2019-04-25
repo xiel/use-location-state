@@ -1,6 +1,7 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render, wait } from 'react-testing-library'
 import QueryStateTest from '../QueryStateTest'
+import QueryStateDisplay from '../../components/QueryStateDisplay'
 
 const location = window.location
 
@@ -80,4 +81,8 @@ describe('QueryStateTest', () => {
     act(() => void fireEvent.click(getByText('name: "Sarah", age: 25')))
     expect(location.hash).toEqual('')
   })
+})
+
+test('QueryStateDisplay', () => {
+  expect(render(<QueryStateDisplay />))
 })

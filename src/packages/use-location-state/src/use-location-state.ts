@@ -4,6 +4,7 @@ export {
   useLocationQueryState,
   useLocationQueryStateObj as _useLocationQueryStateObj,
 } from './useLocationQueryState'
+
 export {
   useLocationHashQueryState,
   useLocationHashQueryStateObj as _useLocationHashQueryStateObj,
