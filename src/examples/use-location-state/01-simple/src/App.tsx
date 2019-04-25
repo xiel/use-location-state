@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import Header from './components/Header'
 import usePageComponent from './hooks/usePageComponent'
 // demo pages
@@ -15,7 +14,7 @@ export default function App() {
   })
 
   return (
-    <div className="App">
+    <div className="page-wrapper">
       <Header />
       <PageComponent />
     </div>

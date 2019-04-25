@@ -6,7 +6,7 @@ interface Props {}
 export default function Header(props: Props) {
   return (
     <header>
-      <h1>useQueryState</h1>
+      <h1>useQueryState()</h1>
       <Nav />
     </header>
   )
