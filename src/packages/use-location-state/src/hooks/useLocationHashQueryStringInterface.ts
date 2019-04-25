@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { QueryStringInterface } from '../use-location-state'
+import { QueryStringInterface } from '../types'
 
 export function useLocationHashQueryStringInterface(): QueryStringInterface {
-  const [hashQueryString, setHashQueryString] = useState(window.location.hash)
+  const [_, setHashQueryString] = useState(window.location.hash)
 
   useEffect(() => {
     const hashChangeHandler = () => setHashQueryString(window.location.hash)
@@ -10,16 +10,14 @@ export function useLocationHashQueryStringInterface(): QueryStringInterface {
     return () => window.removeEventListener('hashchange', hashChangeHandler, false)
   }, [])
 
-  const qsi: QueryStringInterface = useMemo(
+  return useMemo(
     () => ({
-      getQueryString: () => hashQueryString,
+      getQueryString: () => window.location.hash,
       setQueryString: newQueryString => {
         window.location.hash = newQueryString
         setHashQueryString(window.location.hash)
       },
     }),
-    [hashQueryString]
+    []
   )
-
-  return qsi
 }

@@ -18,7 +18,7 @@
     "react-scripts": "^3.0.0",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^6.1.2",
-    "typescript": "^3.4.4"
+    "typescript": "3.4.4"
   },
   "scripts": {
     "commit": "git-cz",

@@ -1,12 +1,12 @@
 import React from 'react'
 import { useLocationHashQueryState } from 'use-location-state'
-import FullQueryStateDisplay from '../components/FullQueryStateDisplay'
+import QueryStateDisplay from '../components/QueryStateDisplay'
 
 interface Props {}
 
 export default function QueryStateTest(props: Props) {
-  const defaultQueryState = { name: 'Sarah', age: 25 }
-  const [queryState, setQueryState] = useLocationHashQueryState(defaultQueryState)
+  const [name, setName] = useLocationHashQueryState('name', 'Sarah')
+  const [age, setAge] = useLocationHashQueryState('age', 25)
 
   return (
     <div>
@@ -17,57 +17,80 @@ export default function QueryStateTest(props: Props) {
       </h3>
       <p>Link to longer blog post</p>
 
-      <FullQueryStateDisplay defaultQueryState={defaultQueryState} />
+      <QueryStateDisplay
+        queryState={{
+          name,
+          age,
+        }}
+      />
 
       <h4>name</h4>
       <p>
-        <button type="button" onClick={() => setQueryState({ name: 'Felix' })}>
+        <button type="button" onClick={() => setName('Felix')}>
           name: "Felix"
         </button>
-        <button type="button" onClick={() => setQueryState({ name: 'Kim' })}>
+        <button type="button" onClick={() => setName('Kim')}>
           name: "Kim"
         </button>
-        <button type="button" onClick={() => setQueryState({ name: 'Sarah' })}>
+        <button type="button" onClick={() => setName('Sarah')}>
           name: "Sarah" (default value)
         </button>
         <label htmlFor="input-name">name:</label>
         <input
           id="input-name"
           type="text"
-          placeholder={`${queryState.name}`}
-          onChange={e => setQueryState({ name: e.target.value })}
+          placeholder={name}
+          onChange={e => setName(e.target.value)}
         />
       </p>
 
       <h4>Age</h4>
       <p>
-        <button type="button" onClick={() => setQueryState({ age: 30 })}>
+        <button type="button" onClick={() => setAge(30)}>
           age: 30
         </button>
-        <button type="button" onClick={() => setQueryState({ age: 45 })}>
+        <button type="button" onClick={() => setAge(45)}>
           age: 45
         </button>
-        <button type="button" onClick={() => setQueryState({ age: 25 })}>
+        <button type="button" onClick={() => setAge(25)}>
           age: 25
         </button>
         <label htmlFor="input-age">age:</label>
         <input
           id="input-age"
           type="text"
-          placeholder={`${queryState.age}`}
-          onChange={e => setQueryState({ age: parseFloat(e.target.value) })}
+          placeholder={`${age}`}
+          onChange={e => setAge(parseFloat(e.target.value))}
         />
       </p>
 
       <h4>name & age</h4>
       <p>
-        <button type="button" onClick={() => setQueryState({ name: 'Felix', age: 30 })}>
+        <button
+          type="button"
+          onClick={() => {
+            setName('Felix')
+            setAge(30)
+          }}
+        >
           name: "Felix", age: 30
         </button>
-        <button type="button" onClick={() => setQueryState({ name: 'Kim', age: 45 })}>
+        <button
+          type="button"
+          onClick={() => {
+            setName('Kim')
+            setAge(45)
+          }}
+        >
           name: "Kim", age: 45
         </button>
-        <button type="button" onClick={() => setQueryState({ name: 'Sarah', age: 25 })}>
+        <button
+          type="button"
+          onClick={() => {
+            setName('Sarah')
+            setAge(25)
+          }}
+        >
           name: "Sarah", age: 25
         </button>
       </p>

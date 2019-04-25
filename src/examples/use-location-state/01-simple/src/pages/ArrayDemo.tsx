@@ -1,12 +1,12 @@
 import React, { ChangeEventHandler } from 'react'
-import { useLocationHashQueryStateItem } from 'use-location-state'
+import { useLocationHashQueryState } from 'use-location-state'
 
 interface Props {}
 
 const defaultTags: string[] = []
 
 export default function ArrayDemo(props: Props) {
-  const [tags, setTags] = useLocationHashQueryStateItem('tags', defaultTags)
+  const [tags, setTags] = useLocationHashQueryState('tags', defaultTags)
 
   const toggleTag: ChangeEventHandler<HTMLInputElement> = e => {
     const tag = e.target.value
@@ -19,8 +19,7 @@ export default function ArrayDemo(props: Props) {
 
   return (
     <div>
-      <h1>Array Demo</h1>
-
+      <h2>Array Demo</h2>
       <form>
         <label>
           <input
