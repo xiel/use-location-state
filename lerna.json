@@ -8,20 +8,13 @@
     },
     "publish": {
       "allowBranch": "master",
-      "ignoreChanges": [
-        "ignored-file",
-        "*.md"
-      ],
+      "ignoreChanges": ["ignored-file", "*.md"],
       "message": "chore(release): publish"
     },
     "bootstrap": {
       "ignore": "src/packages/*",
-      "npmClientArgs": [
-        ""
-      ]
+      "npmClientArgs": [""]
     }
   },
-  "packages": [
-    "src/packages/*"
-  ]
+  "packages": ["src/packages/*"]
 }
