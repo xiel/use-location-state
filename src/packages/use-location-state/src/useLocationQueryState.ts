@@ -7,6 +7,7 @@ import {
 } from './types'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
+import { QueryStateMergable } from 'query-state-core/src/query-state-core'
 
 export function useLocationQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
@@ -32,7 +33,7 @@ export function useLocationQueryStateObj<T extends QueryState>(
     (newState: ExtendedQueryState<T>, opts?: SetQueryStringOptions) => {
       const { defaultQueryState, queryStateOpts } = ref.current
       const { queryStringInterface, stripDefaults = true } = queryStateOpts
-      const stripOverwrite: QueryState = {}
+      const stripOverwrite: QueryStateMergable = {}
 
       // when a params are set to the same value as in the defaults
       // we remove them to avoid having two URLs reproducing the same state unless stripDefaults === false
@@ -75,7 +76,7 @@ export function useLocationQueryState<T>(
   defaultValue: T,
   queryStateOpts: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
-  // TODO:
+
   const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [itemName, defaultValue])
 
   const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)

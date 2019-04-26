@@ -10,31 +10,31 @@ describe('parseQueryState parses', () => {
   })
 
   it('query string with one parameter', () => {
-    expect(parseQueryState('?a=abc')).toEqual({ a: 'abc' })
+    expect(parseQueryState('a=abc')).toEqual({ a: 'abc' })
   })
 
   it('query string with multiple parameters', () => {
-    expect(parseQueryState('?a=abc&d=efg')).toEqual({ a: 'abc', d: 'efg' })
+    expect(parseQueryState('a=abc&d=efg')).toEqual({ a: 'abc', d: 'efg' })
   })
 
-  it('query string with multiple parameters with the same name', () => {
-    expect(parseQueryState('?a=abc&a=efg')).toEqual({ a: 'efg' })
+  it('query string with multiple parameters with the same name as array', () => {
+    expect(parseQueryState('a=abc&a=efg')).toEqual({ a: ['abc','efg'] })
   })
 
   it('query string with array value', () => {
-    expect(parseQueryState('?filters=[1,2,3]')).toEqual({ filters: [1, 2, 3] })
+    expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({ filters: ["1", "2", "3"] })
   })
 
-  it('query string with true boolean parameter', () => {
-    expect(parseQueryState('?a=true')).toEqual({ a: true })
+  it('query string with "true" boolean parameter', () => {
+    expect(parseQueryState('a=true')).toEqual({ a: 'true' })
   })
 
   it('query string with two boolean parameters', () => {
-    expect(parseQueryState('?b=false&c=true')).toEqual({ c: true, b: false })
+    expect(parseQueryState('b=false&c=true')).toEqual({ c: 'true', b: 'false' })
   })
 
   it('query string with parameter value containing spaces', () => {
-    expect(parseQueryState('?param=with%20space%20between')).toEqual({
+    expect(parseQueryState('param=with%20space%20between')).toEqual({
       param: 'with space between',
     })
   })
@@ -50,27 +50,31 @@ describe('createMergedQuery', () => {
   })
 
   it('stable sort keys', () => {
-    const abc = 'a=true&b=true&c=true'
-    expect(createMergedQuery({ a: true }, { b: true }, { c: true })).toEqual(abc)
-    expect(createMergedQuery({ c: true }, { a: true }, { b: true })).toEqual(abc)
-    expect(createMergedQuery({ b: true }, { c: true }, { a: true })).toEqual(abc)
-    expect(createMergedQuery({ b: true, c: true, a: true })).toEqual(abc)
+    const abcQueryString = 'a=true&b=true&c=true'
+    expect(createMergedQuery({ a: 'true' }, { b: 'true' }, { c: 'true' })).toEqual(abcQueryString)
+    expect(createMergedQuery({ c: 'true' }, { a: 'true' }, { b: 'true' })).toEqual(abcQueryString)
+    expect(createMergedQuery({ b: 'true' }, { c: 'true' }, { a: 'true' })).toEqual(abcQueryString)
+    expect(createMergedQuery({ b: 'true', c: 'true', a: 'true' })).toEqual(abcQueryString)
   })
 
   it('with boolean values', () => {
-    expect(createMergedQuery({ bool: true, bool2: false })).toEqual('bool=true&bool2=false')
+    expect(createMergedQuery({ bool: 'true', bool2: 'false' })).toEqual('bool=true&bool2=false')
   })
 
   it('with removed null values', () => {
     expect(createMergedQuery({ nullable: null })).toEqual('')
   })
 
+  it('with removed undefined values', () => {
+    expect(createMergedQuery({ undef: undefined })).toEqual('')
+  })
+
   it('with removed entries by overwrite with null', () => {
-    expect(createMergedQuery({ nullable: true }, { nullable: null })).toEqual('')
+    expect(createMergedQuery({ nullable: 'true' }, { nullable: null })).toEqual('')
   })
 
   it('with boolean overwriting null', () => {
-    expect(createMergedQuery({ nulled: null }, { nulled: false })).toEqual('nulled=false')
+    expect(createMergedQuery({ nulled: null }, { nulled: 'false' })).toEqual('nulled=false')
   })
 
   it('allows empty objects', () => {
@@ -80,9 +84,9 @@ describe('createMergedQuery', () => {
   it('with removed entries by overwrite with undefined', () => {
     expect(
       createMergedQuery(
-        { otherwiseEmpty: false, notDefined: true },
+        { otherwiseEmpty: 'false', notDefined: 'true' },
         { notDefined: undefined },
-        { otherwiseEmpty: true }
+        { otherwiseEmpty: 'true' }
       )
     ).toEqual('otherwiseEmpty=true')
   })
