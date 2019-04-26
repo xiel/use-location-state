@@ -14,7 +14,7 @@ export function useLocationQueryStateObj<T extends QueryState>(
 ): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
   const queryString = queryStringInterface.getQueryString()
-  const [_, setLatestMergedQueryString] = useState<string>()
+  const [, setLatestMergedQueryString] = useState<string>()
   const queryState: ExtendedQueryState<T> = useMemo(
     () => ({
       ...defaultQueryState,
@@ -75,7 +75,9 @@ export function useLocationQueryState<T>(
   defaultValue: T,
   queryStateOpts: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
+  // TODO:
   const defaultQueryState = useMemo(() => ({ [itemName]: defaultValue }), [itemName, defaultValue])
+
   const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem = useCallback(
     (newValue: T, opts?: SetQueryStringOptions) => setQueryState({ [itemName]: newValue }, opts),

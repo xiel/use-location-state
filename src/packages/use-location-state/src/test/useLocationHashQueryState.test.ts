@@ -45,4 +45,15 @@ describe('useLocationHashQueryState hook', () => {
     expect(window.location.hash).toEqual('')
     expect(result.current[0]).toEqual('Sarah')
   })
+
+
+})
+
+describe('enforce types', () => {
+
+  test.todo('string')
+  test.todo('number')
+  test.todo('boolean')
+  test.todo('array')
+
 })

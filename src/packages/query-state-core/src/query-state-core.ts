@@ -17,7 +17,9 @@ export function stripLeadingHashOrQuestionMark(s: string = '') {
 export function parseQueryState(queryString: string): QueryState | null {
   const queryState: QueryState = {}
   const params = new URLSearchParams(stripLeadingHashOrQuestionMark(queryString))
+
   params.forEach((value, key) => (queryState[key] = tryJsonParseParamValue(value)))
+
   return Object.keys(queryState).length ? queryState : null
 }
 
