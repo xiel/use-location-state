@@ -4,7 +4,7 @@
   "module": "dist/query-state-core.esm.js",
   "types": "dist/query-state-core.d.ts",
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
