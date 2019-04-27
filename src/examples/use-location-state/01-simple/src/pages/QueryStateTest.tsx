@@ -7,6 +7,7 @@ interface Props {}
 export default function QueryStateTest(props: Props) {
   const [name, setName] = useLocationHashQueryState('name', 'Sarah')
   const [age, setAge] = useLocationHashQueryState('age', 25)
+  const [active, setActive] = useLocationHashQueryState('active', false)
 
   return (
     <div>
@@ -21,6 +22,7 @@ export default function QueryStateTest(props: Props) {
         queryState={{
           name,
           age,
+          active,
         }}
       />
 
@@ -39,7 +41,7 @@ export default function QueryStateTest(props: Props) {
         <input
           id="input-name"
           type="text"
-          placeholder={name}
+          value={name}
           onChange={e => setName(e.target.value)}
         />
       </p>
@@ -59,8 +61,8 @@ export default function QueryStateTest(props: Props) {
         <input
           id="input-age"
           type="text"
-          placeholder={`${age}`}
-          onChange={e => setAge(parseFloat(e.target.value))}
+          value={`${age}`}
+          onChange={e => setAge(parseFloat(e.target.value) || 0)}
         />
       </p>
 
@@ -94,6 +96,12 @@ export default function QueryStateTest(props: Props) {
           name: "Sarah", age: 25
         </button>
       </p>
+
+      <h4>active</h4>
+      <label>
+        <input type="checkbox" checked={active} onChange={() => setActive(!active)} />
+        active
+      </label>
     </div>
   )
 }

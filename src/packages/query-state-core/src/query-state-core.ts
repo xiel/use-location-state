@@ -1,10 +1,7 @@
-import { string } from 'prop-types'
-
-
-export type QueryState = Record<string, string | string[]>
-
-type QueryStateResetValue = null | undefined
-export type QueryStateMergable = Record<string, string | string[] | QueryStateResetValue>
+export type QueryStateValue = string | string[]
+export type QueryStateResetValue = null | undefined
+export type QueryState = Record<string, QueryStateValue>
+export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
 
 export function stripLeadingHashOrQuestionMark(s: string = '') {
   if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
@@ -21,12 +18,11 @@ export function parseQueryState(queryString: string): QueryState | null {
     if (key in queryState) {
       const queryStateForKey = queryState[key]
 
-      if(Array.isArray(queryStateForKey)) {
+      if (Array.isArray(queryStateForKey)) {
         queryStateForKey.push(value)
       } else {
         queryState[key] = [queryStateForKey, value]
       }
-
     } else {
       queryState[key] = value
     }
@@ -35,18 +31,21 @@ export function parseQueryState(queryString: string): QueryState | null {
   return Object.keys(queryState).length ? queryState : null
 }
 
-export function createMergedQuery(...queryStates: QueryStateMergable[]) {
-  const mergedQueryStates: QueryStateMergable = Object.assign({}, ...queryStates)
+export function createMergedQuery(...queryStates: QueryStateMerge[]) {
+  const mergedQueryStates: QueryStateMerge = Object.assign({}, ...queryStates)
   const params = new URLSearchParams()
 
   Object.entries(mergedQueryStates).forEach(([key, value]) => {
     if (value === null || value === undefined) {
       return
     }
-    if (typeof value === 'string') {
-      params.append(key, value)
+
+    if (Array.isArray(value)) {
+      value.forEach(v => {
+        params.append(key, v)
+      })
     } else {
-      params.append(key, JSON.stringify(value))
+      params.append(key, value)
     }
   })
 

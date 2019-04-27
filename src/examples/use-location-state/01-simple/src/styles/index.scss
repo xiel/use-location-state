@@ -18,6 +18,11 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+  margin: 0 .25em;
+}
+
 ul, ol, li {
   list-style: none;
   margin: 0;
