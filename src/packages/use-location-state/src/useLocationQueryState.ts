@@ -108,13 +108,13 @@ function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
   }
 }
 
+const newStringArray: () => string[] = () => []
+
 function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
   const defaultValueType = typeof defaultValue
 
-  if (defaultValueType === 'object' && Array.isArray(defaultValue)) {
-    const sArr: string[] = []
-    const ret = sArr.concat(value)
-    return ret
+  if (Array.isArray(defaultValue)) {
+    return newStringArray().concat(value)
   }
 
   switch (defaultValueType) {
@@ -128,10 +128,10 @@ function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
         return true
       } else if (value === 'false') {
         return false
-      } else {
-        return null
       }
+      break
     default:
-      return null
+      break
   }
+  return null
 }

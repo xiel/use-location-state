@@ -26,7 +26,7 @@
     "release:stable": "yarn lerna publish",
     "start": "yarn lerna run start --parallel",
     "build": "yarn lerna run build",
-    "test": "react-scripts test"
+    "test": "react-scripts test --silent"
   },
   "version": "0.0.0-development",
   "repository": {
