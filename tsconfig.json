@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -16,5 +17,5 @@
     "jsx": "preserve"
   },
   "include": ["src"],
-  "exclude": ["**/dist/**", "**/build/**"]
+  "exclude": ["**/dist/**", "**/build/**", "**/node_modules/**"]
 }
