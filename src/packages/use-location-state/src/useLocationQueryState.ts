@@ -1,10 +1,4 @@
-import {
-  QueryStateOpts,
-  SetQueryStateFn,
-  SetQueryStateItemFn,
-  SetQueryStringOptions,
-  ValueType,
-} from './types'
+import { QueryStateOpts, SetQueryStateFn, SetQueryStateItemFn, ValueType } from './types'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
 import { QueryStateMerge, QueryStateValue } from 'query-state-core/src/query-state-core'

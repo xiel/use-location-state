@@ -1,24 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLocationHashQueryState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
 
-interface Props {}
-
-export default function QueryStateTest(props: Props) {
-  const bla = useState('adasd')
-
+export default function QueryStateTest() {
   const [name, setName] = useLocationHashQueryState('name', 'Sarah')
   const [age, setAge] = useLocationHashQueryState('age', 25)
   const [active, setActive] = useLocationHashQueryState('active', false)
 
   return (
     <div>
-      <h1>useQueryState</h1>
       <h2>Intro</h2>
-      <h3>
-        <abbr title="a brief summary">tl;dr</abbr>
-      </h3>
-      <p>Link to longer blog post</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque, corporis debitis esse.</p>
 
       <QueryStateDisplay
         queryState={{
@@ -64,7 +56,7 @@ export default function QueryStateTest(props: Props) {
           id="input-age"
           type="text"
           value={`${age}`}
-          onChange={e => setAge(parseFloat(e.target.value) || 0)}
+          onChange={e => setAge(Number(e.target.value))}
         />
       </p>
 
