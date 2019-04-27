@@ -1,16 +1,14 @@
-import { QueryState, QueryStateMerge } from 'query-state-core'
+import { QueryStateMerge } from 'query-state-core'
 
 export type QueryString = string
-export type ValueType = string | number | boolean | string[]
-
-export type ExtendedQueryState<T> = Partial<T> & QueryState
+export type ValueType = string | string[] | number | boolean
 
 export type SetQueryStateFn<T> = (
   newState: QueryStateMerge,
   opts?: SetQueryStringOptions
 ) => void
 
-export type SetQueryStateItemFn<T> = (newValue: T, opts?: SetQueryStringOptions) => void
+export type SetQueryStateItemFn<T> = (newValue: T , opts?: SetQueryStringOptions) => void
 
 export interface QueryStringInterface {
   getQueryString: () => QueryString

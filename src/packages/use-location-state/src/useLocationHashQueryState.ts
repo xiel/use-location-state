@@ -1,18 +1,12 @@
 import { QueryState } from 'query-state-core'
-import {
-  ExtendedQueryState,
-  QueryStateOptsSetInterface,
-  SetQueryStateFn,
-  SetQueryStateItemFn,
-  ValueType,
-} from './types'
+import { QueryStateOptsSetInterface } from './types'
 import { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
 import { useLocationQueryState, useLocationQueryStateObj } from './useLocationQueryState'
 
 export function useLocationHashQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
-): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
+) {
   const hashQSI = useLocationHashQueryStringInterface()
   return useLocationQueryStateObj(defaultQueryState, {
     ...queryStateOpts,
@@ -20,11 +14,11 @@ export function useLocationHashQueryStateObj<T extends QueryState>(
   })
 }
 
-export function useLocationHashQueryState<T extends ValueType>(
+export function useLocationHashQueryState<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
-): [T, SetQueryStateItemFn<T>] {
+) {
   const hashQSI = useLocationHashQueryStringInterface()
   return useLocationQueryState(itemName, defaultValue, {
     ...queryStateOpts,

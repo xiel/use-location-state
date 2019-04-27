@@ -1,5 +1,4 @@
 import {
-  ExtendedQueryState,
   QueryStateOpts,
   SetQueryStateFn,
   SetQueryStateItemFn,
@@ -13,11 +12,11 @@ import { QueryStateMerge, QueryStateValue } from 'query-state-core/src/query-sta
 export function useLocationQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOpts
-): [ExtendedQueryState<T>, SetQueryStateFn<T>] {
+): [QueryState, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
   const queryString = queryStringInterface.getQueryString()
   const [, setLatestMergedQueryString] = useState<string>()
-  const queryState: ExtendedQueryState<T> = useMemo(
+  const queryState = useMemo(
     () => ({
       ...defaultQueryState,
       ...parseQueryState(queryString),
@@ -46,7 +45,7 @@ export function useLocationQueryStateObj<T extends QueryState>(
     }
 
     // retrieve the last value (by re-executing the search getter)
-    const currentQueryState: ExtendedQueryState<T> = {
+    const currentQueryState: QueryState = {
       ...defaultQueryState,
       ...parseQueryState(queryStringInterface.getQueryString()),
     }
@@ -69,12 +68,13 @@ export function useLocationQueryStateObj<T extends QueryState>(
   return [queryState, setQueryState]
 }
 
-export function useLocationQueryState<T extends ValueType>(
+export function useLocationQueryState<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
+
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
       ? {
@@ -93,12 +93,18 @@ export function useLocationQueryState<T extends ValueType>(
   )
 
   // fallback to default value
-  const queryStateValue = parseQueryStateValue(queryState[itemName], defaultValue)
-  const value: T = queryStateValue === null ? defaultValue : queryStateValue
+  const queryStateItem = queryState[itemName]
+  const queryStateValue = parseQueryStateValue(queryStateItem, defaultValue)
+  let value = defaultValue
+
+  if(queryStateValue !== null && typeof queryStateValue === typeof defaultValue) {
+    value = queryStateValue as any
+  }
+
   return [value, setQueryStateItem]
 }
 
-function toQueryStateValue(value: ValueType): QueryStateValue | null {
+function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
   if (Array.isArray(value)) {
     return value.map(v => v.toString()).sort()
   } else if (value || value === '' || value === false || value === 0) {
@@ -108,28 +114,26 @@ function toQueryStateValue(value: ValueType): QueryStateValue | null {
   }
 }
 
-function parseQueryStateValue<T extends ValueType>(
-  value: QueryStateValue,
-  defaultValue: T
-): T | null {
+function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
   const defaultValueType = typeof defaultValue
 
   if (defaultValueType === 'object' && Array.isArray(defaultValue)) {
     const sArr: string[] = []
-    return sArr.concat(value) as T
+    const ret = sArr.concat(value)
+    return ret
   }
 
   switch (defaultValueType) {
     case 'string':
-      return value as T
+      return value.toString()
     case 'number':
       const num = Number(value)
-      return (num || num === 0 ? num : null) as T
+      return num || num === 0 ? num : null
     case 'boolean':
       if (value === 'true') {
-        return true as T
+        return true
       } else if (value === 'false') {
-        return false as T
+        return false
       } else {
         return null
       }
