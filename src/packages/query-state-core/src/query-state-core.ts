@@ -36,6 +36,7 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
   const params = new URLSearchParams()
 
   Object.entries(mergedQueryStates).forEach(([key, value]) => {
+    // entries with null or undefined values are removed from the query string
     if (value === null || value === undefined) {
       return
     }

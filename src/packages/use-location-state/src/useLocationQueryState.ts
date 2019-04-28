@@ -91,7 +91,7 @@ export function useLocationQueryState<T>(
   const queryStateValue = parseQueryStateValue(queryStateItem, defaultValue)
   let value = defaultValue
 
-  if(queryStateValue !== null && typeof queryStateValue === typeof defaultValue) {
+  if (queryStateValue !== null && typeof queryStateValue === typeof defaultValue) {
     value = queryStateValue as any
   }
 
@@ -103,9 +103,8 @@ function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
     return value.map(v => v.toString()).sort()
   } else if (value || value === '' || value === false || value === 0) {
     return value.toString()
-  } else {
-    return null
   }
+  return null
 }
 
 const newStringArray: () => string[] = () => []
@@ -130,8 +129,12 @@ function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
         return false
       }
       break
+    case 'undefined':
+    case 'object':
+    case 'function':
+    case 'symbol':
+    case 'bigint':
     default:
-      break
   }
   return null
 }

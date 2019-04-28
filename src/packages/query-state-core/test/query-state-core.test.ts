@@ -21,7 +21,7 @@ describe('parseQueryState parses', () => {
     expect(parseQueryState('a=abc&a=efg')).toEqual({ a: ['abc','efg'] })
   })
 
-  it('query string with array value', () => {
+  it('creates array from query string with multiple value values for same key', () => {
     expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({ filters: ["1", "2", "3"] })
   })
 
@@ -90,4 +90,14 @@ describe('createMergedQuery', () => {
       )
     ).toEqual('otherwiseEmpty=true')
   })
+
+  it('with array value', () => {
+    expect(createMergedQuery({ arr: ['1','2','3'] })).toEqual('arr=1&arr=2&arr=3')
+  })
+
+  it('with array value overwrite (no automatic concat)', () => {
+    expect(createMergedQuery({ arr: ['1'] }, { arr: ['a','b'] })).toEqual('arr=a&arr=b')
+  })
+
+
 })

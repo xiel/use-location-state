@@ -4,7 +4,7 @@ import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { SetQueryStateItemFn } from '../types'
 
 // nicer access to the current value and setter function from the result ref
-function unwrapResult<A, B>(result: {
+function unwrapABResult<A, B>(result: {
   current: { a: [A, SetQueryStateItemFn<A>]; b: [B, SetQueryStateItemFn<B>] }
 }) {
   return {
@@ -18,6 +18,8 @@ function unwrapResult<A, B>(result: {
     setValueB: result.current['b'][1],
   }
 }
+
+
 
 describe('enforce types', () => {
   test('usage of two queryState hooks with different types on the same item name', () => {
@@ -35,7 +37,7 @@ describe('enforce types', () => {
     })
 
     // get/set interfaces for the results (ref)
-    const r = unwrapResult(result)
+    const r = unwrapABResult(result)
 
     // expect to get the default values
     expect(testQSI.getQueryString()).toBe('')
@@ -57,6 +59,10 @@ describe('enforce types', () => {
   })
 })
 
+// test.todo('test NaN')
+// test.todo('test undefined')
+// test.todo('test function')
+// test.todo('test Date')
 // test.todo('number')
 // test.todo('array of strings')
 // test.todo('invalid values like object, symbol should throw')
