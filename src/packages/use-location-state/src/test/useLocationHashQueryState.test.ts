@@ -1,7 +1,7 @@
-import { cleanup, wait } from 'react-testing-library'
 import { act } from 'react-dom/test-utils'
+import { cleanup, wait } from 'react-testing-library'
 import { renderHook } from 'react-hooks-testing-library'
-import { useLocationHashQueryState } from '../useLocationHashQueryState'
+import { useLocationHashQueryState } from '../use-location-state'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -170,8 +170,3 @@ describe('useLocationHashQueryState', () => {
 //     expect(valBool()).toEqual(false)
 //   })
 // })
-
-test.todo('number')
-test.todo('array of strings')
-test.todo('invalid values like object, symbol should throw')
-test.todo('every supported combination')
