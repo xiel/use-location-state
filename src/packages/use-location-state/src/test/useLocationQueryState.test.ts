@@ -19,8 +19,6 @@ function unwrapABResult<A, B>(result: {
   }
 }
 
-
-
 describe('enforce types', () => {
   test('usage of two queryState hooks with different types on the same item name', () => {
     const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
@@ -58,12 +56,3 @@ describe('enforce types', () => {
     act(() => unmount())
   })
 })
-
-// test.todo('test NaN')
-// test.todo('test undefined')
-// test.todo('test function')
-// test.todo('test Date')
-// test.todo('number')
-// test.todo('array of strings')
-// test.todo('invalid values like object, symbol should throw')
-// test.todo('every supported combination')

@@ -68,20 +68,28 @@ export function useLocationQueryState<T>(
   queryStateOpts: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
-
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
       ? {
-          [itemName]: defaultQueryStateValue,
-        }
+        [itemName]: defaultQueryStateValue,
+      }
       : {}
   }, [itemName, defaultQueryStateValue])
 
-  const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)
+  if(defaultQueryStateValue === null) {
+    throw new Error('unsupported defaultValue')
+  }
 
+  const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem: SetQueryStateItemFn<T> = useCallback(
     (newValue, opts) => {
-      setQueryState({ [itemName]: toQueryStateValue(newValue) }, opts)
+      const newQueryStateValue = toQueryStateValue(newValue)
+
+      if(newQueryStateValue === null && newValue !== newQueryStateValue) {
+        console.warn('invalid value, will reset to default value', newValue)
+      }
+
+      setQueryState({ [itemName]: newQueryStateValue }, opts)
     },
     [itemName, setQueryState]
   )
@@ -100,9 +108,16 @@ export function useLocationQueryState<T>(
 
 function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
   if (Array.isArray(value)) {
-    return value.map(v => v.toString()).sort()
+    return value.map(v => v.toString())
   } else if (value || value === '' || value === false || value === 0) {
-    return value.toString()
+    switch (typeof value) {
+      case 'string':
+      case 'number':
+      case 'boolean':
+        return value.toString()
+      default:
+        break
+    }
   }
   return null
 }
@@ -129,11 +144,6 @@ function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
         return false
       }
       break
-    case 'undefined':
-    case 'object':
-    case 'function':
-    case 'symbol':
-    case 'bigint':
     default:
   }
   return null
