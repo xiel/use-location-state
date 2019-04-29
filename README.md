@@ -26,7 +26,7 @@ The important difference is that you need to pass a name for your state before y
 ```javascript
 const [value, setValue] = useQueryState('itemName', 'default value')
 ```
-The name you pass will be used in the query string store the state, when the state was changed.
+The name you pass will be used in the query string store the state (after the state was changed).
 
 ```javascript
 setValue('different value')
@@ -37,7 +37,9 @@ Now the query string in your browser will be update to keep the new state and be
 http://localhost:3000/#itemName=different+value
 ```
 
-useQueryState() uses the `location.hash` property by default. Check out the router integrations to use `location.search` (?itemName=different+value) instead.
+useQueryState() uses the `location.hash` property by default.
+
+Check out the router integrations to use `location.search` (?itemName=different+value) instead.
 
 ### Example
 ```javascript
@@ -56,9 +58,9 @@ function MyComponent() {
 
 ## Router Integration
 
-We plan to provide easy-to-use integrations for all major routers.
+We plan to provide easy-to-use integrations for all major routers. (*more routers soon - work in progress*)
 
-At the moment we provide integrations for: (*more routers soon - work in progress*)
+At the moment we provide integrations for: 
 
 ## react-router
 
@@ -66,4 +68,4 @@ At the moment we provide integrations for: (*more routers soon - work in progres
 yarn add react-router-use-query-state
 ```
 
-Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues) to get an integration soon.
+Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues).
