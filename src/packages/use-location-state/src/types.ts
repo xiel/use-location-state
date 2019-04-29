@@ -16,7 +16,7 @@ export interface QueryStringInterface {
 
 export type QueryStateOpts = {
   stripDefaults?: boolean
-  queryStringInterface: QueryStringInterface
+  queryStringInterface?: QueryStringInterface
 }
 
 export type QueryStateOptsSetInterface = {

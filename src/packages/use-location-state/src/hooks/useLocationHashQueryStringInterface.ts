@@ -1,24 +1,41 @@
 import { useEffect, useMemo, useState } from 'react'
 import { QueryStringInterface } from '../types'
 
-export function useLocationHashQueryStringInterface(): QueryStringInterface {
-  const [, setR] = useState(window.location.hash)
-  const hashQueryStringInterface: QueryStringInterface = useMemo(
+interface Props {
+  disabled?: boolean
+}
+
+export function useLocationHashQueryStringInterface({
+  disabled = false,
+}: Props = {}): QueryStringInterface {
+  const hashQSI: QueryStringInterface = useMemo(
     () => ({
-      getQueryString: () => window.location.hash,
+      getQueryString: () => {
+        if (disabled) {
+          return ''
+        }
+        return window.location.hash
+      },
       setQueryString: newQueryString => {
-        window.location.hash = newQueryString
-        setR((r) => r + 1)
+        if (!disabled) {
+          window.location.hash = newQueryString
+          setR(r => r + 1)
+        }
       },
     }),
-    []
+    [disabled]
   )
+  // this state is used to trigger re-renders
+  const [, setR] = useState(hashQSI.getQueryString())
 
   useEffect(() => {
-    const hashChangeHandler = () => setR((r) => r + 1)
+    if (disabled) {
+      return
+    }
+    const hashChangeHandler = () => setR(r => r + 1)
     window.addEventListener('hashchange', hashChangeHandler, false)
     return () => window.removeEventListener('hashchange', hashChangeHandler, false)
-  }, [])
+  }, [disabled])
 
-  return hashQueryStringInterface
+  return hashQSI
 }

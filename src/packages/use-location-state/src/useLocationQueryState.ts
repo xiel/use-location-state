@@ -8,13 +8,16 @@ import {
   QueryStateMerge,
   toQueryStateValue,
 } from 'query-state-core'
+import { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
 
 export function useLocationQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOpts
 ): [QueryState, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
-  const queryString = queryStringInterface.getQueryString()
+  const hashQSI = useLocationHashQueryStringInterface({ disabled: !!queryStringInterface })
+  const activeQSI =  queryStringInterface || hashQSI
+  const queryString = activeQSI.getQueryString()
   const [, setLatestMergedQueryString] = useState<string>()
   const queryState = useMemo(
     () => ({
@@ -27,11 +30,12 @@ export function useLocationQueryStateObj<T extends QueryState>(
   const ref = useRef({
     defaultQueryState,
     queryStateOpts,
+    activeQSI,
   })
 
   const setQueryState: SetQueryStateFn<T> = useCallback((newState, opts) => {
-    const { defaultQueryState, queryStateOpts } = ref.current
-    const { queryStringInterface, stripDefaults = true } = queryStateOpts
+    const { defaultQueryState, queryStateOpts, activeQSI } = ref.current
+    const { stripDefaults = true } = queryStateOpts
     const stripOverwrite: QueryStateMerge = {}
 
     // when a params are set to the same value as in the defaults
@@ -47,12 +51,12 @@ export function useLocationQueryStateObj<T extends QueryState>(
     // retrieve the last value (by re-executing the search getter)
     const currentQueryState: QueryState = {
       ...defaultQueryState,
-      ...parseQueryState(queryStringInterface.getQueryString()),
+      ...parseQueryState(activeQSI.getQueryString()),
     }
 
     const mergedQueryString = createMergedQuery(currentQueryState || {}, newState, stripOverwrite)
 
-    queryStringInterface.setQueryString(mergedQueryString, opts || {})
+    activeQSI.setQueryString(mergedQueryString, opts || {})
 
     // triggers an update (in case the QueryStringInterface misses to do so)
     setLatestMergedQueryString(mergedQueryString)
@@ -62,6 +66,7 @@ export function useLocationQueryStateObj<T extends QueryState>(
     ref.current = {
       defaultQueryState,
       queryStateOpts,
+      activeQSI,
     }
   })
 
@@ -71,7 +76,7 @@ export function useLocationQueryStateObj<T extends QueryState>(
 export function useLocationQueryState<T>(
   itemName: string,
   defaultValue: T,
-  queryStateOpts: QueryStateOpts
+  queryStateOpts: QueryStateOpts = {}
 ): [T, SetQueryStateItemFn<T>] {
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
   const defaultQueryState = useMemo(() => {
