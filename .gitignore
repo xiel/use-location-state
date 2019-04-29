@@ -10,3 +10,4 @@ yarn-error.log
 react-app-env.d.ts
 coverage
 *.js
+src/packages/use-location-state/README.md
