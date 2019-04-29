@@ -10,7 +10,7 @@
   "dependencies": {
     "query-state-core": "^2.0.0-beta.4"
   },
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
