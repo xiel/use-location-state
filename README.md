@@ -1,5 +1,5 @@
 # useQueryState()
- 
+
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
 [![Build Status](https://travis-ci.com/xiel/location-state.svg?branch=master)](https://travis-ci.com/xiel/location-state)
 [![Greenkeeper badge](https://badges.greenkeeper.io/xiel/location-state.svg)](https://greenkeeper.io/)
@@ -7,23 +7,30 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/xiel/location-state.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-
 store and retrieve state into/from the browsers history location using modern hooks
+
+# Installation
+
+```bash
+yarn add use-location-state
+```
 
 ## Usage
 
 The useQueryState hook works similar to the `useState()` hook and returns the current value and a set function in a pair.
 
-````javascript
-const [name, setName] = useQueryState('name', 'Sarah')
-const [age, setAge] = useQueryState('age', 25)
-const [active, setActive] = useQueryState('active', false)
-````
+The important difference is that you need to pass a key/parameter name together with your default value.
 
-One important difference is that you are required to pass a key/parameter name for your state hook.
+```javascript
+import { useQueryState } from 'use-location-state'
 
-# Installation
-
-````javascript
-
-````
+function MyComponent() {
+  const [active, setActive] = useQueryState('active', true)
+  return (
+    <div>
+      {active && <p>Some content</p>}
+      <button type="button" onClick={() => setActive(!active)} />
+    </div>
+  )
+}
+```
