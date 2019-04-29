@@ -31,7 +31,7 @@ The name you pass will be used in the query string store the state (after the st
 ```javascript
 setValue('different value')
 ```
-Now the query string in your browser will be update to keep the new state and be able to reproduce it after reloads or history navigation (forward / back button).
+Now the query string in your browser will be updated to keep the new state and be able to reproduce it, eg. after reloads or history navigation (using forward / back button).
 
 ```javascript
 http://localhost:3000/#itemName=different+value
@@ -65,7 +65,10 @@ At the moment we provide integrations for:
 ## react-router
 
 ```bash
-yarn add react-router-use-query-state
+yarn add react-router-use-location-state
+```
+```javascript
+import { useQueryState } from 'react-router-use-location-state'
 ```
 
 Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues).
