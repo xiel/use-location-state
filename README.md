@@ -31,14 +31,13 @@ The name you pass will be used in the query string store the state (after the st
 ```javascript
 setValue('different value')
 ```
-Now the query string in your browser will be updated to keep the new state and be able to reproduce it, eg. after reloads or history navigation (using forward / back button).
+After calling the set function with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button).
 
 ```javascript
 http://localhost:3000/#itemName=different+value
 ```
 
-useQueryState() uses the `location.hash` property by default.
-
+useQueryState() uses the browsers `location.hash` property by default.
 Check out the router integrations to use `location.search` (?itemName=different+value) instead.
 
 ### Example
