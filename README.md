@@ -38,7 +38,7 @@ http://localhost:3000/#itemName=different+value
 ```
 
 useQueryState() uses the browsers `location.hash` property by default.
-Check out the router integrations to use `location.search` (?itemName=different+value) instead.
+Check out the router integrations to use `location.search` instead.
 
 ### Example
 ```javascript
