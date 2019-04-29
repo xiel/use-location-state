@@ -9,7 +9,7 @@
 
 store and retrieve state into/from the browsers location state using modern hooks
 
-# Installation
+## Installation
 
 ```bash
 yarn add use-location-state
@@ -17,7 +17,6 @@ yarn add use-location-state
 In case you use react-router, please check out the [router integration](#router-integration) segment.
 
 ## Usage
-
 
 The useQueryState() works similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook) and returns the current value and a set function in a pair.
 
@@ -66,6 +65,12 @@ function MyComponent() {
 }
 ```
 Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
+
+## Features
+
+- supported value types: string | number | boolean | string[]
+- handles stringification and parsing from query string of for supported types
+- invalid entries from the query string are discarded and the component will receive the default value instead
 
 ## Router Integration
 
