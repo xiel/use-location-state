@@ -77,7 +77,6 @@ Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/locati
 ## Router Integration
 
 We plan to provide easy-to-use integrations for all major routers. (*more routers soon - work in progress*)
-
 At the moment we provide integrations for: 
 
 ## react-router
