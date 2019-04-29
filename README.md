@@ -37,8 +37,7 @@ Now the query string in your browser will be update to keep the new state and be
 http://localhost:3000/#itemName=different+value
 ```
 
-useQueryState() uses the `location.hash` property by default. 
-You can customize that behaviour to use the `location.search` (?itemName=different+value)
+useQueryState() uses the `location.hash` property by default. Check out the router integrations to use `location.search` (?itemName=different+value) instead.
 
 ### Example
 ```javascript
@@ -48,8 +47,8 @@ function MyComponent() {
   const [active, setActive] = useQueryState('active', true)
   return (
     <div>
-      {active && <p>Some content</p>}
-      <button type="button" onClick={() => setActive(!active)} />
+      <button type="button" onClick={() => setActive(!active)}>Toggle</button>
+      {active && <p>Some active content</p>}
     </div>
   )
 }
@@ -57,8 +56,9 @@ function MyComponent() {
 
 ## Router Integration
 
-We plan to provide easy-to-use integrations with most popular routers (WIP).
-At the moment we only provide integrations for:
+We plan to provide easy-to-use integrations for all major routers.
+
+At the moment we provide integrations for: (*more routers soon - work in progress*)
 
 ## react-router
 
