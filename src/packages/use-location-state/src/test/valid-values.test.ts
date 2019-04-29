@@ -1,6 +1,6 @@
 import { renderHook, act } from 'react-hooks-testing-library'
 import { useLocationQueryState } from '../use-location-state'
-import { EMPTY_ARRAY_STRING_URI_ENCODED } from 'query-state-core'
+import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { SetQueryStateItemFn } from '../types'
 
@@ -21,7 +21,7 @@ describe.each`
   ${''}                      | ${'not empty anymore'} | ${'item=not+empty+anymore'}
   ${[]}                      | ${['new', 'entries']}  | ${'item=new&item=entries'}
   ${['']}                    | ${['new', 'entries']}  | ${'item=new&item=entries'}
-  ${['multiple', 'strings']} | ${[]}                  | ${'item=' + EMPTY_ARRAY_STRING_URI_ENCODED}
+  ${['multiple', 'strings']} | ${[]}                  | ${'item=' + encodeURIComponent(EMPTY_ARRAY_STRING)}
   ${['multiple', 'strings']} | ${['']}                | ${'item='}
   ${['multiple', 'strings']} | ${['just one entry']}  | ${'item=just+one+entry'}
   ${0}                       | ${-50}                 | ${'item=-50'}

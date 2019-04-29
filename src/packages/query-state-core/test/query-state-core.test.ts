@@ -1,4 +1,4 @@
-import { createMergedQuery, EMPTY_ARRAY_STRING_URI_ENCODED, parseQueryState } from '../src/query-state-core'
+import { createMergedQuery, EMPTY_ARRAY_STRING, parseQueryState } from '../src/query-state-core'
 
 describe('parseQueryState parses', () => {
   it('empty string', () => {
@@ -105,7 +105,7 @@ describe('createMergedQuery', () => {
   })
 
     it('with empty array', () => {
-    expect(createMergedQuery({ arr: [] })).toEqual('arr=' + EMPTY_ARRAY_STRING_URI_ENCODED)
+    expect(createMergedQuery({ arr: [] })).toEqual('arr=' + encodeURIComponent(EMPTY_ARRAY_STRING))
   })
 
 })

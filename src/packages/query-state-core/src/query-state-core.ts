@@ -5,7 +5,6 @@ export type QueryState = Record<string, QueryStateValue>
 export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
 
 export const EMPTY_ARRAY_STRING = "[\u00A0]"
-export const EMPTY_ARRAY_STRING_URI_ENCODED = encodeURIComponent(EMPTY_ARRAY_STRING)
 
 export function stripLeadingHashOrQuestionMark(s: string = '') {
   if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
