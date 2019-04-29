@@ -18,7 +18,8 @@
     "react-hooks-testing-library": "^0.5.0",
     "react-scripts": "^3.0.0",
     "react-testing-library": "7.0.0",
-    "typescript": "3.4.4"
+    "typescript": "3.4.4",
+    "copyfiles": "2.1.0"
   },
   "resolutions": {
     "react": "16.9.0-alpha.0",
@@ -30,8 +31,9 @@
     "release:beta": "yarn lerna publish --preid beta --dist-tag beta",
     "release:stable": "yarn lerna publish",
     "start": "yarn lerna run start --parallel",
-    "build": "yarn lerna run build",
-    "test": "react-scripts test"
+    "build": "yarn copy:readme; yarn lerna run build",
+    "test": "react-scripts test",
+    "copy:readme": "npx copyfiles README.md src/packages/use-location-state/"
   },
   "version": "0.0.0-development",
   "repository": {

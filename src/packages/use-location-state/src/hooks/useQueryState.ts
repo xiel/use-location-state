@@ -1,9 +1,9 @@
 import { QueryStateOpts, SetQueryStateItemFn } from './types'
 import { useCallback, useMemo } from 'react'
 import { parseQueryStateValue, toQueryStateValue } from 'query-state-core'
-import useLocationQueryStateObj from './useLocationQueryStateObj'
+import useQueryStateObj from './useQueryStateObj'
 
-export default function useLocationQueryState<T>(
+export default function useQueryState<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOpts = {}
@@ -21,7 +21,7 @@ export default function useLocationQueryState<T>(
     throw new Error('unsupported defaultValue')
   }
 
-  const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)
+  const [queryState, setQueryState] = useQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem: SetQueryStateItemFn<T> = useCallback(
     (newValue, opts) => {
       // stringify the given value (or array of strings)

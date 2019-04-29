@@ -1,6 +1,6 @@
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from 'react-hooks-testing-library'
-import useLocationQueryState from '../use-location-state'
+import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { unwrapResult } from './test-helpers'
 
@@ -28,7 +28,7 @@ describe.each`
     test(`should return default value and set newValue successfully`, () => {
       const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
       const { result, unmount } = renderHook(() =>
-        useLocationQueryState('item', defaultValue, {
+        useQueryState('item', defaultValue, {
           queryStringInterface: testQSI,
         })
       )
