@@ -19,9 +19,9 @@ In case you use react-router, please check out the router integration segment.
 ## Usage
 
 
-The useQueryState() works similar to the `useState()` hook and returns the current value and a set function in a pair.
+The useQueryState() works similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook) and returns the current value and a set function in a pair.
 
-The important difference is that you need to pass a name for your state before your default value.
+The *important difference* is that you need to pass a __name__ before your __default value__ for your state.
 
 ```javascript
 const [value, setValue] = useQueryState('itemName', 'default value')
