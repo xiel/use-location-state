@@ -14,13 +14,30 @@ store and retrieve state into/from the browsers history location using modern ho
 ```bash
 yarn add use-location-state
 ```
+In case you use react-router, please check out the router integration segment.
 
 ## Usage
 
-The useQueryState hook works similar to the `useState()` hook and returns the current value and a set function in a pair.
 
-The important difference is that you need to pass a key/parameter name together with your default value.
+The useQueryState() works similar to the `useState()` hook and returns the current value and a set function in a pair.
 
+The important difference is that you need to pass a name for your state before your default value.
+
+```javascript
+const [value, setValue] = useQueryState('itemName', 'default value')
+```
+The name you pass will be used in the query string store the state, when the state was changed.
+
+```javascript
+setValue('different value')
+```
+Now the query string in your browser will be update to keep the new state and be able to reproduce it after reloads or history navigation (forward / back button).
+
+```javascript
+http://localhost:3000/#itemName=different+value
+```
+
+### Example
 ```javascript
 import { useQueryState } from 'use-location-state'
 
@@ -33,4 +50,15 @@ function MyComponent() {
     </div>
   )
 }
+```
+
+## Router Integrations
+
+We plan to easy to use integrations with most popular routers (WIP).
+At the moment we provide integrations for:
+
+## react-router
+
+```bash
+yarn add react-router-use-query-state
 ```
