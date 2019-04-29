@@ -1,7 +1,11 @@
+export type ValueType = string | string[] | number | boolean
 export type QueryStateValue = string | string[]
 export type QueryStateResetValue = null | undefined
 export type QueryState = Record<string, QueryStateValue>
 export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
+
+export const EMPTY_ARRAY_STRING = "[\u00A0]"
+export const EMPTY_ARRAY_STRING_URI_ENCODED = encodeURIComponent(EMPTY_ARRAY_STRING)
 
 export function stripLeadingHashOrQuestionMark(s: string = '') {
   if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
@@ -42,9 +46,13 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
     }
 
     if (Array.isArray(value)) {
-      value.forEach(v => {
-        params.append(key, v)
-      })
+      if(value.length) {
+        value.forEach(v => {
+          params.append(key, v || '')
+        })
+      } else {
+        params.append(key, EMPTY_ARRAY_STRING)
+      }
     } else {
       params.append(key, value)
     }
@@ -52,4 +60,55 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
 
   params.sort()
   return params.toString()
+}
+
+export function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
+  if (Array.isArray(value)) {
+    return value.map(v => v.toString())
+  } else if (value || value === '' || value === false || value === 0) {
+    switch (typeof value) {
+      case 'string':
+      case 'number':
+      case 'boolean':
+        return value.toString()
+      default:
+        break
+    }
+  }
+  return null
+}
+
+export const newStringArray: () => string[] = () => []
+
+export function parseQueryStateValue<T>(value: QueryStateValue = '', defaultValue: T): ValueType | null {
+  const defaultValueType = typeof defaultValue
+
+  if (Array.isArray(defaultValue)) {
+    // special case of empty array saved in query string to keep it distinguishable from ['']
+    if(value === EMPTY_ARRAY_STRING) {
+      return []
+    }
+    return newStringArray().concat(value)
+  }
+
+  if(typeof value !== 'string' && !Array.isArray(value)) {
+    return null
+  }
+
+  switch (defaultValueType) {
+    case 'string':
+      return value.toString()
+    case 'number':
+      const num = Number(value)
+      return num || num === 0 ? num : null
+    case 'boolean':
+      if (value === 'true') {
+        return true
+      } else if (value === 'false') {
+        return false
+      }
+      break
+    default:
+  }
+  return null
 }

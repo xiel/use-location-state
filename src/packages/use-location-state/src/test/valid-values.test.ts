@@ -1,5 +1,6 @@
 import { renderHook, act } from 'react-hooks-testing-library'
 import { useLocationQueryState } from '../use-location-state'
+import { EMPTY_ARRAY_STRING_URI_ENCODED } from 'query-state-core'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { SetQueryStateItemFn } from '../types'
 
@@ -13,78 +14,49 @@ function unwrapResult<A>(result: { current: [A, SetQueryStateItemFn<A>] }) {
   }
 }
 
-// test.todo('array of strings')
-// test.todo('every supported combination')
-
-describe('invalid input defaultValue', () => {
-  describe.each`
-    defaultValue
-    ${NaN}
-    ${() => void 0}
-    ${undefined}
-    ${null}
-    ${new Date()}
-    ${{ object: 1 }}
-    ${Symbol('Test')}
-  `('defaultValue $defaultValue', ({ defaultValue }) => {
-    test(`should throw`, () => {
-      const orgError = console.error
-      console.error = jest.fn()
+describe.each`
+  defaultValue               | newValue               | newValueQueryString
+  ${'not empty'}             | ${''}                  | ${'item='}
+  ${'not empty'}             | ${'still not empty'}   | ${'item=still+not+empty'}
+  ${''}                      | ${'not empty anymore'} | ${'item=not+empty+anymore'}
+  ${[]}                      | ${['new', 'entries']}  | ${'item=new&item=entries'}
+  ${['']}                    | ${['new', 'entries']}  | ${'item=new&item=entries'}
+  ${['multiple', 'strings']} | ${[]}                  | ${'item=' + EMPTY_ARRAY_STRING_URI_ENCODED}
+  ${['multiple', 'strings']} | ${['']}                | ${'item='}
+  ${['multiple', 'strings']} | ${['just one entry']}  | ${'item=just+one+entry'}
+  ${0}                       | ${-50}                 | ${'item=-50'}
+  ${99}                      | ${3.14}                | ${'item=3.14'}
+  ${Infinity}                | ${-Infinity}           | ${'item=-Infinity'}
+  ${1e23}                    | ${1e24}                | ${'item=' + encodeURIComponent((1e24).toString())}
+  ${true}                    | ${false}               | ${'item=false'}
+  ${true}                    | ${true}                | ${''}
+  ${false}                   | ${true}                | ${'item=true'}
+  ${false}                   | ${false}               | ${''}
+`(
+  'defaultValue $defaultValue, newValue $newValue',
+  ({ defaultValue = '', newValue, newValueQueryString }) => {
+    test(`should return default value and set newValue successfully`, () => {
       const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
       const { result, unmount } = renderHook(() =>
-        useLocationQueryState('anything', defaultValue, {
-          queryStringInterface: testQSI,
-        })
-      )
-      expect(result.error).toMatchInlineSnapshot(`[Error: unsupported defaultValue]`)
-      expect(testQSI.getQueryString()).toBe('')
-      act(() => unmount())
-      console.error = orgError
-    })
-  })
-})
-
-describe('invalid value in setter', () => {
-  describe.each`
-    invalidValueToSet
-    ${NaN}
-    ${() => void 0}
-    ${undefined}
-    ${new Date()}
-    ${{ object: 1 }}
-    ${Symbol('Test')}
-  `('invalidValueToSet $invalidValueToSet', ({ invalidValueToSet }) => {
-    test(`should throw`, () => {
-      const orgWarn = console.warn
-      console.warn = jest.fn()
-      const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
-      const { result, unmount } = renderHook(() =>
-        useLocationQueryState('itemName', 'valid default value', {
+        useLocationQueryState('item', defaultValue, {
           queryStringInterface: testQSI,
         })
       )
       const r = unwrapResult(result)
-
+      // default
       expect(result.error).toBe(undefined)
-      expect(r.value).toBe('valid default value')
-      expect(testQSI.getQueryString()).toBe('')
-      act(() => r.setValue('new value'))
-      expect(r.value).toBe('new value')
-      expect(testQSI.getQueryString()).toBe('itemName=new+value')
+      expect(testQSI.getQueryString()).toEqual('')
+      expect(r.value).toEqual(defaultValue)
+      // new value
+      act(() => r.setValue(newValue))
+      expect(testQSI.getQueryString()).toEqual(newValueQueryString)
+      expect(r.value).toEqual(newValue)
+      // back to default
+      act(() => r.setValue(defaultValue))
+      expect(r.value).toEqual(defaultValue)
+      expect(testQSI.getQueryString()).toEqual('')
 
-      // calling setter with an invalid value will reset the state to the default value
-      act(() => r.setValue(invalidValueToSet))
-      expect(r.value).toBe('valid default value')
-      expect(testQSI.getQueryString()).toBe('')
-      expect(console.warn).toHaveBeenCalledTimes(1)
-
-      act(() => unmount())
-      console.warn = orgWarn
+      void act(() => unmount())
     })
-  })
-
-})
-
-
-
-
+  }
+)

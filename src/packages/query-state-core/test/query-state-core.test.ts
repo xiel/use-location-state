@@ -1,4 +1,4 @@
-import { createMergedQuery, parseQueryState } from '../src/query-state-core'
+import { createMergedQuery, EMPTY_ARRAY_STRING_URI_ENCODED, parseQueryState } from '../src/query-state-core'
 
 describe('parseQueryState parses', () => {
   it('empty string', () => {
@@ -91,6 +91,7 @@ describe('createMergedQuery', () => {
     ).toEqual('otherwiseEmpty=true')
   })
 
+
   it('with array value', () => {
     expect(createMergedQuery({ arr: ['1','2','3'] })).toEqual('arr=1&arr=2&arr=3')
   })
@@ -99,5 +100,12 @@ describe('createMergedQuery', () => {
     expect(createMergedQuery({ arr: ['1'] }, { arr: ['a','b'] })).toEqual('arr=a&arr=b')
   })
 
+  it('with array with empty', () => {
+    expect(createMergedQuery({ arr: [''] })).toEqual('arr=')
+  })
+
+    it('with empty array', () => {
+    expect(createMergedQuery({ arr: [] })).toEqual('arr=' + EMPTY_ARRAY_STRING_URI_ENCODED)
+  })
 
 })

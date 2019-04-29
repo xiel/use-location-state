@@ -1,7 +1,6 @@
 import { QueryStateMerge } from 'query-state-core'
 
 export type QueryString = string
-export type ValueType = string | string[] | number | boolean
 
 export type SetQueryStateFn<T> = (
   newState: QueryStateMerge,

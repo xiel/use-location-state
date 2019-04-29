@@ -13,9 +13,6 @@ function unwrapResult<A>(result: { current: [A, SetQueryStateItemFn<A>] }) {
   }
 }
 
-// test.todo('array of strings')
-// test.todo('every supported combination')
-
 describe('invalid input defaultValue', () => {
   describe.each`
     defaultValue

@@ -1,7 +1,13 @@
-import { QueryStateOpts, SetQueryStateFn, SetQueryStateItemFn, ValueType } from './types'
+import { QueryStateOpts, SetQueryStateFn, SetQueryStateItemFn } from './types'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { createMergedQuery, parseQueryState, QueryState } from 'query-state-core'
-import { QueryStateMerge, QueryStateValue } from 'query-state-core/src/query-state-core'
+import {
+  createMergedQuery,
+  parseQueryState,
+  parseQueryStateValue,
+  QueryState,
+  QueryStateMerge,
+  toQueryStateValue,
+} from 'query-state-core'
 
 export function useLocationQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
@@ -71,22 +77,29 @@ export function useLocationQueryState<T>(
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
       ? {
-        [itemName]: defaultQueryStateValue,
-      }
+          [itemName]: defaultQueryStateValue,
+        }
       : {}
   }, [itemName, defaultQueryStateValue])
 
-  if(defaultQueryStateValue === null) {
+  if (defaultQueryStateValue === null) {
     throw new Error('unsupported defaultValue')
   }
 
   const [queryState, setQueryState] = useLocationQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem: SetQueryStateItemFn<T> = useCallback(
     (newValue, opts) => {
-      const newQueryStateValue = toQueryStateValue(newValue)
+      // stringify the given value (or array of strings)
+      let newQueryStateValue = toQueryStateValue(newValue)
 
-      if(newQueryStateValue === null && newValue !== newQueryStateValue) {
+      // warn when value type is not supported
+      if (newQueryStateValue === null && newValue !== newQueryStateValue) {
         console.warn('invalid value, will reset to default value', newValue)
+      }
+
+      // when new value is qual to default, we call setQueryState with a null value to reset query string
+      if (newValue === defaultValue) {
+        newQueryStateValue = null
       }
 
       setQueryState({ [itemName]: newQueryStateValue }, opts)
@@ -95,56 +108,17 @@ export function useLocationQueryState<T>(
   )
 
   // fallback to default value
-  const queryStateItem = queryState[itemName]
-  const queryStateValue = parseQueryStateValue(queryStateItem, defaultValue)
   let value = defaultValue
+  const queryStateItem = queryState[itemName]
+  let queryStateValue = null
+
+  if (queryStateItem || queryStateItem === '') {
+    queryStateValue = parseQueryStateValue(queryStateItem, defaultValue)
+  }
 
   if (queryStateValue !== null && typeof queryStateValue === typeof defaultValue) {
     value = queryStateValue as any
   }
 
   return [value, setQueryStateItem]
-}
-
-function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
-  if (Array.isArray(value)) {
-    return value.map(v => v.toString())
-  } else if (value || value === '' || value === false || value === 0) {
-    switch (typeof value) {
-      case 'string':
-      case 'number':
-      case 'boolean':
-        return value.toString()
-      default:
-        break
-    }
-  }
-  return null
-}
-
-const newStringArray: () => string[] = () => []
-
-function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T) {
-  const defaultValueType = typeof defaultValue
-
-  if (Array.isArray(defaultValue)) {
-    return newStringArray().concat(value)
-  }
-
-  switch (defaultValueType) {
-    case 'string':
-      return value.toString()
-    case 'number':
-      const num = Number(value)
-      return num || num === 0 ? num : null
-    case 'boolean':
-      if (value === 'true') {
-        return true
-      } else if (value === 'false') {
-        return false
-      }
-      break
-    default:
-  }
-  return null
 }
