@@ -2,28 +2,22 @@ import React from 'react'
 import { useLocationHashQueryState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
 
-interface Props {}
-
-export default function QueryStateTest(props: Props) {
+export default function QueryStateTest() {
   const [name, setName] = useLocationHashQueryState('name', 'Sarah')
   const [age, setAge] = useLocationHashQueryState('age', 25)
+  const [active, setActive] = useLocationHashQueryState('active', false)
 
   return (
     <div>
-      <h1>useQueryState</h1>
       <h2>Intro</h2>
-      <h3>
-        <abbr title="a brief summary">tl;dr</abbr>
-      </h3>
-      <p>Link to longer blog post</p>
-
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque, corporis debitis esse.</p>
       <QueryStateDisplay
         queryState={{
           name,
           age,
+          active,
         }}
       />
-
       <h4>name</h4>
       <p>
         <button type="button" onClick={() => setName('Felix')}>
@@ -39,11 +33,10 @@ export default function QueryStateTest(props: Props) {
         <input
           id="input-name"
           type="text"
-          placeholder={name}
+          value={name}
           onChange={e => setName(e.target.value)}
         />
       </p>
-
       <h4>Age</h4>
       <p>
         <button type="button" onClick={() => setAge(30)}>
@@ -59,11 +52,10 @@ export default function QueryStateTest(props: Props) {
         <input
           id="input-age"
           type="text"
-          placeholder={`${age}`}
-          onChange={e => setAge(parseFloat(e.target.value))}
+          value={`${age}`}
+          onChange={e => setAge(Number(e.target.value))}
         />
       </p>
-
       <h4>name & age</h4>
       <p>
         <button
@@ -94,6 +86,11 @@ export default function QueryStateTest(props: Props) {
           name: "Sarah", age: 25
         </button>
       </p>
+      <h4>active</h4>
+      <label htmlFor="checkbox-active">
+        active
+      </label>
+      <input id="checkbox-active" type="checkbox" checked={active} onChange={() => setActive(!active)} />
     </div>
   )
 }

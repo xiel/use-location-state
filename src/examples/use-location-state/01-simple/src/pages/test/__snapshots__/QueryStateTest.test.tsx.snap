@@ -6,7 +6,8 @@ exports[`QueryStateTest can set name with button 1`] = `
 >
   {
  "name": "Felix",
- "age": 25
+ "age": 25,
+ "active": false
 }
 </pre>
 `;
@@ -17,7 +18,8 @@ exports[`QueryStateTest can set name with button 2`] = `
 >
   {
  "name": "Kim",
- "age": 25
+ "age": 25,
+ "active": false
 }
 </pre>
 `;
@@ -28,7 +30,8 @@ exports[`QueryStateTest can set name with button 3`] = `
 >
   {
  "name": "Sarah",
- "age": 25
+ "age": 25,
+ "active": false
 }
 </pre>
 `;

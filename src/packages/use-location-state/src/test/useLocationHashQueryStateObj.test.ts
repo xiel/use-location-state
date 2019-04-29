@@ -41,5 +41,8 @@ describe('useLocationHashQueryStateObj hook', () => {
     act(() => result.current[1]({ name: 'Kim' }))
     expect(window.location.hash).toEqual('#name=Kim')
     expect(result.current[0]).toEqual({ name: 'Kim' })
+    act(() => result.current[1]({ name: 'Sarah' }))
+    expect(window.location.hash).toEqual('')
+    expect(result.current[0]).toEqual({ name: 'Sarah' })
   })
 })

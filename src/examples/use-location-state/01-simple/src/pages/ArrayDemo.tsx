@@ -24,27 +24,27 @@ export default function ArrayDemo(props: Props) {
         <label>
           <input
             type="checkbox"
-            value="tag-1"
+            value="tag1"
             onChange={toggleTag}
-            checked={tags.includes('tag-1')}
+            checked={tags.includes('tag1')}
           />
           Tag 1
         </label>
         <label>
           <input
             type="checkbox"
-            value="tag-2"
+            value="tag2"
             onChange={toggleTag}
-            checked={tags.includes('tag-2')}
+            checked={tags.includes('tag2')}
           />
           Tag 2
         </label>
         <label>
           <input
             type="checkbox"
-            value="tag-3"
+            value="tag3"
             onChange={toggleTag}
-            checked={tags.includes('tag-3')}
+            checked={tags.includes('tag3')}
           />
           Tag 3
         </label>

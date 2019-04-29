@@ -1,11 +1,11 @@
-export type QueryState = Record<string, unknown>
+export type ValueType = string | string[] | number | boolean
+export type QueryStateValue = string | string[]
+export type QueryStateResetValue = null | undefined
+export type QueryState = Record<string, QueryStateValue>
+export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
 
-function tryJsonParseParamValue(value: string): unknown {
-  try {
-    return JSON.parse(value)
-  } catch (e) {}
-  return value
-}
+export const EMPTY_ARRAY_STRING = "[\u00A0]"
+export const EMPTY_ARRAY_STRING_URI_ENCODED = encodeURIComponent(EMPTY_ARRAY_STRING)
 
 export function stripLeadingHashOrQuestionMark(s: string = '') {
   if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
@@ -17,23 +17,98 @@ export function stripLeadingHashOrQuestionMark(s: string = '') {
 export function parseQueryState(queryString: string): QueryState | null {
   const queryState: QueryState = {}
   const params = new URLSearchParams(stripLeadingHashOrQuestionMark(queryString))
-  params.forEach((value, key) => (queryState[key] = tryJsonParseParamValue(value)))
+
+  params.forEach((value, key) => {
+    if (key in queryState) {
+      const queryStateForKey = queryState[key]
+
+      if (Array.isArray(queryStateForKey)) {
+        queryStateForKey.push(value)
+      } else {
+        queryState[key] = [queryStateForKey, value]
+      }
+    } else {
+      queryState[key] = value
+    }
+  })
+
   return Object.keys(queryState).length ? queryState : null
 }
 
-export function createMergedQuery(...queryStates: QueryState[]) {
-  const mergedQueryStates: QueryState = Object.assign({}, ...queryStates)
+export function createMergedQuery(...queryStates: QueryStateMerge[]) {
+  const mergedQueryStates: QueryStateMerge = Object.assign({}, ...queryStates)
   const params = new URLSearchParams()
+
   Object.entries(mergedQueryStates).forEach(([key, value]) => {
+    // entries with null or undefined values are removed from the query string
     if (value === null || value === undefined) {
       return
     }
-    if (typeof value === 'string') {
-      params.append(key, value)
+
+    if (Array.isArray(value)) {
+      if(value.length) {
+        value.forEach(v => {
+          params.append(key, v || '')
+        })
+      } else {
+        params.append(key, EMPTY_ARRAY_STRING)
+      }
     } else {
-      params.append(key, JSON.stringify(value))
+      params.append(key, value)
     }
   })
+
   params.sort()
   return params.toString()
+}
+
+export function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
+  if (Array.isArray(value)) {
+    return value.map(v => v.toString())
+  } else if (value || value === '' || value === false || value === 0) {
+    switch (typeof value) {
+      case 'string':
+      case 'number':
+      case 'boolean':
+        return value.toString()
+      default:
+        break
+    }
+  }
+  return null
+}
+
+export const newStringArray: () => string[] = () => []
+
+export function parseQueryStateValue<T>(value: QueryStateValue = '', defaultValue: T): ValueType | null {
+  const defaultValueType = typeof defaultValue
+
+  if (Array.isArray(defaultValue)) {
+    // special case of empty array saved in query string to keep it distinguishable from ['']
+    if(value === EMPTY_ARRAY_STRING) {
+      return []
+    }
+    return newStringArray().concat(value)
+  }
+
+  if(typeof value !== 'string' && !Array.isArray(value)) {
+    return null
+  }
+
+  switch (defaultValueType) {
+    case 'string':
+      return value.toString()
+    case 'number':
+      const num = Number(value)
+      return num || num === 0 ? num : null
+    case 'boolean':
+      if (value === 'true') {
+        return true
+      } else if (value === 'false') {
+        return false
+      }
+      break
+    default:
+  }
+  return null
 }

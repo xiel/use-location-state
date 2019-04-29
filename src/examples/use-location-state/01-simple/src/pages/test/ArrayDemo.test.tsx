@@ -25,13 +25,11 @@ describe('ArrayDemo', () => {
 
     // should put new names into the hash (and age default value comes along)
     fireEvent.click(getByLabelText('Tag 1'))
-    expect(location.hash).toEqual('#tags=' + encodeURIComponent(JSON.stringify(['tag-1'])))
+    expect(location.hash).toEqual('#tags=tag1')
     fireEvent.click(getByLabelText('Tag 2'))
     fireEvent.click(getByLabelText('Tag 3'))
-    expect(location.hash).toEqual(
-      '#tags=' + encodeURIComponent(JSON.stringify(['tag-1', 'tag-2', 'tag-3']))
-    )
+    expect(location.hash).toEqual('#tags=tag1&tags=tag2&tags=tag3')
     fireEvent.click(getByLabelText('Tag 1'))
-    expect(location.hash).toEqual('#tags=' + encodeURIComponent(JSON.stringify(['tag-2', 'tag-3'])))
+    expect(location.hash).toEqual('#tags=tag2&tags=tag3')
   })
 })
