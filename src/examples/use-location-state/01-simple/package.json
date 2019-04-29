@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "react": "^16.8.6",
+    "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
-    "use-location-state": "^2.0.0-beta.3"
+    "use-location-state": "^2.0.0-beta.3",
+    "@ungap/url-search-params": "^0.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,7 +30,7 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie <= 10",
     "not op_mini all"
   ]
 }
