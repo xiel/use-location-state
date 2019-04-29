@@ -1,12 +1,10 @@
 import React, { ChangeEventHandler } from 'react'
-import { useLocationHashQueryState } from 'use-location-state'
-
-interface Props {}
+import useLocationQueryState from 'use-location-state'
 
 const defaultTags: string[] = []
 
-export default function ArrayDemo(props: Props) {
-  const [tags, setTags] = useLocationHashQueryState('tags', defaultTags)
+export default function ArrayDemo() {
+  const [tags, setTags] = useLocationQueryState('tags', defaultTags)
 
   const toggleTag: ChangeEventHandler<HTMLInputElement> = e => {
     const tag = e.target.value

@@ -1,8 +1,8 @@
 import { act, renderHook } from 'react-hooks-testing-library'
 import { cleanup } from 'react-testing-library'
-import { useLocationHashQueryStateObj } from '../useLocationHashQueryState'
-import { useLocationQueryStateObj } from '../useLocationQueryState'
+import { useLocationHashQueryStateObj } from '../hooks/useLocationHashQueryState'
 import { useLocationHashQueryStringInterface } from '../hooks/useLocationHashQueryStringInterface'
+import useLocationQueryStateObj from '../hooks/useLocationQueryStateObj'
 
 // reset jest mocked hash
 beforeAll(() => {

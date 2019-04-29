@@ -1,11 +1,11 @@
 import React from 'react'
-import { useLocationHashQueryState } from 'use-location-state'
+import useLocationQueryState from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
 
 export default function QueryStateTest() {
-  const [name, setName] = useLocationHashQueryState('name', 'Sarah')
-  const [age, setAge] = useLocationHashQueryState('age', 25)
-  const [active, setActive] = useLocationHashQueryState('active', false)
+  const [name, setName] = useLocationQueryState('name', 'Sarah')
+  const [age, setAge] = useLocationQueryState('age', 25)
+  const [active, setActive] = useLocationQueryState('active', false)
 
   return (
     <div>
