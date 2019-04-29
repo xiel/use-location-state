@@ -94,7 +94,14 @@ export function useLocationQueryState<T>(
 
       // warn when value type is not supported
       if (newQueryStateValue === null && newValue !== newQueryStateValue) {
-        console.warn('invalid value, will reset to default value', newValue)
+        console.warn(
+          'value ' +
+            newValue +
+            ' is not supported will. "' +
+            itemName +
+            '" will reset to default value',
+          defaultValue
+        )
       }
 
       // when new value is qual to default, we call setQueryState with a null value to reset query string
