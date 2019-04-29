@@ -92,19 +92,26 @@ export function useLocationQueryState<T>(
       // stringify the given value (or array of strings)
       let newQueryStateValue = toQueryStateValue(newValue)
 
-      // warn when value type is not supported
-      if (newQueryStateValue === null && newValue !== newQueryStateValue) {
+      // warn when value type is not supported (do not warn when null was passed explicitly)
+      if (
+        (newQueryStateValue === null && newValue !== newQueryStateValue) ||
+        !(
+          newQueryStateValue !== null &&
+          typeof parseQueryStateValue(newQueryStateValue, defaultValue) === typeof defaultValue
+        )
+      ) {
         console.warn(
-          'value ' +
-            newValue +
-            ' is not supported will. "' +
+          'value of ' +
+            JSON.stringify(newValue) +
+            ' is not supported. "' +
             itemName +
             '" will reset to default value',
           defaultValue
         )
+        newQueryStateValue = null
       }
 
-      // when new value is qual to default, we call setQueryState with a null value to reset query string
+      // when new value is equal to default, we call setQueryState with a null value to reset query string
       if (newValue === defaultValue) {
         newQueryStateValue = null
       }
