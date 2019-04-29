@@ -2,7 +2,7 @@ import React from 'react'
 import { useQueryState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
 
-export default function QueryStateTest() {
+export default function QueryStateDemo() {
   const [name, setName] = useQueryState('name', 'Sarah')
   const [age, setAge] = useQueryState('age', 25)
   const [active, setActive] = useQueryState('active', false)
