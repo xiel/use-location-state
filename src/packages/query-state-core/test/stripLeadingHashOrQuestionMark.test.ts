@@ -37,6 +37,10 @@ describe('stripLeadingHashOrQuestionMark', () => {
     expect(stripLeadingHashOrQuestionMark('')).toBe('')
   })
 
+  it('should handle undefined', () => {
+    expect(stripLeadingHashOrQuestionMark(undefined)).toBe('')
+  })
+
   it('should empty strings only containing hash mark', () => {
     expect(stripLeadingHashOrQuestionMark('#')).toBe('')
   })
