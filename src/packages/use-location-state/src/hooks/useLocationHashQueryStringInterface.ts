@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { QueryStringInterface } from '../types'
+import { QueryStringInterface } from './types'
 
 interface Props {
   disabled?: boolean
@@ -16,7 +16,7 @@ export function useLocationHashQueryStringInterface({
         }
         return window.location.hash
       },
-      setQueryString: newQueryString => {
+      setQueryString: (newQueryString: string) => {
         if (!disabled) {
           window.location.hash = newQueryString
           setR(r => r + 1)

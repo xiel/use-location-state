@@ -1,5 +1,5 @@
 import { act, renderHook } from 'react-hooks-testing-library'
-import { useLocationQueryState } from '../use-location-state'
+import useLocationQueryState from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { asyncAct, unwrapABResult, unwrapResult } from './test-helpers'
 

@@ -1,7 +1,8 @@
 import { QueryState } from 'query-state-core'
 import { QueryStateOptsSetInterface } from './types'
-import { useLocationHashQueryStringInterface } from './hooks/useLocationHashQueryStringInterface'
-import { useLocationQueryState, useLocationQueryStateObj } from './useLocationQueryState'
+import { useLocationHashQueryStringInterface } from './useLocationHashQueryStringInterface'
+import useLocationQueryState from './useLocationQueryState'
+import useLocationQueryStateObj from './useLocationQueryStateObj'
 
 export function useLocationHashQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
