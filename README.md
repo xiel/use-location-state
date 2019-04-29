@@ -37,6 +37,9 @@ Now the query string in your browser will be update to keep the new state and be
 http://localhost:3000/#itemName=different+value
 ```
 
+useQueryState() uses the `location.hash` property by default. 
+You can customize that behaviour to use the `location.search` (?itemName=different+value)
+
 ### Example
 ```javascript
 import { useQueryState } from 'use-location-state'
@@ -52,13 +55,15 @@ function MyComponent() {
 }
 ```
 
-## Router Integrations
+## Router Integration
 
-We plan to easy to use integrations with most popular routers (WIP).
-At the moment we provide integrations for:
+We plan to provide easy-to-use integrations with most popular routers (WIP).
+At the moment we only provide integrations for:
 
 ## react-router
 
 ```bash
 yarn add react-router-use-query-state
 ```
+
+Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues) to get an integration soon.
