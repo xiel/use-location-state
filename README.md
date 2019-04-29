@@ -54,6 +54,7 @@ function MyComponent() {
   )
 }
 ```
+Try it: [Example in CodeSandbox](https://codesandbox.io/embed/zqm4o19yrx)
 
 ## Router Integration
 
