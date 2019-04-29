@@ -1,12 +1,12 @@
 import { act, renderHook } from 'react-hooks-testing-library'
-import useLocationQueryState from '../use-location-state'
+import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { asyncAct, unwrapABResult, unwrapResult } from './test-helpers'
 
 describe('useLocationQueryState', () => {
   it('should automatically use hashQSI when no queryStringInterface is defined', async () => {
     const { result, unmount } = renderHook(
-      ({ itemName, defaultValue }) => useLocationQueryState(itemName, defaultValue),
+      ({ itemName, defaultValue }) => useQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
       }
@@ -25,10 +25,10 @@ describe('useLocationQueryState', () => {
 
       // put the clashing hooks into the same render test hook (so they always update together)
       const { result, unmount } = renderHook(() => {
-        const a = useLocationQueryState('clashingItem', 'XL', {
+        const a = useQueryState('clashingItem', 'XL', {
           queryStringInterface: testQSI,
         })
-        const b = useLocationQueryState('clashingItem', 123, {
+        const b = useQueryState('clashingItem', 123, {
           queryStringInterface: testQSI,
         })
         return { a, b }

@@ -7,14 +7,14 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/xiel/location-state.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-store and retrieve state into/from the browsers history location using modern hooks
+store and retrieve state into/from the browsers location state using modern hooks
 
 # Installation
 
 ```bash
 yarn add use-location-state
 ```
-In case you use react-router, please check out the router integration segment.
+In case you use react-router, please check out the [router integration](#router-integration) segment.
 
 ## Usage
 

@@ -1,27 +1,27 @@
 import { QueryState } from 'query-state-core'
 import { QueryStateOptsSetInterface } from './types'
 import { useLocationHashQueryStringInterface } from './useLocationHashQueryStringInterface'
-import useLocationQueryState from './useLocationQueryState'
-import useLocationQueryStateObj from './useLocationQueryStateObj'
+import useQueryState from './useQueryState'
+import useQueryStateObj from './useQueryStateObj'
 
-export function useLocationHashQueryStateObj<T extends QueryState>(
+export function useHashQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
 ) {
   const hashQSI = useLocationHashQueryStringInterface()
-  return useLocationQueryStateObj(defaultQueryState, {
+  return useQueryStateObj(defaultQueryState, {
     ...queryStateOpts,
     queryStringInterface: hashQSI,
   })
 }
 
-export function useLocationHashQueryState<T>(
+export default function useHashQueryState<T>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOptsSetInterface = {}
 ) {
   const hashQSI = useLocationHashQueryStringInterface()
-  return useLocationQueryState(itemName, defaultValue, {
+  return useQueryState(itemName, defaultValue, {
     ...queryStateOpts,
     queryStringInterface: hashQSI,
   })

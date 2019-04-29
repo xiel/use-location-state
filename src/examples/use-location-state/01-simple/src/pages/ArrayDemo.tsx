@@ -1,10 +1,10 @@
 import React, { ChangeEventHandler } from 'react'
-import useLocationQueryState from 'use-location-state'
+import { useQueryState } from 'use-location-state'
 
 const defaultTags: string[] = []
 
 export default function ArrayDemo() {
-  const [tags, setTags] = useLocationQueryState('tags', defaultTags)
+  const [tags, setTags] = useQueryState('tags', defaultTags)
 
   const toggleTag: ChangeEventHandler<HTMLInputElement> = e => {
     const tag = e.target.value

@@ -1,5 +1,5 @@
 import { renderHook, act } from 'react-hooks-testing-library'
-import useLocationQueryState from '../use-location-state'
+import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { unwrapResult } from './test-helpers'
 
@@ -19,7 +19,7 @@ describe('invalid input defaultValue', () => {
       console.error = jest.fn()
       const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
       const { result, unmount } = renderHook(() =>
-        useLocationQueryState('anything', defaultValue, {
+        useQueryState('anything', defaultValue, {
           queryStringInterface: testQSI,
         })
       )
@@ -46,7 +46,7 @@ describe('invalid value in setter', () => {
       console.warn = jest.fn()
       const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
       const { result, unmount } = renderHook(() =>
-        useLocationQueryState('itemName', 'valid default value', {
+        useQueryState('itemName', 'valid default value', {
           queryStringInterface: testQSI,
         })
       )

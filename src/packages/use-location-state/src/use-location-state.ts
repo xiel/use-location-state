@@ -1,5 +1,2 @@
-import useLocationQueryState from './hooks/useLocationQueryState'
-
-export { useLocationHashQueryState } from './hooks/useLocationHashQueryState'
-
-export default useLocationQueryState
+export { default as useQueryState } from './hooks/useQueryState'
+export { default as useHashQueryState } from './hooks/useHashQueryState'

@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils'
 import { cleanup, wait } from 'react-testing-library'
 import { renderHook } from 'react-hooks-testing-library'
-import { useLocationHashQueryState } from '../use-location-state'
+import { useHashQueryState } from '../use-location-state'
 import { asyncAct } from './test-helpers'
 
 // reset jest mocked hash
@@ -20,10 +20,10 @@ afterAll(() => {
   window.location.hash = ''
 })
 
-describe('useLocationHashQueryState', () => {
+describe('useHashQueryState', () => {
   it('should work with internal HashQueryStringInterface', async () => {
     const { result, unmount } = renderHook(
-      ({ itemName, defaultValue }) => useLocationHashQueryState(itemName, defaultValue),
+      ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
       }
@@ -42,7 +42,7 @@ describe('useLocationHashQueryState', () => {
 
   it('should reset hash when default', async () => {
     const { result, unmount } = renderHook(
-      ({ itemName, defaultValue }) => useLocationHashQueryState(itemName, defaultValue),
+      ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
       }
@@ -66,13 +66,13 @@ describe('useLocationHashQueryState', () => {
   it('should enforce types with same item name', async () => {
     // two hooks use the same itemName -> they should still get the value in their correct type if possible (otherwise their own defaultValue)
     const { result: resultStr, unmount: unmountStr } = renderHook(
-      ({ itemName, defaultValue }) => useLocationHashQueryState(itemName, defaultValue),
+      ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
       }
     )
     const { result: resultNum, unmount: unmountNum } = renderHook(
-      ({ itemName, defaultValue }) => useLocationHashQueryState(itemName, defaultValue),
+      ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 25 },
       }

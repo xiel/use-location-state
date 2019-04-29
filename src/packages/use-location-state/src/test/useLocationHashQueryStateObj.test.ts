@@ -1,8 +1,8 @@
 import { act, renderHook } from 'react-hooks-testing-library'
 import { cleanup } from 'react-testing-library'
-import { useLocationHashQueryStateObj } from '../hooks/useLocationHashQueryState'
+import { useHashQueryStateObj } from '../hooks/useHashQueryState'
 import { useLocationHashQueryStringInterface } from '../hooks/useLocationHashQueryStringInterface'
-import useLocationQueryStateObj from '../hooks/useLocationQueryStateObj'
+import useQueryStateObj from '../hooks/useQueryStateObj'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -14,11 +14,11 @@ afterEach(() => {
   cleanup()
 })
 
-describe('useLocationQueryStateObj hook', () => {
+describe('useQueryStateObj hook', () => {
   it('should work with passed HashQueryStringInterface', () => {
     const hashQSI = renderHook(() => useLocationHashQueryStringInterface())
     const { result } = renderHook(
-      props => useLocationQueryStateObj(props, { queryStringInterface: hashQSI.result.current }),
+      props => useQueryStateObj(props, { queryStringInterface: hashQSI.result.current }),
       {
         initialProps: { name: 'Sarah' },
       }
@@ -31,9 +31,9 @@ describe('useLocationQueryStateObj hook', () => {
   })
 })
 
-describe('useLocationHashQueryStateObj hook', () => {
+describe('useHashQueryStateObj hook', () => {
   it('should work with internal HashQueryStringInterface', () => {
-    const { result } = renderHook(props => useLocationHashQueryStateObj(props), {
+    const { result } = renderHook(props => useHashQueryStateObj(props), {
       initialProps: { name: 'Sarah' },
     })
 
