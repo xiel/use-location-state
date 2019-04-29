@@ -11,7 +11,6 @@ export default function QueryStateTest() {
     <div>
       <h2>Intro</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque, corporis debitis esse.</p>
-
       <QueryStateDisplay
         queryState={{
           name,
@@ -19,7 +18,6 @@ export default function QueryStateTest() {
           active,
         }}
       />
-
       <h4>name</h4>
       <p>
         <button type="button" onClick={() => setName('Felix')}>
@@ -39,7 +37,6 @@ export default function QueryStateTest() {
           onChange={e => setName(e.target.value)}
         />
       </p>
-
       <h4>Age</h4>
       <p>
         <button type="button" onClick={() => setAge(30)}>
@@ -59,7 +56,6 @@ export default function QueryStateTest() {
           onChange={e => setAge(Number(e.target.value))}
         />
       </p>
-
       <h4>name & age</h4>
       <p>
         <button
@@ -90,12 +86,11 @@ export default function QueryStateTest() {
           name: "Sarah", age: 25
         </button>
       </p>
-
       <h4>active</h4>
-      <label>
-        <input type="checkbox" checked={active} onChange={() => setActive(!active)} />
+      <label htmlFor="checkbox-active">
         active
       </label>
+      <input id="checkbox-active" type="checkbox" checked={active} onChange={() => setActive(!active)} />
     </div>
   )
 }

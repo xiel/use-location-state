@@ -81,6 +81,14 @@ describe('QueryStateTest', () => {
     act(() => void fireEvent.click(getByText('name: "Sarah", age: 25')))
     expect(location.hash).toEqual('')
   })
+
+  test('can set name & age with button', () => {
+    const { getByLabelText } = render(<QueryStateTest />)
+    expect(location.hash).toEqual('')
+
+    fireEvent.click(getByLabelText('active'))
+    expect(location.hash).toEqual('#active=true')
+  })
 })
 
 test('QueryStateDisplay', () => {
