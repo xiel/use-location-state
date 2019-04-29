@@ -1,4 +1,4 @@
-# location-state 🆕
+# useLocationQueryState() 🆕
 
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
 [![Build Status](https://travis-ci.com/xiel/location-state.svg?branch=master)](https://travis-ci.com/xiel/location-state)
