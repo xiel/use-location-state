@@ -56,6 +56,17 @@ function MyComponent() {
 ```
 Try it: [Example in CodeSandbox](https://codesandbox.io/embed/zqm4o19yrx)
 
+### Example with multiple useQueryState hooks in one component
+
+```javascript
+function MyComponent() {
+  const [name, setName] = useQueryState('name', 'Sarah')
+  const [age, setAge] = useQueryState('age', 25)
+  const [active, setActive] = useQueryState('active', false)
+}
+```
+Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
+
 ## Router Integration
 
 We plan to provide easy-to-use integrations for all major routers. (*more routers soon - work in progress*)
