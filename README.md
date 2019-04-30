@@ -23,7 +23,7 @@ store and retrieve state into/from the browsers location state using modern hook
 yarn add use-location-state
 ```
 
-Or install one of the optionl [router integrations](#router-integration-optional)
+Or install one of the optional [router integrations](#router-integration-optional)
 
 ## Usage
 
