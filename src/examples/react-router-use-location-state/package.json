@@ -1,6 +1,6 @@
 {
   "name": "react-router-use-location-state-example",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0",
   "private": true,
   "devDependencies": {
     "@types/react": "^16.8.8",
@@ -12,15 +12,15 @@
     "yarn": "^1.15.2"
   },
   "dependencies": {
-    "@ungap/url-search-params": "^0.1.2",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
+    "@ungap/url-search-params": "^0.1.2",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-router-use-location-state": "^2.0.0-beta.5"
+    "react-router-use-location-state": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
