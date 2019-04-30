@@ -8,9 +8,9 @@
     "react": "^16.8.6"
   },
   "dependencies": {
-    "query-state-core": "^2.0.0"
+    "query-state-core": "^2.0.1-alpha.0+0405f88"
   },
-  "version": "2.0.0",
+  "version": "2.0.1-alpha.0+0405f88",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/location-state",
   "license": "MIT",
@@ -36,5 +36,6 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "gitHead": "0405f8897834eeb7ec5e989e0a5fd16198be15e9"
 }
