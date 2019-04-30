@@ -1,9 +1,10 @@
 # useQueryState()
 
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
-[![Build Status](https://travis-ci.com/xiel/location-state.svg?branch=master)](https://travis-ci.com/xiel/location-state)
-[![codecov badge](https://img.shields.io/codecov/c/github/xiel/location-state/master.svg?color=hotpink)](https://codecov.io/gh/xiel/location-state)
-![GitHub top language](https://img.shields.io/github/languages/top/xiel/location-state.svg)
+[![Build Status](https://travis-ci.com/xiel/use-location-state.svg?branch=master)](https://travis-ci.com/xiel/use-location-state)
+[![Greenkeeper badge](https://badges.greenkeeper.io/xiel/use-location-state.svg)](https://greenkeeper.io/)
+[![codecov badge](https://img.shields.io/codecov/c/github/xiel/use-location-state/master.svg?color=hotpink)](https://codecov.io/gh/xiel/use-location-state)
+![GitHub top language](https://img.shields.io/github/languages/top/xiel/use-location-state.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 store and retrieve state into/from the browsers location state using modern hooks
@@ -78,7 +79,7 @@ function MyComponent() {
   // ...
 }
 ```
-<a href="https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
+<a href="https://codesandbox.io/embed/github/xiel/use-location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
   <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
@@ -101,10 +102,10 @@ Usage works the same as described above, except that the URL will look like this
 ```javascript
 http://localhost:3000/?itemName=different+value
 ```
-<a href="https://codesandbox.io/s/github/xiel/location-state/tree/master/src/examples/react-router-use-location-state?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
+<a href="https://codesandbox.io/s/github/xiel/use-location-state/tree/master/src/examples/react-router-use-location-state?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
   <img width="150" alt="Edit react-router-use-location-state-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
 ### More routers soon - work in progress
 
-Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues).
+Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/use-location-state/issues).
