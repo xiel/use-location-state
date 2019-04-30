@@ -9,13 +9,13 @@
 
 store and retrieve state into/from the browsers location state using modern hooks
 
-## Features
+## ✨ Features
 
 - makes it easy to provide a nice UX to your users, by restoring part of the app state after navigation actions
 - makes it easy to share application in current state
 - supported value types: `string | number | boolean | string[]`
 - handles stringification and parsing from query string of for supported value types
-- invalid entries from the query string are discarded and the component will receive the default value instead
+- invalid entries from the query string are discarded and the component will receive the defaultValue instead
 
 ## Installation
 
@@ -75,11 +75,13 @@ function MyComponent() {
   // ...
 }
 ```
-Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
+Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx)
 
-## Router Integration
+## Router Integration (optional)
 
-We plan to provide easy-to-use integrations for all major routers. 
+In case you want use [`location.search`](https://developer.mozilla.org/en-US/docs/Web/API/Location/search) (after the question mark in the url) you need to use one of these extended versions of the package.
+
+We plan to provide clean and easy-to-use integrations for all popular routers. 
 At the moment we provide integrations for:
 
 ### react-router
