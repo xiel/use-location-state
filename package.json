@@ -38,7 +38,7 @@
   "version": "0.0.0-development",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xiel/location-state.git"
+    "url": "https://github.com/xiel/use-location-state.git"
   },
   "eslintConfig": {
     "extends": "react-app"
