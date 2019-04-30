@@ -9,13 +9,13 @@
 
 store and retrieve state into/from the browsers location state using modern hooks
 
-## Features
+## ✨ Features
 
 - makes it easy to provide a nice UX to your users, by restoring part of the app state after navigation actions
 - makes it easy to share application in current state
 - supported value types: `string | number | boolean | string[]`
 - handles stringification and parsing from query string of for supported value types
-- invalid entries from the query string are discarded and the component will receive the default value instead
+- invalid entries from the query string are discarded and the component will receive the defaultValue instead
 
 ## Installation
 
