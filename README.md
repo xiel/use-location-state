@@ -77,12 +77,12 @@ function MyComponent() {
 ```
 Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
 
-## Router Integration (work in progress)
+## Router Integration
 
 We plan to provide easy-to-use integrations for all major routers. 
 At the moment we provide integrations for:
 
-## react-router
+### react-router
 
 ```bash
 yarn add react-router-use-location-state
@@ -94,5 +94,7 @@ Usage works the same as described above, except that the URL will look like this
 ```javascript
 http://localhost:3000/?itemName=different+value
 ```
+
+### More routers soon - work in progress
 
 Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues).
