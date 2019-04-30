@@ -96,6 +96,9 @@ Usage works the same as described above, except that the URL will look like this
 ```javascript
 http://localhost:3000/?itemName=different+value
 ```
+<a href="https://codesandbox.io/s/github/xiel/location-state/tree/master/src/examples/react-router-use-location-state?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
+  <img width="150" alt="Edit react-router-use-location-state-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
 
 ### More routers soon - work in progress
 
