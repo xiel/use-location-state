@@ -77,9 +77,11 @@ function MyComponent() {
 ```
 Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
 
-## Router Integration
+## Router Integration (optional)
 
-We plan to provide easy-to-use integrations for all major routers. 
+In case you want use `location.search` (after the question mark in the url) you need to use one of these extended versions of the package.
+
+We plan to provide clean and easy-to-use integrations for all popular routers. 
 At the moment we provide integrations for:
 
 ### react-router
