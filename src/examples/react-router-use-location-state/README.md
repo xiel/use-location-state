@@ -1,6 +1,7 @@
 # react-router-use-location-state test/demo
 
-- [Demo (codesandbox.io)](https://codesandbox.io/s/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple)
+[![Edit react-router-use-location-state-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/xiel/location-state/tree/master/src/examples/react-router-use-location-state?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx)
+
 - [use-location-state (Github)](https://github.com/xiel/location-state/tree/master/src/packages/use-location-state)
 
 ````typescript
