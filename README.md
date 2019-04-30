@@ -61,7 +61,10 @@ function MyComponent() {
   )
 }
 ```
-Try it: [Example in CodeSandbox](https://codesandbox.io/embed/zqm4o19yrx)
+<a href="https://codesandbox.io/embed/zqm4o19yrx">
+  <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
+
 
 ### Example with multiple useQueryState hooks in one component
 
@@ -75,7 +78,9 @@ function MyComponent() {
   // ...
 }
 ```
-Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx)
+<a href="https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
+  <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
 
 ## Router Integration (optional)
 
