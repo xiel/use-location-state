@@ -28,8 +28,6 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "release:beta": "yarn lerna publish --preid beta --dist-tag beta",
-    "release:stable": "yarn lerna publish",
     "start": "yarn lerna run start --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
     "test": "react-scripts test",

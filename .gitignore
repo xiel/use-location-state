@@ -1,6 +1,5 @@
 .idea
 node_modules
-DEVNOTES.md
 lerna-debug.log
 .DS_Store
 dist
