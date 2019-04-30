@@ -75,7 +75,7 @@ function MyComponent() {
   // ...
 }
 ```
-Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
+Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx)
 
 ## Router Integration (optional)
 
