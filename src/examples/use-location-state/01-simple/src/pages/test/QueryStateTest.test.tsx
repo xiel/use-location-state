@@ -1,6 +1,6 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render, wait } from 'react-testing-library'
-import QueryStateTest from '../QueryStateTest'
+import QueryStateDemo from '../QueryStateDemo'
 import QueryStateDisplay from '../../components/QueryStateDisplay'
 
 const location = window.location
@@ -15,13 +15,13 @@ afterEach(() => {
   location.hash = ''
 })
 
-describe('QueryStateTest', () => {
-  test('QueryStateTest renders without crash/loop', () => {
-    expect(render(<QueryStateTest />))
+describe('QueryStateDemo', () => {
+  test('QueryStateDemo renders without crash/loop', () => {
+    expect(render(<QueryStateDemo />))
   })
 
   test('can set name with button', () => {
-    const { getByText, getByTestId } = render(<QueryStateTest />)
+    const { getByText, getByTestId } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
 
     // should put new names into the hash (and age default value comes along)
@@ -40,14 +40,14 @@ describe('QueryStateTest', () => {
   })
 
   test('can set name with text field', () => {
-    const { getByLabelText } = render(<QueryStateTest />)
+    const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
     fireEvent.change(getByLabelText('name:'), { target: { value: 'Mila' } })
     expect(location.hash).toEqual('#name=Mila')
   })
 
   test('can set age with button', () => {
-    const { getByText } = render(<QueryStateTest />)
+    const { getByText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
 
     act(() => void fireEvent.click(getByText('age: 30')))
@@ -61,14 +61,14 @@ describe('QueryStateTest', () => {
   })
 
   test('can set age with text field', () => {
-    const { getByLabelText } = render(<QueryStateTest />)
+    const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
     fireEvent.change(getByLabelText('age:'), { target: { value: '33' } })
     expect(location.hash).toEqual('#age=33')
   })
 
   test('can set name & age with button', () => {
-    const { getByText } = render(<QueryStateTest />)
+    const { getByText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
 
     act(() => void fireEvent.click(getByText('name: "Felix", age: 30')))
@@ -83,7 +83,7 @@ describe('QueryStateTest', () => {
   })
 
   test('can set name & age with button', () => {
-    const { getByLabelText } = render(<QueryStateTest />)
+    const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
 
     fireEvent.click(getByLabelText('active'))
