@@ -16,7 +16,7 @@
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
-    "use-location-state": "^2.0.0-beta.5"
+    "use-location-state": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
