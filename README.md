@@ -23,6 +23,8 @@ store and retrieve state into/from the browsers location state using modern hook
 yarn add use-location-state
 ```
 
+Or install one of the optionl [router integrations](#router-integration-optional)
+
 ## Usage
 
 The useQueryState() works similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook) and returns the current value and a set function in a pair.
