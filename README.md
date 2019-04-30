@@ -22,7 +22,6 @@ store and retrieve state into/from the browsers location state using modern hook
 ```bash
 yarn add use-location-state
 ```
-In case you use react-router, please check out the [router integration](#router-integration) segment.
 
 ## Usage
 
