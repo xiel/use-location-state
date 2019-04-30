@@ -6,9 +6,6 @@ import { useReactRouterQueryStringInterface } from './useHistoryQueryState'
 import { __RouterContext as RouterContext, RouteComponentProps } from 'react-router'
 
 export function useRouter<T = {}>(): RouteComponentProps<T> {
-  if (!RouterContext) {
-    throw new Error('useRouter can only be used with react-router@^5.')
-  }
   return useContext(RouterContext)
 }
 
