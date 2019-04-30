@@ -90,5 +90,9 @@ yarn add react-router-use-location-state
 ```javascript
 import { useQueryState } from 'react-router-use-location-state'
 ```
+Usage works the same as described above, except that the URL will look like this now:
+```javascript
+http://localhost:3000/?itemName=different+value
+```
 
 Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/location-state/issues).
