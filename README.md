@@ -79,7 +79,7 @@ Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/locati
 
 ## Router Integration (optional)
 
-In case you want use `location.search` (after the question mark in the url) you need to use one of these extended versions of the package.
+In case you want use [`location.search`](https://developer.mozilla.org/en-US/docs/Web/API/Location/search) (after the question mark in the url) you need to use one of these extended versions of the package.
 
 We plan to provide clean and easy-to-use integrations for all popular routers. 
 At the moment we provide integrations for:
