@@ -1,11 +1,11 @@
 import { useQueryState as useQueryStateImported } from 'use-location-state'
-
-// @ts-ignore
-import { __RouterContext as RouterContext, RouteComponentProps } from 'react-router'
 import { useContext } from 'react'
 import { QueryStateOpts, SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
+import { useReactRouterQueryStringInterface } from './useHistoryQueryState'
+// @ts-ignore
+import { __RouterContext as RouterContext, RouteComponentProps } from 'react-router'
 
-function useRouter<T = {}>(): RouteComponentProps<T> {
+export function useRouter<T = {}>(): RouteComponentProps<T> {
   if (!RouterContext) {
     throw new Error('useRouter can only be used with react-router@^5.')
   }
@@ -17,11 +17,17 @@ export function useQueryState<T>(
   defaultValue: T,
   queryStateOpts?: QueryStateOpts
 ): [T, SetQueryStateItemFn<T>] {
-  // const router = useRouter()
-  // console.log({ itemName, defaultValue, queryStateOpts })
-  // console.log('router', router)
+  const router = useRouter()
+  let queryStringInterface;
+
+  if(router && router.history) {
+    queryStringInterface = useReactRouterQueryStringInterface(router.history)
+  } else {
+    console.warn('useRouter - router was not found')
+  }
 
   return useQueryStateImported(itemName, defaultValue, {
+    queryStringInterface,
     ...queryStateOpts
   })
 }
