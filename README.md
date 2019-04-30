@@ -77,10 +77,10 @@ function MyComponent() {
 ```
 Try it: [Example in CodeSandbox](https://codesandbox.io/embed/github/xiel/location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateTest.tsx)
 
-## Router Integration
+## Router Integration (work in progress)
 
-We plan to provide easy-to-use integrations for all major routers. (*more routers soon - work in progress*)
-At the moment we provide integrations for: 
+We plan to provide easy-to-use integrations for all major routers. 
+At the moment we provide integrations for:
 
 ## react-router
 
