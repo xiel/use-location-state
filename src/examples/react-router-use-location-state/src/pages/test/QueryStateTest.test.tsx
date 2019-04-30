@@ -1,8 +1,8 @@
 import React from 'react'
-import { act, cleanup, fireEvent, render, wait } from 'react-testing-library'
+import { act, cleanup, fireEvent, render } from 'react-testing-library'
 import QueryStateDemo from '../QueryStateDemo'
 import QueryStateDisplay from '../../components/QueryStateDisplay'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const location = window.location
 
