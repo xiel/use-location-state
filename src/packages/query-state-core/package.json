@@ -6,7 +6,7 @@
   "description": "thin layer on around URLSearchParams to parse/merge/stringify QueryStates",
   "version": "2.0.0",
   "author": "Felix Leupold <felix@xiel.de>",
-  "homepage": "https://github.com/xiel/location-state",
+  "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
   "devDependencies": {
     "rollup": "^1.0.0",
@@ -17,14 +17,14 @@
   "files": [
     "dist"
   ],
-  "repository": "git+https://github.com/xiel/location-state.git",
+  "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
     "test": "echo \"Error: run tests from root\" && exit 1;"
   },
   "bugs": {
-    "url": "https://github.com/xiel/location-state/issues"
+    "url": "https://github.com/xiel/use-location-state/issues"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
