@@ -20,7 +20,7 @@
   "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "dev": "rollup -c -w",
     "test": "echo \"Error: run tests from root\" && exit 1;"
   },
   "bugs": {

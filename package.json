@@ -28,7 +28,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "start": "yarn lerna run start --parallel",
+    "dev": "yarn lerna run dev --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
     "test": "react-scripts test",
     "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
