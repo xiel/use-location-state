@@ -17,7 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^16.8.14",
-    "@types/react-router": "^4.4.5",
+    "@types/react-router": "^5.0.0",
     "react": "^16.8.6",
     "react-router": "^5.0.0",
     "rollup": "^1.0.0",
