@@ -2,10 +2,9 @@ import { useQueryState as useQueryStateImported } from 'use-location-state'
 import { useContext } from 'react'
 import { QueryStateOpts, SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
 import { useReactRouterQueryStringInterface } from './useHistoryQueryState'
-// @ts-ignore
-import { __RouterContext as RouterContext, RouteComponentProps } from 'react-router'
+import { __RouterContext as RouterContext } from 'react-router'
 
-export function useRouter<T = {}>(): RouteComponentProps<T> {
+export function useRouter() {
   return useContext(RouterContext)
 }
 
@@ -18,6 +17,7 @@ export function useQueryState<T>(
   let queryStringInterface;
 
   if(router && router.history) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     queryStringInterface = useReactRouterQueryStringInterface(router.history)
   } else {
     console.warn('useRouter - router was not found')
