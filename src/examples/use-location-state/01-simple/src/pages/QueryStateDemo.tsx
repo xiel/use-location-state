@@ -6,6 +6,7 @@ export default function QueryStateDemo() {
   const [name, setName] = useQueryState('name', 'Sarah')
   const [age, setAge] = useQueryState('age', 25)
   const [active, setActive] = useQueryState('active', false)
+  const [date] = useQueryState('date', new Date('2019-01-01'))
 
   return (
     <div>
@@ -16,6 +17,7 @@ export default function QueryStateDemo() {
           name,
           age,
           active,
+          date,
         }}
       />
       <h4>name</h4>
