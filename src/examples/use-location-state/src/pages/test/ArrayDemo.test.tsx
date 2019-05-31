@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, fireEvent, render } from 'react-testing-library'
+import { cleanup, fireEvent, render } from '@testing-library/react'
 import ArrayDemo from '../ArrayDemo'
 
 const location = window.location
