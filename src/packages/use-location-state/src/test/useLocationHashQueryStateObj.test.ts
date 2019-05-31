@@ -1,5 +1,5 @@
 import { act, renderHook } from 'react-hooks-testing-library'
-import { cleanup } from 'react-testing-library'
+import { cleanup } from '@testing-library/react'
 import { useHashQueryStateObj } from '../hooks/useHashQueryState'
 import { useLocationHashQueryStringInterface } from '../hooks/useLocationHashQueryStringInterface'
 import useQueryStateObj from '../hooks/useQueryStateObj'

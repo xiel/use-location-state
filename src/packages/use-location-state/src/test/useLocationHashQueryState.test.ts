@@ -1,5 +1,5 @@
 import { act } from 'react-dom/test-utils'
-import { cleanup, wait } from 'react-testing-library'
+import { cleanup, wait } from '@testing-library/react'
 import { renderHook } from 'react-hooks-testing-library'
 import { useHashQueryState } from '../use-location-state'
 import { asyncAct } from './test-helpers'
