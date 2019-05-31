@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, cleanup, fireEvent, render } from 'react-testing-library'
+import { act, cleanup, fireEvent, render } from '@testing-library/react'
 import QueryStateDemo from '../QueryStateDemo'
 import QueryStateDisplay from '../../components/QueryStateDisplay'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
