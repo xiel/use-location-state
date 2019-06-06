@@ -4,6 +4,8 @@ import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { unwrapResult } from './test-helpers'
 
+const enc = encodeURIComponent
+
 describe.each`
   defaultValue               | newValue               | newValueQueryString
   ${'not empty'}             | ${''}                  | ${'item='}
@@ -11,13 +13,14 @@ describe.each`
   ${''}                      | ${'not empty anymore'} | ${'item=not+empty+anymore'}
   ${[]}                      | ${['new', 'entries']}  | ${'item=new&item=entries'}
   ${['']}                    | ${['new', 'entries']}  | ${'item=new&item=entries'}
-  ${['multiple', 'strings']} | ${[]}                  | ${'item=' + encodeURIComponent(EMPTY_ARRAY_STRING)}
+  ${['multiple', 'strings']} | ${[]}                  | ${'item=' + enc(EMPTY_ARRAY_STRING)}
   ${['multiple', 'strings']} | ${['']}                | ${'item='}
   ${['multiple', 'strings']} | ${['just one entry']}  | ${'item=just+one+entry'}
+  ${new Date()}              | ${new Date(0)}         | ${'item=' + enc('1970-01-01T00:00:00.000Z')}
   ${0}                       | ${-50}                 | ${'item=-50'}
   ${99}                      | ${3.14}                | ${'item=3.14'}
   ${Infinity}                | ${-Infinity}           | ${'item=-Infinity'}
-  ${1e23}                    | ${1e24}                | ${'item=' + encodeURIComponent((1e24).toString())}
+  ${1e23}                    | ${1e24}                | ${'item=' + enc((1e24).toString())}
   ${true}                    | ${false}               | ${'item=false'}
   ${true}                    | ${true}                | ${''}
   ${false}                   | ${true}                | ${'item=true'}

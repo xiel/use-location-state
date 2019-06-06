@@ -23,7 +23,7 @@
     "rollup": "^1.0.0",
     "rollup-plugin-typescript2": "^0.21.0",
     "tslib": "^1.9.3",
-    "typescript": "3.4.5"
+    "typescript": "3.5.1"
   },
   "files": [
     "dist"
@@ -31,7 +31,7 @@
   "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c -w",
+    "dev": "rollup -c -w",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {

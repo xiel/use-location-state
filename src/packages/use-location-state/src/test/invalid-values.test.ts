@@ -10,7 +10,6 @@ describe('invalid input defaultValue', () => {
     ${() => void 0}
     ${undefined}
     ${null}
-    ${new Date()}
     ${{ object: 1 }}
     ${Symbol('Test')}
   `('defaultValue $defaultValue', ({ defaultValue }) => {
@@ -37,7 +36,7 @@ describe('invalid value in setter', () => {
     ${NaN}
     ${() => void 0}
     ${undefined}
-    ${new Date()}
+    ${new Date('INVALID DATE')}
     ${{ object: 1 }}
     ${Symbol('Test')}
   `('invalidValueToSet $invalidValueToSet', ({ invalidValueToSet }) => {
