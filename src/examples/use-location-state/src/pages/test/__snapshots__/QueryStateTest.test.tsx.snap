@@ -7,7 +7,8 @@ exports[`QueryStateDemo can set name with button 1`] = `
   {
  "name": "Felix",
  "age": 25,
- "active": false
+ "active": false,
+ "date": "2019-01-01T00:00:00.000Z"
 }
 </pre>
 `;
@@ -19,7 +20,8 @@ exports[`QueryStateDemo can set name with button 2`] = `
   {
  "name": "Kim",
  "age": 25,
- "active": false
+ "active": false,
+ "date": "2019-01-01T00:00:00.000Z"
 }
 </pre>
 `;
@@ -31,7 +33,8 @@ exports[`QueryStateDemo can set name with button 3`] = `
   {
  "name": "Sarah",
  "age": 25,
- "active": false
+ "active": false,
+ "date": "2019-01-01T00:00:00.000Z"
 }
 </pre>
 `;
