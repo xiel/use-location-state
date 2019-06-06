@@ -1,6 +1,7 @@
+import React from 'react'
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from 'react-hooks-testing-library'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
 import { useQueryState } from '../react-router-use-location-state'
 
@@ -36,26 +37,30 @@ describe.each`
   'defaultValue $defaultValue, newValue $newValue',
   ({ defaultValue = '', newValue, newValueQueryString }) => {
     beforeEach(() => {
-      history.replaceState(null, '', '')
+      window.history.replaceState(null, '', '')
     })
 
     test(`should return default value and set newValue successfully`, () => {
       const { result, unmount } = renderHook(() => useQueryState('item', defaultValue), {
-        wrapper: Router,
+        wrapper: ({ children }) => (
+          <Router>
+            <Route>{children}</Route>
+          </Router>
+        ),
       })
       const r = unwrapResult(result)
       // default
       expect(result.error).toBe(undefined)
-      expect(location.search).toEqual('')
+      expect(window.location.search).toEqual('')
       expect(r.value).toEqual(defaultValue)
       // new value
       act(() => r.setValue(newValue))
-      expect(location.search).toEqual(newValueQueryString)
+      expect(window.location.search).toEqual(newValueQueryString)
       expect(r.value).toEqual(newValue)
       // back to default
       act(() => r.setValue(defaultValue))
       expect(r.value).toEqual(defaultValue)
-      expect(location.search).toEqual('')
+      expect(window.location.search).toEqual('')
 
       void act(() => unmount())
     })

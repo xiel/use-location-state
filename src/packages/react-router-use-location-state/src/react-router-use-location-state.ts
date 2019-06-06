@@ -5,7 +5,16 @@ import { useReactRouterQueryStringInterface } from './useHistoryQueryState'
 import { __RouterContext as RouterContext } from 'react-router'
 
 export function useRouter() {
-  return useContext(RouterContext)
+  const router = useContext(RouterContext)
+
+  if(process.env.NODE_ENV !== "production"){
+    if(!router) {
+      console.error({ RouterContext, router })
+      // throw new Error('Router missing')
+    }
+  }
+
+  return router
 }
 
 export function useQueryState<T>(
