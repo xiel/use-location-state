@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, cleanup, fireEvent, render, wait } from '@testing-library/react'
+import { act, cleanup, fireEvent, render } from '@testing-library/react'
 import QueryStateDemo from '../QueryStateDemo'
 import QueryStateDisplay from '../../components/QueryStateDisplay'
 
@@ -78,7 +78,7 @@ describe('QueryStateDemo', () => {
     expect(location.hash).toEqual('#age=45&name=Kim')
 
     // set back to default value
-    act(() => void fireEvent.click(getByText('name: "Sarah", age: 25')))
+    act(() => void fireEvent.click(getByText('name: "Sarah", age: 25 (default)')))
     expect(location.hash).toEqual('')
   })
 
@@ -88,6 +88,25 @@ describe('QueryStateDemo', () => {
 
     fireEvent.click(getByLabelText('active'))
     expect(location.hash).toEqual('#active=true')
+  })
+
+  test('can set date with date field', () => {
+    const { getByLabelText } = render(<QueryStateDemo />)
+    expect(location.hash).toEqual('')
+    fireEvent.change(getByLabelText('date:'), { target: { value: '2019-05-01' } })
+    expect(location.hash).toEqual('#date=2019-05-01T00%3A00%3A00.000Z')
+  })
+
+  test('can reset date with date field', () => {
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
+    const { getByLabelText } = render(<QueryStateDemo />)
+    expect(location.hash).toEqual('')
+    fireEvent.change(getByLabelText('date:'), { target: { value: '2019-05-01' } })
+    expect(location.hash).toEqual('#date=2019-05-01T00%3A00%3A00.000Z')
+    fireEvent.change(getByLabelText('date:'), { target: { value: null } })
+    expect(location.hash).toEqual('')
+    expect(warnSpy).toHaveBeenCalledTimes(1)
+    warnSpy.mockRestore()
   })
 })
 

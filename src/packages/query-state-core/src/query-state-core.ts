@@ -1,4 +1,4 @@
-export type ValueType = string | string[] | number | boolean
+export type ValueType = string | string[] | number | boolean | Date
 export type QueryStateValue = string | string[]
 export type QueryStateResetValue = null | undefined
 export type QueryState = Record<string, QueryStateValue>
@@ -65,6 +65,11 @@ export function toQueryStateValue(value: ValueType | any): QueryStateValue | nul
   if (Array.isArray(value)) {
     return value.map(v => v.toString())
   } else if (value || value === '' || value === false || value === 0) {
+
+    if(value instanceof Date) {
+      return value.toJSON()
+    }
+
     switch (typeof value) {
       case 'string':
       case 'number':
@@ -92,6 +97,14 @@ export function parseQueryStateValue<T>(value: QueryStateValue = '', defaultValu
 
   if(typeof value !== 'string' && !Array.isArray(value)) {
     return null
+  }
+
+  if(defaultValue instanceof Date) {
+    const valueAsDate = new Date(value.toString())
+
+    if(!isNaN(valueAsDate.valueOf())) {
+      return valueAsDate
+    }
   }
 
   switch (defaultValueType) {

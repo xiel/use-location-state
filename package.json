@@ -18,7 +18,7 @@
     "react-hooks-testing-library": "^0.5.0",
     "react-scripts": "^3.0.1",
     "@testing-library/react": "8.0.1",
-    "typescript": "3.4.5",
+    "typescript": "3.5.1",
     "copyfiles": "2.1.0"
   },
   "resolutions": {
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "start": "yarn lerna run start --parallel",
+    "dev": "yarn lerna run dev --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
     "test": "react-scripts test",
     "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
