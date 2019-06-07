@@ -3,6 +3,10 @@ import { useCallback, useMemo } from 'react'
 import { parseQueryStateValue, toQueryStateValue } from 'query-state-core'
 import useQueryStateObj from './useQueryStateObj'
 
+function sameAsJsonString(compareValueA: any, compareValueB: any) {
+  return JSON.stringify(compareValueA) === JSON.stringify(compareValueB)
+}
+
 export default function useQueryState<T>(
   itemName: string,
   defaultValue: T,
@@ -47,7 +51,10 @@ export default function useQueryState<T>(
       }
 
       // when new value is equal to default, we call setQueryState with a null value to reset query string
-      if (newValue === defaultValue) {
+      // arrays have to be compared json stringified, other values can compared by value
+      if(Array.isArray(defaultValue) && sameAsJsonString(newValue, defaultValue)) {
+        newQueryStateValue = null
+      } else if (newValue === defaultValue) {
         newQueryStateValue = null
       }
 
