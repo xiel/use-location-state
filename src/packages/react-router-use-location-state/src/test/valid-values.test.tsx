@@ -1,7 +1,7 @@
 import React from 'react'
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from 'react-hooks-testing-library'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
 import { useQueryState } from '../react-router-use-location-state'
 
@@ -42,11 +42,7 @@ describe.each`
 
     test(`should return default value and set newValue successfully`, () => {
       const { result, unmount } = renderHook(() => useQueryState('item', defaultValue), {
-        wrapper: ({ children }) => (
-          <Router>
-            <Route>{children}</Route>
-          </Router>
-        ),
+        wrapper: Router,
       })
       const r = unwrapResult(result)
       // default

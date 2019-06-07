@@ -19,7 +19,7 @@
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-router-use-location-state": "^2.0.1"
   },
   "scripts": {
