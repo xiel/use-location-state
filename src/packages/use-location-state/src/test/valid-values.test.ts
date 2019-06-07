@@ -13,6 +13,8 @@ describe.each`
   ${''}                      | ${'not empty anymore'} | ${'item=not+empty+anymore'}
   ${[]}                      | ${['new', 'entries']}  | ${'item=new&item=entries'}
   ${['']}                    | ${['new', 'entries']}  | ${'item=new&item=entries'}
+  ${['same', 'entries']}     | ${['same', 'entries']} | ${''}
+  ${[]}                      | ${[]}                  | ${''}
   ${['multiple', 'strings']} | ${[]}                  | ${'item=' + enc(EMPTY_ARRAY_STRING)}
   ${['multiple', 'strings']} | ${['']}                | ${'item='}
   ${['multiple', 'strings']} | ${['just one entry']}  | ${'item=just+one+entry'}

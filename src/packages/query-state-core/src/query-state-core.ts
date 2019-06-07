@@ -4,7 +4,7 @@ export type QueryStateResetValue = null | undefined
 export type QueryState = Record<string, QueryStateValue>
 export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
 
-export const EMPTY_ARRAY_STRING = "[\u00A0]"
+export const EMPTY_ARRAY_STRING = '[\u00A0]'
 
 export function stripLeadingHashOrQuestionMark(s: string = '') {
   if (s && (s.indexOf('?') === 0 || s.indexOf('#') === 0)) {
@@ -45,7 +45,7 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
     }
 
     if (Array.isArray(value)) {
-      if(value.length) {
+      if (value.length) {
         value.forEach(v => {
           params.append(key, v || '')
         })
@@ -65,8 +65,7 @@ export function toQueryStateValue(value: ValueType | any): QueryStateValue | nul
   if (Array.isArray(value)) {
     return value.map(v => v.toString())
   } else if (value || value === '' || value === false || value === 0) {
-
-    if(value instanceof Date) {
+    if (value instanceof Date) {
       return value.toJSON()
     }
 
@@ -84,25 +83,28 @@ export function toQueryStateValue(value: ValueType | any): QueryStateValue | nul
 
 export const newStringArray: () => string[] = () => []
 
-export function parseQueryStateValue<T>(value: QueryStateValue = '', defaultValue: T): ValueType | null {
+export function parseQueryStateValue<T>(
+  value: QueryStateValue = '',
+  defaultValue: T
+): ValueType | null {
   const defaultValueType = typeof defaultValue
 
   if (Array.isArray(defaultValue)) {
     // special case of empty array saved in query string to keep it distinguishable from ['']
-    if(value === EMPTY_ARRAY_STRING) {
+    if (value === EMPTY_ARRAY_STRING) {
       return []
     }
     return newStringArray().concat(value)
   }
 
-  if(typeof value !== 'string' && !Array.isArray(value)) {
+  if (typeof value !== 'string' && !Array.isArray(value)) {
     return null
   }
 
-  if(defaultValue instanceof Date) {
+  if (defaultValue instanceof Date) {
     const valueAsDate = new Date(value.toString())
 
-    if(!isNaN(valueAsDate.valueOf())) {
+    if (!isNaN(valueAsDate.valueOf())) {
       return valueAsDate
     }
   }
