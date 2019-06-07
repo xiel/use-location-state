@@ -1,14 +1,11 @@
 import React from 'react'
-import { useQueryState, useRouter } from 'react-router-use-location-state'
+import { useQueryState } from 'react-router-use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
 
 export default function QueryStateDemo() {
   const [name, setName] = useQueryState('name', 'Sarah')
   const [age, setAge] = useQueryState('age', 25)
   const [active, setActive] = useQueryState('active', false)
-
-  const router = useRouter()
-  console.log('router', router)
 
   return (
     <div>
