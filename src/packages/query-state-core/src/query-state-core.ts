@@ -84,7 +84,7 @@ export function toQueryStateValue(value: ValueType | any): QueryStateValue | nul
 export const newStringArray: () => string[] = () => []
 
 export function parseQueryStateValue<T>(
-  value: QueryStateValue = '',
+  value: QueryStateValue,
   defaultValue: T
 ): ValueType | null {
   const defaultValueType = typeof defaultValue
