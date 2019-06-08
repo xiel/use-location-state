@@ -79,7 +79,7 @@ function MyComponent() {
   // ...
 }
 ```
-<a href="https://codesandbox.io/embed/github/xiel/use-location-state/tree/master/src/examples/use-location-state/01-simple?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
+<a href="https://codesandbox.io/embed/github/xiel/use-location-state/tree/master/src/examples/use-location-state/?fontsize=14&module=%2Fsrc%2Fpages%2FQueryStateDemo.tsx">
   <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
