@@ -12,7 +12,7 @@
     "yarn": "^1.15.2"
   },
   "dependencies": {
-    "@types/react-router": "^4.4.5",
+    "@types/react-router": "^5.0.1",
     "@types/react-router-dom": "^4.3.2",
     "@ungap/url-search-params": "^0.1.2",
     "react": "^16.8.6",
