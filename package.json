@@ -6,17 +6,17 @@
     "src/examples/**/*"
   ],
   "devDependencies": {
-    "@testing-library/react": "8.0.1",
+    "@testing-library/react": "^8.0.7",
     "@types/jest": "^24.0.11",
     "codecov": "^3.3.0",
     "commitizen": "^3.1.1",
-    "copyfiles": "2.1.0",
+    "copyfiles": "2.1.1",
     "cz-conventional-changelog": "^2.1.0",
     "lerna": "^3.13.3",
     "prettier": "^1.17.0",
     "react": "16.9.0-alpha.0",
     "react-dom": "16.9.0-alpha.0",
-    "react-hooks-testing-library": "^0.5.0",
+    "react-hooks-testing-library": "^0.6.0",
     "react-scripts": "^3.0.1",
     "react-test-renderer": "16.9.0-alpha.0",
     "typescript": "3.5.1"
