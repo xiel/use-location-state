@@ -1,6 +1,6 @@
 {
   "name": "react-router-use-location-state-example",
-  "version": "2.1.4-alpha.0",
+  "version": "2.1.4",
   "private": true,
   "devDependencies": {
     "@types/react": "^16.8.8",
@@ -20,7 +20,7 @@
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-router-use-location-state": "^2.1.4-alpha.0"
+    "react-router-use-location-state": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
