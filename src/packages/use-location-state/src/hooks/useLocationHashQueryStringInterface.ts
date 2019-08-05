@@ -5,37 +5,40 @@ interface Props {
   disabled?: boolean
 }
 
+const hasWindowLocation = typeof window !== `undefined` && 'location' in window
+
 export function useLocationHashQueryStringInterface({
   disabled = false,
 }: Props = {}): QueryStringInterface {
+  const enabled = !disabled && hasWindowLocation
   const hashQSI: QueryStringInterface = useMemo(
     () => ({
       getQueryString: () => {
-        if (disabled) {
+        if (!enabled) {
           return ''
         }
         return window.location.hash
       },
       setQueryString: (newQueryString: string) => {
-        if (!disabled) {
+        if (enabled) {
           window.location.hash = newQueryString
           setR(r => r + 1)
         }
       },
     }),
-    [disabled]
+    [enabled]
   )
   // this state is used to trigger re-renders
   const [, setR] = useState(hashQSI.getQueryString())
 
   useEffect(() => {
-    if (disabled) {
+    if (!enabled) {
       return
     }
     const hashChangeHandler = () => setR(r => r + 1)
     window.addEventListener('hashchange', hashChangeHandler, false)
     return () => window.removeEventListener('hashchange', hashChangeHandler, false)
-  }, [disabled])
+  }, [enabled])
 
   return hashQSI
 }
