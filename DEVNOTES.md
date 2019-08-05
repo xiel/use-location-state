@@ -4,6 +4,7 @@
 
 update version:
 ````
+yarn build
 yarn lerna version
 ````
 
