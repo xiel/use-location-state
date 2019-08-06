@@ -1,6 +1,6 @@
 import React from 'react'
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
-import { act, renderHook } from 'react-hooks-testing-library'
+import { act, renderHook } from '@testing-library/react-hooks'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
 import { useQueryState } from '../react-router-use-location-state'
