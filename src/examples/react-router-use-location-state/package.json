@@ -15,7 +15,7 @@
     "@types/react-router": "^5.0.1",
     "@types/react-router-dom": "^4.3.2",
     "@ungap/url-search-params": "^0.1.2",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
