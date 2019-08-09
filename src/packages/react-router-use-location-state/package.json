@@ -5,7 +5,7 @@
   "types": "dist/react-router-use-location-state.d.ts",
   "description": "react hook to the browsers location query state",
   "peerDependencies": {
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-router": "^5.0.0"
   },
   "dependencies": {
