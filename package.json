@@ -14,7 +14,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "lerna": "^3.13.3",
     "prettier": "^1.17.0",
-    "react": "16.9.0-alpha.0",
+    "react": "16.9.0",
     "react-dom": "16.9.0-alpha.0",
     "@testing-library/react-hooks": "^1.1.0",
     "react-scripts": "^3.0.1",
