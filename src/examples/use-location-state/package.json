@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ungap/url-search-params": "^0.1.2",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
     "use-location-state": "^2.1.5"
