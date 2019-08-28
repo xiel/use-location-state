@@ -10,7 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "rollup": "^1.19.3",
-    "rollup-plugin-typescript2": "^0.23.0",
+    "rollup-plugin-typescript2": "^0.24.0",
     "tslib": "^1.9.3",
     "typescript": "3.5.1"
   },
