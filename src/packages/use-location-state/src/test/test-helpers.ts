@@ -1,9 +1,8 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react-test-renderer'
 import { SetQueryStateItemFn } from '../hooks/types'
 
 export async function asyncAct(callback: () => any) {
-  // @ts-ignore
-  return act(async () => {
+  return await act(async () => {
     await callback()
   })
 }
@@ -23,13 +22,17 @@ export function unwrapABResult<A, B>(result: {
   current: { a: [A, SetQueryStateItemFn<A>]; b: [B, SetQueryStateItemFn<B>] }
 }) {
   return {
-    get valueA() {
-      return result.current['a'][0]
+    a: {
+      get value() {
+        return result.current['a'][0]
+      },
+      setValue: result.current['a'][1],
     },
-    get valueB() {
-      return result.current['b'][0]
+    b: {
+      get value() {
+        return result.current['b'][0]
+      },
+      setValue: result.current['b'][1],
     },
-    setValueA: result.current['a'][1],
-    setValueB: result.current['b'][1],
   }
 }

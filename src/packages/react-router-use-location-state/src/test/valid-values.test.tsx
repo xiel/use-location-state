@@ -1,4 +1,3 @@
-import React from 'react'
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from '@testing-library/react-hooks'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -58,7 +57,7 @@ describe.each`
       expect(r.value).toEqual(defaultValue)
       expect(window.location.search).toEqual('')
 
-      void act(() => unmount())
+      unmount()
     })
   }
 )
@@ -68,6 +67,6 @@ it('should warn when used outside of router', () => {
   console.warn = jest.fn()
   const { unmount } = renderHook(() => useQueryState('item', ''))
   expect(console.warn).toHaveBeenCalledTimes(1)
-  void act(() => unmount())
+  unmount()
   console.warn = orgWarn
 })

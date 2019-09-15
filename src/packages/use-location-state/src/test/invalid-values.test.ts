@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { unwrapResult } from './test-helpers'
@@ -24,7 +24,7 @@ describe('invalid input defaultValue', () => {
       )
       expect(result.error).toMatchInlineSnapshot(`[Error: unsupported defaultValue]`)
       expect(testQSI.getQueryString()).toBe('')
-      act(() => unmount())
+      act(() => void unmount())
       console.error = orgError
     })
   })
@@ -64,7 +64,7 @@ describe('invalid value in setter', () => {
       expect(testQSI.getQueryString()).toBe('')
       expect(console.warn).toHaveBeenCalledTimes(1)
 
-      act(() => unmount())
+      act(() => void unmount())
       console.warn = orgWarn
     })
   })

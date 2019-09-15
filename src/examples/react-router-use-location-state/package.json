@@ -8,7 +8,7 @@
     "add": "^2.0.6",
     "node-sass": "^4.11.0",
     "react-scripts": "^3.0.1",
-    "typescript": "3.5.1",
+    "typescript": "^3.6.3",
     "yarn": "^1.15.2"
   },
   "dependencies": {

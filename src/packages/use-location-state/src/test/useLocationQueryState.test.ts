@@ -35,25 +35,25 @@ describe('useLocationQueryState', () => {
       })
 
       // get/set interfaces for the results (ref)
-      const r = unwrapABResult(result)
+      const { a, b } = unwrapABResult(result)
 
       // expect to get the default values
       expect(testQSI.getQueryString()).toBe('')
-      expect(r.valueA).toBe('XL')
-      expect(r.valueB).toBe(123)
+      expect(a.value).toBe('XL')
+      expect(b.value).toBe(123)
 
       // types should be enforced if possible ...
-      act(() => r.setValueA('111'))
+      act(() => a.setValue('111'))
       expect(testQSI.getQueryString()).toBe('clashingItem=111')
-      expect(r.valueA).toBe('111')
-      expect(r.valueB).toBe(111)
+      expect(a.value).toBe('111')
+      expect(b.value).toBe(111)
 
       // ...otherwise default values should be returned again
-      act(() => r.setValueA('Not a Number'))
+      act(() => a.setValue('Not a Number'))
       expect(testQSI.getQueryString()).toBe('clashingItem=Not+a+Number')
-      expect(r.valueA).toBe('Not a Number')
-      expect(r.valueB).toBe(123)
-      act(() => unmount())
+      expect(a.value).toBe('Not a Number')
+      expect(b.value).toBe(123)
+      unmount()
     })
   })
 })

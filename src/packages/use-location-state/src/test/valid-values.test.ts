@@ -51,7 +51,7 @@ describe.each`
       expect(r.value).toEqual(defaultValue)
       expect(testQSI.getQueryString()).toEqual('')
 
-      void act(() => unmount())
+      unmount()
     })
   }
 )
