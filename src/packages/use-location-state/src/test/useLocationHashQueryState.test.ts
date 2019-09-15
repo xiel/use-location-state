@@ -2,7 +2,7 @@ import { act } from 'react-dom/test-utils'
 import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useHashQueryState } from '../use-location-state'
-import { asyncAct } from './test-helpers'
+import { asyncAct, unwrapABResult } from './test-helpers'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -67,20 +67,21 @@ describe('useHashQueryState', () => {
     // two hooks use the same itemName -> they should still get the value in their correct type if possible (otherwise their own defaultValue)
     const { result, unmount } = renderHook(
       ({ itemName, defaultValueNum, defaultValueStr }) => {
-        const num = useHashQueryState(itemName, defaultValueNum)
-        const str = useHashQueryState(itemName, defaultValueStr)
-        return { num, str }
+        // a = num
+        const a = useHashQueryState(itemName, defaultValueNum)
+        // b = str
+        const b = useHashQueryState(itemName, defaultValueStr)
+        return { a, b }
       },
       {
         initialProps: { itemName: 'name', defaultValueNum: 25, defaultValueStr: 'Sarah' },
       }
     )
 
-    const valStr = () => result.current.str[0]
-    const setValStr: typeof result.current.str[1] = newValue => result.current.str[1](newValue)
-
-    const valNum = () => result.current.num[0]
-    const setValNum: typeof result.current.num[1] = newValue => result.current.num[1](newValue)
+    const r = unwrapABResult(result)
+    const { setValueA: setValNum, setValueB: setValStr } = r
+    const valNum = () => r.valueA
+    const valStr = () => r.valueB
 
     // initially both should show their defaults
     expect(window.location.hash).toEqual('')
