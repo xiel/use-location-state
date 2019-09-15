@@ -14,16 +14,14 @@ export function useLocationHashQueryStringInterface({
   const hashQSI: QueryStringInterface = useMemo(
     () => ({
       getQueryString: () => {
-        if (!enabled) {
-          return ''
-        }
+        if (!enabled) return ''
         return window.location.hash
       },
-      setQueryString: (newQueryString: string, { method }) => {
+      setQueryString: (newQueryString: string, { method = 'replace' }) => {
         if (!enabled) return
         if (window.history && window.history.replaceState) {
           window.history[method === 'replace' ? 'replaceState' : 'pushState'](
-            null,
+            undefined,
             '',
             '#' + newQueryString
           )
@@ -38,9 +36,7 @@ export function useLocationHashQueryStringInterface({
   const [, setR] = useState(0)
 
   useEffect(() => {
-    if (!enabled) {
-      return
-    }
+    if (!enabled) return
     const hashChangeHandler = () => setR(r => r + 1)
     window.addEventListener('hashchange', hashChangeHandler, false)
     return () => window.removeEventListener('hashchange', hashChangeHandler, false)
