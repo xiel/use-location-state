@@ -1,8 +1,7 @@
-import { act } from 'react-dom/test-utils'
+import { act } from 'react-test-renderer'
 import { SetQueryStateItemFn } from '../hooks/types'
 
 export async function asyncAct(callback: () => any) {
-  // @ts-ignore
   return act(async () => {
     await callback()
   })
