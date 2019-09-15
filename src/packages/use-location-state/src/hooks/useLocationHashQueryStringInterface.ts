@@ -19,13 +19,13 @@ export function useLocationHashQueryStringInterface({
       },
       setQueryString: (newQueryString: string, { method = 'replace' }) => {
         if (!enabled) return
-        if (window.history && window.history.replaceState) {
+        // if (window.history && window.history.replaceState) {
           window.history[method === 'replace' ? 'replaceState' : 'pushState'](
             undefined,
             '',
             '#' + newQueryString
           )
-        }
+        // }
         window.location.hash = newQueryString
         setR(r => r + 1)
       },
