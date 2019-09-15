@@ -17,13 +17,15 @@ export function useLocationHashQueryStringInterface({
         if (!enabled) return ''
         return window.location.hash
       },
-      setQueryString: (newQueryString, { method = 'replace' }) => {
+      setQueryString: (newQueryString: string, { method }) => {
         if (!enabled) return
-        window.history[method === 'replace' ? 'replaceState' : 'pushState'](
-          undefined,
-          '',
-          '#' + newQueryString
-        )
+        if (window.history && window.history.replaceState) {
+          window.history[method === 'replace' ? 'replaceState' : 'pushState'](
+            null,
+            '',
+            '#' + newQueryString
+          )
+        }
         window.location.hash = newQueryString
         setR(r => r + 1)
       },
