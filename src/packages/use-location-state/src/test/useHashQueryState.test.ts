@@ -1,4 +1,3 @@
-import { act } from 'react-dom/test-utils'
 import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useHashQueryState } from '../use-location-state'
@@ -10,9 +9,7 @@ beforeAll(() => {
 })
 
 beforeEach(() => {
-  act(() => {
-    window.location.hash = ''
-  })
+  window.location.hash = ''
   cleanup()
 })
 

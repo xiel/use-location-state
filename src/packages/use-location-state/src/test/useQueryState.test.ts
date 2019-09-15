@@ -3,7 +3,7 @@ import { useQueryState } from '../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import { asyncAct, unwrapABResult, unwrapResult } from './test-helpers'
 
-describe('useLocationQueryState', () => {
+describe('useQueryState', () => {
   it('should automatically use hashQSI when no queryStringInterface is defined', async () => {
     const { result, unmount } = renderHook(
       ({ itemName, defaultValue }) => useQueryState(itemName, defaultValue),
