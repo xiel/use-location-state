@@ -78,35 +78,32 @@ describe('useHashQueryState', () => {
       }
     )
 
-    const r = unwrapABResult(result)
-    const { setValueA: setValNum, setValueB: setValStr } = r
-    const valNum = () => r.valueA
-    const valStr = () => r.valueB
+    const { a: num, b: str } = unwrapABResult(result)
 
     // initially both should show their defaults
     expect(window.location.hash).toEqual('')
-    expect(valStr()).toEqual('Sarah')
-    expect(valNum()).toEqual(25)
+    expect(str.value).toEqual('Sarah')
+    expect(num.value).toEqual(25)
 
     // after setting a string value for same item,
     // numerical QS should still return default number, because string "Kim" cannot be transformed into a number
-    await asyncAct(async () => setValStr('Kim'))
+    await asyncAct(async () => str.setValue('Kim'))
 
     expect(window.location.hash).toEqual('#name=Kim')
-    expect(valStr()).toEqual('Kim')
-    expect(valNum()).toEqual(25)
+    expect(str.value).toEqual('Kim')
+    expect(num.value).toEqual(25)
 
-    await asyncAct(async () => setValStr('Tom'))
+    await asyncAct(async () => str.setValue('Tom'))
 
     expect(window.location.hash).toEqual('#name=Tom')
-    expect(valStr()).toEqual('Tom')
-    expect(valNum()).toEqual(25)
+    expect(str.value).toEqual('Tom')
+    expect(num.value).toEqual(25)
 
     // string QS should return number as string, after setting it via numerical setter
-    await asyncAct(async () => setValNum(375))
+    await asyncAct(async () => num.setValue(375))
     expect(window.location.hash).toEqual('#name=375')
-    expect(valNum()).toEqual(375)
-    expect(valStr()).toEqual('375')
+    expect(num.value).toEqual(375)
+    expect(str.value).toEqual('375')
 
     unmount()
   })
