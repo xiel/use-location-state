@@ -19,17 +19,23 @@ export function useLocationHashQueryStringInterface({
         }
         return window.location.hash
       },
-      setQueryString: (newQueryString: string) => {
-        if (enabled) {
-          window.location.hash = newQueryString
-          setR(r => r + 1)
+      setQueryString: (newQueryString: string, { method }) => {
+        if (!enabled) return
+        if (window.history && window.history.replaceState) {
+          window.history[method === 'replace' ? 'replaceState' : 'pushState'](
+            null,
+            '',
+            '#' + newQueryString
+          )
         }
+        window.location.hash = newQueryString
+        setR(r => r + 1)
       },
     }),
     [enabled]
   )
   // this state is used to trigger re-renders
-  const [, setR] = useState(hashQSI.getQueryString())
+  const [, setR] = useState(0)
 
   useEffect(() => {
     if (!enabled) {
