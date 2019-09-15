@@ -3,6 +3,7 @@ import { cleanup } from '@testing-library/react'
 import { useHashQueryStateObj } from '../hooks/useHashQueryState'
 import { useLocationHashQueryStringInterface } from '../hooks/useLocationHashQueryStringInterface'
 import useQueryStateObj from '../hooks/useQueryStateObj'
+import { unwrapResult } from './test-helpers'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -16,18 +17,25 @@ afterEach(() => {
 
 describe('useQueryStateObj hook', () => {
   it('should work with passed HashQueryStringInterface', () => {
-    const hashQSI = renderHook(() => useLocationHashQueryStringInterface())
     const { result } = renderHook(
-      props => useQueryStateObj(props, { queryStringInterface: hashQSI.result.current }),
+      props => {
+        const hashQSI = useLocationHashQueryStringInterface()
+        return useQueryStateObj(props, { queryStringInterface: hashQSI })
+      },
       {
         initialProps: { name: 'Sarah' },
       }
     )
 
-    expect(result.current[0]).toEqual({ name: 'Sarah' })
-    act(() => result.current[1]({ name: 'Kim' }))
+    const name = unwrapResult(result)
+
+    expect(name.value).toEqual({ name: 'Sarah' })
+    act(() => name.setValue({ name: 'Kim' }))
     expect(window.location.hash).toEqual('#name=Kim')
-    expect(result.current[0]).toEqual({ name: 'Kim' })
+    expect(name.value).toEqual({ name: 'Kim' })
+    act(() => name.setValue({ name: 'Sarah' }))
+    expect(window.location.hash).toEqual('')
+    expect(name.value).toEqual({ name: 'Sarah' })
   })
 })
 
@@ -37,12 +45,14 @@ describe('useHashQueryStateObj hook', () => {
       initialProps: { name: 'Sarah' },
     })
 
-    expect(result.current[0]).toEqual({ name: 'Sarah' })
-    act(() => result.current[1]({ name: 'Kim' }))
+    const name = unwrapResult(result)
+
+    expect(name.value).toEqual({ name: 'Sarah' })
+    act(() => name.setValue({ name: 'Kim' }))
     expect(window.location.hash).toEqual('#name=Kim')
-    expect(result.current[0]).toEqual({ name: 'Kim' })
-    act(() => result.current[1]({ name: 'Sarah' }))
+    expect(name.value).toEqual({ name: 'Kim' })
+    act(() => name.setValue({ name: 'Sarah' }))
     expect(window.location.hash).toEqual('')
-    expect(result.current[0]).toEqual({ name: 'Sarah' })
+    expect(name.value).toEqual({ name: 'Sarah' })
   })
 })

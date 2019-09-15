@@ -2,7 +2,7 @@ import { act } from 'react-test-renderer'
 import { SetQueryStateItemFn } from '../hooks/types'
 
 export async function asyncAct(callback: () => any) {
-  return act(async () => {
+  return await act(async () => {
     await callback()
   })
 }
