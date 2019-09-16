@@ -1,4 +1,4 @@
-import { QueryStringInterface } from '../hooks/types'
+import { QueryStringInterface } from '../types'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 export default function useTestQueryStringInterface(): QueryStringInterface {

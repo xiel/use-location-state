@@ -5,7 +5,7 @@ interface Props {
   disabled?: boolean
 }
 
-const hasWindowLocation = typeof window !== `undefined` && 'location' in window
+const hasWindowLocation = typeof window !== `undefined` && 'location' in window && 'history' in window
 
 export function useHashQueryStringInterface({
   disabled = false,

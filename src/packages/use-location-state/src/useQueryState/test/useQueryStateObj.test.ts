@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { cleanup } from '@testing-library/react'
-import { useHashQueryStateObj } from '../hooks/useHashQueryState'
-import { useHashQueryStringInterface } from '../hooks/useHashQueryStringInterface'
-import useQueryStateObj from '../hooks/useQueryStateObj'
+import { useHashQueryStateObj } from '../useHashQueryState'
+import { useHashQueryStringInterface } from '../useHashQueryStringInterface'
+import useQueryStateObj from '../useQueryStateObj'
 import { unwrapResult } from './test-helpers'
 
 // reset jest mocked hash

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { useQueryState } from '../use-location-state'
+import { useQueryState } from '../../use-location-state'
 import { asyncAct, unwrapResult } from './test-helpers'
 import { cleanup } from '@testing-library/react'
 
@@ -9,11 +9,12 @@ beforeAll(() => {
 })
 
 afterEach(() => {
+  window.location.hash = ''
   cleanup()
 })
 
-describe('method - replace', () => {
-  it('should not create new history when manually passing replace', async () => {
+describe('method - push', () => {
+  it('method push creates new entries in history with each change', async () => {
     const { result, unmount } = renderHook(
       ({ itemName, defaultValue }) => useQueryState(itemName, defaultValue),
       {
@@ -24,11 +25,13 @@ describe('method - replace', () => {
     expect(name.value).toEqual('Sarah')
     expect(window.history.length).toEqual(1)
 
-    await asyncAct(async () => void name.setValue('Kim', { method: 'replace' }))
+    await asyncAct(async () => void name.setValue('Kim', { method: 'push' }))
 
     expect(window.location.hash).toEqual('#name=Kim')
     expect(name.value).toEqual('Kim')
-    expect(window.history.length).toEqual(1)
+
+    // method push creates new entries in history with each change
+    expect(window.history.length).toEqual(2)
     unmount()
   })
 })

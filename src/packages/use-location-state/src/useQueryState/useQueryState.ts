@@ -13,7 +13,7 @@ export default function useQueryState<T>(
   queryStateOpts: QueryStateOpts = {}
 ): [T, SetQueryStateItemFn<T>] {
   // defaultValue is not allowed to be changed after init
-  [defaultValue] = useState(defaultValue)
+  ;[defaultValue] = useState(defaultValue)
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
@@ -30,7 +30,6 @@ export default function useQueryState<T>(
   const [queryState, setQueryState] = useQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem: SetQueryStateItemFn<T> = useCallback(
     (newValue, opts) => {
-
       // stringify the given value (or array of strings)
       let newQueryStateValue = toQueryStateValue(newValue)
 
@@ -55,7 +54,7 @@ export default function useQueryState<T>(
 
       // when new value is equal to default, we call setQueryState with a null value to reset query string
       // arrays have to be compared json stringified, other values can compared by value
-      if(Array.isArray(defaultValue) && sameAsJsonString(newValue, defaultValue)) {
+      if (Array.isArray(defaultValue) && sameAsJsonString(newValue, defaultValue)) {
         newQueryStateValue = null
       } else if (newValue === defaultValue) {
         newQueryStateValue = null

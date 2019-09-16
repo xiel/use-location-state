@@ -2,16 +2,17 @@ import { QueryStateMerge } from 'query-state-core'
 
 export type QueryString = string
 
-export type SetQueryStateFn<T> = (
-  newState: QueryStateMerge,
-  opts?: SetQueryStringOptions
-) => void
+export type SetQueryStateFn<T> = (newState: QueryStateMerge, opts?: SetQueryStringOptions) => void
 
-export type SetQueryStateItemFn<T> = (newValue: T , opts?: SetQueryStringOptions) => void
+export type SetQueryStateItemFn<T> = (newValue: T, opts?: SetQueryStringOptions) => void
 
 export interface QueryStringInterface {
   getQueryString: () => QueryString
   setQueryString: (newQueryString: QueryString, opts: SetQueryStringOptions) => void
+}
+
+export interface SetQueryStringOptions {
+  method?: 'replace' | 'push'
 }
 
 export type QueryStateOpts = {
@@ -21,8 +22,4 @@ export type QueryStateOpts = {
 
 export type QueryStateOptsSetInterface = {
   stripDefaults?: boolean
-}
-
-export interface SetQueryStringOptions {
-  method?: 'replace' | 'push'
 }

@@ -1,3 +1,3 @@
-export * from './hooks/types'
-export { default as useQueryState } from './hooks/useQueryState'
-export { default as useHashQueryState } from './hooks/useHashQueryState'
+export * from './useQueryState/types'
+export { default as useQueryState } from './useQueryState/useQueryState'
+export { default as useHashQueryState } from './useQueryState/useHashQueryState'
