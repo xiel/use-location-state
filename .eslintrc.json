@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-app/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "react/jsx-boolean-value": "error"
+  }
+}
