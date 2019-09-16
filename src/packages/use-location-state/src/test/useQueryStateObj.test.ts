@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { cleanup } from '@testing-library/react'
 import { useHashQueryStateObj } from '../hooks/useHashQueryState'
-import { useLocationHashQueryStringInterface } from '../hooks/useLocationHashQueryStringInterface'
+import { useHashQueryStringInterface } from '../hooks/useHashQueryStringInterface'
 import useQueryStateObj from '../hooks/useQueryStateObj'
 import { unwrapResult } from './test-helpers'
 
@@ -19,7 +19,7 @@ describe('useQueryStateObj hook', () => {
   it('should work with passed HashQueryStringInterface', () => {
     const { result } = renderHook(
       props => {
-        const hashQSI = useLocationHashQueryStringInterface()
+        const hashQSI = useHashQueryStringInterface()
         return useQueryStateObj(props, { queryStringInterface: hashQSI })
       },
       {

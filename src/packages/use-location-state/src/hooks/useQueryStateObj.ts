@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState, QueryStateMerge } from 'query-state-core'
-import { useLocationHashQueryStringInterface } from './useLocationHashQueryStringInterface'
+import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { QueryStateOpts, SetQueryStateFn } from './types'
 
 export default function useQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
-  queryStateOpts: QueryStateOpts,
+  queryStateOpts: QueryStateOpts
 ): [QueryState, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
-  const hashQSI = useLocationHashQueryStringInterface({ disabled: !!queryStringInterface })
+  const hashQSI = useHashQueryStringInterface({ disabled: !!queryStringInterface })
   const activeQSI = queryStringInterface || hashQSI
   const queryString = activeQSI.getQueryString()
   const [, setLatestMergedQueryString] = useState<string>()
@@ -17,7 +17,7 @@ export default function useQueryStateObj<T extends QueryState>(
       ...defaultQueryState,
       ...parseQueryState(queryString),
     }),
-    [defaultQueryState, queryString],
+    [defaultQueryState, queryString]
   )
 
   const ref = useRef({

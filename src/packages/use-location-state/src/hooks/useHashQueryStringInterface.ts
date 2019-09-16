@@ -7,7 +7,7 @@ interface Props {
 
 const hasWindowLocation = typeof window !== `undefined` && 'location' in window
 
-export function useLocationHashQueryStringInterface({
+export function useHashQueryStringInterface({
   disabled = false,
 }: Props = {}): QueryStringInterface {
   const enabled = !disabled && hasWindowLocation
