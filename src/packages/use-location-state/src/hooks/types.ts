@@ -24,5 +24,5 @@ export type QueryStateOptsSetInterface = {
 }
 
 export interface SetQueryStringOptions {
-  method?: 'push' | 'replace'
+  method?: 'replace' | 'push'
 }

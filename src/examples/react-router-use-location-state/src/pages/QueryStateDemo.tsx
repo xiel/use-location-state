@@ -10,7 +10,10 @@ export default function QueryStateDemo() {
   return (
     <div>
       <h2>Intro</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque, corporis debitis esse.</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque,
+        corporis debitis esse.
+      </p>
       <QueryStateDisplay
         queryState={{
           name,
@@ -30,12 +33,7 @@ export default function QueryStateDemo() {
           name: "Sarah" (default value)
         </button>
         <label htmlFor="input-name">name:</label>
-        <input
-          id="input-name"
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+        <input id="input-name" type="text" value={name} onChange={e => setName(e.target.value)} />
       </p>
       <h4>Age</h4>
       <p>
@@ -86,11 +84,27 @@ export default function QueryStateDemo() {
           name: "Sarah", age: 25
         </button>
       </p>
-      <h4>active</h4>
-      <label htmlFor="checkbox-active">
-        active
-      </label>
-      <input id="checkbox-active" type="checkbox" checked={active} onChange={() => setActive(!active)} />
+      <fieldset>
+        <h4>active</h4>
+        <label htmlFor="checkbox-active">
+          <input
+            id="checkbox-active"
+            type="checkbox"
+            checked={active}
+            onChange={() => setActive(!active, { method: 'replace' })}
+          />
+          active
+        </label>
+        <label htmlFor="checkbox-active-push">
+          <input
+            id="checkbox-active-push"
+            type="checkbox"
+            checked={active}
+            onChange={() => setActive(!active, { method: 'push' })}
+          />
+          active (method: push)
+        </label>
+      </fieldset>
     </div>
   )
 }

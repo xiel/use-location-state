@@ -98,6 +98,15 @@ export default function QueryStateDemo() {
           />
           active
         </label>
+        <label htmlFor="checkbox-active-push">
+          <input
+            id="checkbox-active-push"
+            type="checkbox"
+            checked={active}
+            onChange={() => setActive(!active, { method: 'push' })}
+          />
+          active (method: push)
+        </label>
       </fieldset>
 
       <h4>Date</h4>

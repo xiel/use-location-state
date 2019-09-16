@@ -1,5 +1,5 @@
 import { QueryStateOpts, SetQueryStateItemFn } from './types'
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { parseQueryStateValue, toQueryStateValue } from 'query-state-core'
 import useQueryStateObj from './useQueryStateObj'
 
@@ -12,6 +12,8 @@ export default function useQueryState<T>(
   defaultValue: T,
   queryStateOpts: QueryStateOpts = {}
 ): [T, SetQueryStateItemFn<T>] {
+  // defaultValue is not allowed to be changed after init
+  [defaultValue] = useState(defaultValue)
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
@@ -28,6 +30,7 @@ export default function useQueryState<T>(
   const [queryState, setQueryState] = useQueryStateObj(defaultQueryState, queryStateOpts)
   const setQueryStateItem: SetQueryStateItemFn<T> = useCallback(
     (newValue, opts) => {
+
       // stringify the given value (or array of strings)
       let newQueryStateValue = toQueryStateValue(newValue)
 
@@ -60,7 +63,7 @@ export default function useQueryState<T>(
 
       setQueryState({ [itemName]: newQueryStateValue }, opts)
     },
-    [itemName, setQueryState]
+    [defaultValue, itemName, setQueryState]
   )
 
   // fallback to default value
