@@ -36,9 +36,6 @@
     "type": "git",
     "url": "https://github.com/xiel/use-location-state.git"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

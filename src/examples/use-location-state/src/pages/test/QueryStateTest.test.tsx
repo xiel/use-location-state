@@ -98,7 +98,6 @@ describe('QueryStateDemo', () => {
     expect(replaceState).toBeCalledTimes(0)
     expect(pushState).toBeCalledTimes(0)
     fireEvent.click(getByLabelText('active (method: push)'))
-    expect(location.hash).toEqual('#active=true')
     expect(replaceState).toBeCalledTimes(0)
     expect(pushState).toBeCalledTimes(1)
     expect(pushState).toHaveBeenCalledWith(undefined, '', '#active=true')

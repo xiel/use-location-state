@@ -1,12 +1,13 @@
 import React from 'react'
 import { useQueryState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
+import DemoCheckbox from '../components/DemoCheckbox'
 
 export default function QueryStateDemo() {
   const [name, setName] = useQueryState('name', 'Sarah')
   const [age, setAge] = useQueryState('age', 25)
-  const [active, setActive] = useQueryState('active', false)
   const [date, setDate] = useQueryState('date', new Date('2019-01-01'))
+  const [active] = useQueryState('active', false)
 
   return (
     <div>
@@ -89,24 +90,8 @@ export default function QueryStateDemo() {
 
       <h4>active</h4>
       <fieldset>
-        <label htmlFor="checkbox-active">
-          <input
-            id="checkbox-active"
-            type="checkbox"
-            checked={active}
-            onChange={() => setActive(!active)}
-          />
-          active
-        </label>
-        <label htmlFor="checkbox-active-push">
-          <input
-            id="checkbox-active-push"
-            type="checkbox"
-            checked={active}
-            onChange={() => setActive(!active, { method: 'push' })}
-          />
-          active (method: push)
-        </label>
+        <DemoCheckbox />
+        <DemoCheckbox method="push" />
       </fieldset>
 
       <h4>Date</h4>

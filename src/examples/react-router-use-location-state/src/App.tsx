@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 // demo pages
 import QueryStateDemo from './pages/QueryStateDemo'
