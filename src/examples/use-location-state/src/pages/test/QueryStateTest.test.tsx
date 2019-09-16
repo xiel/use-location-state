@@ -82,12 +82,26 @@ describe('QueryStateDemo', () => {
     expect(location.hash).toEqual('')
   })
 
-  test('can set name & age with button', () => {
+  test('can set active with checkbox', () => {
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
 
     fireEvent.click(getByLabelText('active'))
     expect(location.hash).toEqual('#active=true')
+  })
+
+  test('can set active with checkbox - push', () => {
+    const replaceState = spyOn(window.history, 'replaceState')
+    const pushState = spyOn(window.history, 'pushState')
+    const { getByLabelText } = render(<QueryStateDemo />)
+    expect(location.hash).toEqual('')
+    expect(replaceState).toBeCalledTimes(0)
+    expect(pushState).toBeCalledTimes(0)
+    fireEvent.click(getByLabelText('active (method: push)'))
+    expect(location.hash).toEqual('#active=true')
+    expect(replaceState).toBeCalledTimes(0)
+    expect(pushState).toBeCalledTimes(1)
+    expect(pushState).toHaveBeenCalledWith(undefined, '', '#active=true')
   })
 
   test('can set date with date field', () => {

@@ -109,7 +109,7 @@ describe('QueryStateDemo', () => {
     expect(location.search).toEqual('')
   })
 
-  test('can set name & age with button', () => {
+  test('can set active with checkbox', () => {
     const { getByLabelText } = render(
       <Router>
         <Route path="/" component={QueryStateDemo} />
@@ -119,6 +119,23 @@ describe('QueryStateDemo', () => {
 
     fireEvent.click(getByLabelText('active'))
     expect(location.search).toEqual('?active=true')
+  })
+
+  test('can set active with checkbox - push', () => {
+    const replaceState = spyOn(window.history, 'replaceState')
+    const pushState = spyOn(window.history, 'pushState')
+    const { getByLabelText } = render(
+      <Router>
+        <Route path="/" component={QueryStateDemo} />
+      </Router>
+    )
+    expect(location.search).toEqual('')
+    expect(replaceState).toBeCalledTimes(0)
+    expect(pushState).toBeCalledTimes(0)
+    fireEvent.click(getByLabelText('active (method: push)'))
+    expect(replaceState).toBeCalledTimes(0)
+    expect(pushState).toBeCalledTimes(1)
+    expect(pushState).toHaveBeenCalledWith(expect.anything(), null, '/?active=true')
   })
 })
 

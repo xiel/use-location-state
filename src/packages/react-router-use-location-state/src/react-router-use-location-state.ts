@@ -1,6 +1,5 @@
-import { useQueryState as useQueryStateImported } from 'use-location-state'
+import { QueryStateOpts, SetQueryStateItemFn, useQueryState as useQueryStateImported } from 'use-location-state'
 import { useContext } from 'react'
-import { QueryStateOpts, SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
 import { useReactRouterQueryStringInterface } from './useHistoryQueryState'
 import { __RouterContext as RouterContext } from 'react-router'
 
