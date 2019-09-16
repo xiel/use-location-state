@@ -1,13 +1,18 @@
 import React from 'react'
-import { useQueryState } from 'use-location-state'
+import { useLocationState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
-import QueryStateCheckbox from '../components/QueryStateCheckbox'
+import LocationStateCheckbox from '../components/LocationStateCheckbox'
 
-export default function QueryStateDemo() {
-  const [name, setName] = useQueryState('name', 'Sarah')
-  const [age, setAge] = useQueryState('age', 25)
-  const [date, setDate] = useQueryState('date', new Date('2019-01-01'))
-  const [active] = useQueryState('active', false)
+export default function LocationStateDemo() {
+  const [name, setName, resetName] = useLocationState('name', 'Sarah')
+  const [age, setAge, resetAge] = useLocationState('age', 25)
+  const [date, setDate] = useLocationState('date', new Date('2019-01-01'))
+  const [active] = useLocationState('active', false)
+
+  if(age === 30) {
+    resetAge()
+    resetName()
+  }
 
   return (
     <div>
@@ -90,8 +95,8 @@ export default function QueryStateDemo() {
 
       <h4>active</h4>
       <fieldset>
-        <QueryStateCheckbox />
-        <QueryStateCheckbox method="push" />
+        <LocationStateCheckbox />
+        <LocationStateCheckbox method="push" />
       </fieldset>
 
       <h4>Date</h4>
@@ -100,7 +105,7 @@ export default function QueryStateDemo() {
         <input
           id="input-date"
           type="date"
-          value={date.toJSON().slice(0, 10)}
+          value={(date.toJSON() && date.toJSON().slice(0, 10)) || ''}
           onChange={e => setDate(new Date(e.target.value))}
         />
       </fieldset>

@@ -1,4 +1,4 @@
-import { QueryStateOpts, SetQueryStateItemFn } from './types'
+import { QueryStateOpts, SetQueryStateItemFn } from './useQueryState.types'
 import { useCallback, useMemo, useState } from 'react'
 import { parseQueryStateValue, toQueryStateValue } from 'query-state-core'
 import useQueryStateObj from './useQueryStateObj'

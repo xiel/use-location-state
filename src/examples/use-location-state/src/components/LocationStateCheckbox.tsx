@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
-import { useQueryState } from 'use-location-state'
+import { useLocationState } from 'use-location-state'
 
 interface Props {
   name?: string
   method?: 'replace' | 'push'
 }
 
-export default memo(function DemoCheckbox({ name = 'active', method }: Props) {
-  const [active, setActive] = useQueryState(name, false)
+export default memo(function LocationStateCheckbox({ name = 'active', method }: Props) {
+  const [active, setActive] = useLocationState(name, false)
 
   return (
     <label>

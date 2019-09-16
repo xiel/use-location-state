@@ -11,6 +11,7 @@
     "@types/jest": "^24.0.18",
     "@types/jsdom": "^12.2.4",
     "@types/react-test-renderer": "^16.9.0",
+    "bundlesize": "^0.18.0",
     "codecov": "^3.3.0",
     "commitizen": "^4.0.3",
     "copyfiles": "2.1.1",
@@ -28,7 +29,7 @@
     "start": "yarn dev",
     "dev": "yarn lerna run dev --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
-    "test": "react-scripts test",
+    "test": "react-scripts test; bundlesize",
     "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
   },
   "version": "0.0.0-development",
@@ -41,6 +42,12 @@
       "path": "node_modules/cz-conventional-changelog"
     }
   },
+  "bundlesize": [
+    {
+      "path": "./src/packages/**/dist/*.js",
+      "maxSize": "5 kB"
+    }
+  ],
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jx,tsx,ts}",

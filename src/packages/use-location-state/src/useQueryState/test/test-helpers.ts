@@ -1,5 +1,5 @@
 import { act } from 'react-test-renderer'
-import { SetQueryStateItemFn } from '../types'
+import { SetQueryStateItemFn } from '../useQueryState.types'
 
 export async function asyncAct(callback: () => any) {
   return await act(async () => {

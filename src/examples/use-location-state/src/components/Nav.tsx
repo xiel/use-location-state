@@ -10,6 +10,9 @@ export default function Nav(props: Props) {
           <a href="/">Start</a>
         </li>
         <li>
+          <a href="/location-state">LocationState</a>
+        </li>
+        <li>
           <a href="/array-demo">Array</a>
         </li>
       </ul>

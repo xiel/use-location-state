@@ -1,4 +1,12 @@
-type LocationState = Record<string, string>
+export type LocationStateValue<K = unknown> =
+  | string
+  | number
+  | boolean
+  | undefined
+  | Date
+  | Array<K>
+
+export type LocationState = Record<string, LocationStateValue>
 
 export interface LocationStateInterface {
   getLocationState: () => LocationState
@@ -8,3 +16,9 @@ export interface LocationStateInterface {
 export interface SetLocationStateOptions {
   method?: 'replace' | 'push'
 }
+
+export type SetLocationState<T> = (
+  newValue: T | ((value: T) => T),
+  opts?: SetLocationStateOptions
+) => void
+export type ResetLocationState = (opts?: SetLocationStateOptions) => void

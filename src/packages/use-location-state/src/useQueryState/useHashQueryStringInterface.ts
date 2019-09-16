@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { QueryStringInterface } from './types'
+import { QueryStringInterface } from './useQueryState.types'
 
 interface Props {
   disabled?: boolean
 }
 
-const hasWindowLocation = typeof window !== `undefined` && 'location' in window && 'history' in window
+const hasWindowLocation =
+  typeof window !== `undefined` && 'location' in window && 'history' in window
 
 export function useHashQueryStringInterface({
   disabled = false,

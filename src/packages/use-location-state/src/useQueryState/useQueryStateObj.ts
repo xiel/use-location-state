@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createMergedQuery, parseQueryState, QueryState, QueryStateMerge } from 'query-state-core'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
-import { QueryStateOpts, SetQueryStateFn } from './types'
+import { QueryStateOpts, SetQueryStateFn } from './useQueryState.types'
 
 export default function useQueryStateObj<T extends QueryState>(
   defaultQueryState: T,

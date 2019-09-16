@@ -1,5 +1,5 @@
 import { QueryState } from 'query-state-core'
-import { QueryStateOptsSetInterface } from './types'
+import { QueryStateOptsSetInterface } from './useQueryState.types'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import useQueryState from './useQueryState'
 import useQueryStateObj from './useQueryStateObj'
