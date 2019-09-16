@@ -19,12 +19,20 @@ export function useLocationHashQueryStringInterface({
       },
       setQueryString: (newQueryString, { method = 'replace' }) => {
         if (!enabled) return
+
+        // use history to update hash using replace / push
         window.history[method === 'replace' ? 'replaceState' : 'pushState'](
-          undefined,
+          window.history.state,
           '',
           '#' + newQueryString
         )
-        window.location.hash = newQueryString
+
+        // manually dispatch a hashchange event (replace state does not trigger this event)
+        // so all subscribers get notified (old way for IE11)
+        const customEvent = document.createEvent('CustomEvent')
+        customEvent.initEvent('hashchange', false, false)
+        window.dispatchEvent(customEvent)
+
         setR(r => r + 1)
       },
     }),
