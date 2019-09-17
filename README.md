@@ -1,4 +1,4 @@
-# useQueryState()
+# { useLocationState, useQueryState }
 
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
 [![Build Status](https://travis-ci.com/xiel/use-location-state.svg?branch=master)](https://travis-ci.com/xiel/use-location-state)
@@ -7,7 +7,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/xiel/use-location-state.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-store and retrieve state into/from the browsers location state using modern hooks
+store and retrieve state into/from the browsers [location history](https://developer.mozilla.org/en-US/docs/Web/API/History) using modern hooks
 
 ## ✨ Features
 
@@ -50,7 +50,7 @@ Check out the router integrations to use `location.search` instead.
 
 #### Push
 
-In cases where you want the updated state to be represented as a new entry in the history, you can pass a options argument to the set function, with the method property set to `'push'`. 
+In cases where you want the updated state to be represented as a new entry in the history, you can pass a options object to the set function, with the method property set to `'push'`. 
 
 ```javascript
 setValue('a pushed value', { method: 'push' })
