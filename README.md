@@ -119,3 +119,12 @@ http://localhost:3000/?itemName=different+value
 ### More routers soon - work in progress
 
 Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/use-location-state/issues).
+
+## Compatibility
+
+Tested in current versions Chrome, Firefox, Safari, Edge, and IE11. This library relies on new, yet stable ECMAScript features, so you might need to include a [polyfill](https://www.npmjs.com/package/react-app-polyfill#polyfilling-other-language-features) if you want to support older browsers like IE11:
+
+```javascript
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+```
