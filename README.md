@@ -50,7 +50,7 @@ Check out the router integrations to use `location.search` instead.
 
 #### Push
 
-In cases where you want the updated state to be represented as a new entry in the history, you can pass a options argument to the set function, with the method property set to `'push'`. 
+In cases where you want the updated state to be represented as a new entry in the history, you can pass a options object to the set function, with the method property set to `'push'`. 
 
 ```javascript
 setValue('a pushed value', { method: 'push' })
