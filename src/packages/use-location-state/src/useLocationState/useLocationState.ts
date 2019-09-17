@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useLocationStateInterface from './useLocationStateInterface'
-import { ResetLocationState, SetLocationState, SetLocationStateOptions } from './useLocationState.types'
+import { SetLocationState, SetLocationStateOptions } from './useLocationState.types'
 
 interface Props {}
 
@@ -8,7 +8,7 @@ export default function useLocationState<T>(
   itemName: string,
   defaultValue: T,
   locationStateOpts = {}
-): [T, SetLocationState<T>, ResetLocationState] {
+): [T, SetLocationState<T>] {
   // itemName & defaultValue is not allowed to be changed after init
   ;[defaultValue] = useState(defaultValue)
 
@@ -88,5 +88,5 @@ export default function useLocationState<T>(
     }
   })
 
-  return [value, setLocationStateItem, resetLocationStateItem]
+  return [value, setLocationStateItem]
 }

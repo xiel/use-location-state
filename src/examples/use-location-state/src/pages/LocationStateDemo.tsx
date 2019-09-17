@@ -4,8 +4,8 @@ import QueryStateDisplay from '../components/QueryStateDisplay'
 import LocationStateCheckbox from '../components/LocationStateCheckbox'
 
 export default function LocationStateDemo() {
-  const [name, setName, resetName] = useLocationState('name', 'Sarah')
-  const [age, setAge, resetAge] = useLocationState('age', 25)
+  const [name, setName] = useLocationState('name', 'Sarah')
+  const [age, setAge] = useLocationState('age', 25)
   const [date, setDate] = useLocationState('date', new Date('2019-01-01'))
   const [active] = useLocationState('active', false)
 
