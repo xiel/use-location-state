@@ -9,11 +9,6 @@ export default function LocationStateDemo() {
   const [date, setDate] = useLocationState('date', new Date('2019-01-01'))
   const [active] = useLocationState('active', false)
 
-  if(age === 30) {
-    resetAge()
-    resetName()
-  }
-
   return (
     <div>
       <h2>Intro</h2>
