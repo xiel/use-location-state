@@ -1,7 +1,7 @@
 import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useHashQueryState } from '../../use-location-state'
-import { asyncAct, unwrapABResult } from './test-helpers'
+import { asyncAct, unwrapABResult } from '../../helpers/test-helpers'
 
 // reset jest mocked hash
 beforeAll(() => {

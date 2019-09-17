@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useQueryState } from '../../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
-import { unwrapResult } from './test-helpers'
+import { unwrapResult } from '../../helpers/test-helpers'
 
 describe('invalid input defaultValue', () => {
   describe.each`

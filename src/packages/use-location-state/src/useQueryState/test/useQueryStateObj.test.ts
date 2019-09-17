@@ -3,7 +3,7 @@ import { cleanup } from '@testing-library/react'
 import { useHashQueryStateObj } from '../useHashQueryState'
 import { useHashQueryStringInterface } from '../useHashQueryStringInterface'
 import useQueryStateObj from '../useQueryStateObj'
-import { unwrapResult } from './test-helpers'
+import { unwrapResult } from '../../helpers/test-helpers'
 
 // reset jest mocked hash
 beforeAll(() => {
