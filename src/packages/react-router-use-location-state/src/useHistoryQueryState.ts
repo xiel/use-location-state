@@ -1,5 +1,5 @@
 import * as H from 'history'
-import { QueryStringInterface } from 'use-location-state/dist/hooks/types'
+import { QueryStringInterface } from 'use-location-state'
 
 export function useReactRouterQueryStringInterface(history: H.History): QueryStringInterface {
   return {

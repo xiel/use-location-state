@@ -19,7 +19,8 @@
   ],
   "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {
-    "build": "rollup -c",
+    "cleanup": "rm -rf dist && rm -rf .rpt2_cache",
+    "build": "yarn cleanup; rollup -c",
     "dev": "rollup -c -w",
     "test": "echo \"Error: run tests from root\" && exit 1;"
   },

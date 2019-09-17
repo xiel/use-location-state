@@ -1,7 +1,7 @@
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from '@testing-library/react-hooks'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { SetQueryStateItemFn } from 'use-location-state/dist/hooks/types'
+import { SetQueryStateItemFn } from 'use-location-state'
 import { useQueryState } from '../react-router-use-location-state'
 
 // nicer access to the current value and setter function from the result ref
