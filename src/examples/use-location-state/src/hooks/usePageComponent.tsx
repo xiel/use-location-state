@@ -18,9 +18,6 @@ export default function usePageComponent({ componentsForPathname, defaultCompone
   }
 
   return (
-    componentsForPathname[pathname] ||
-    componentsForPathname[trimmedPathname] ||
-    defaultComponent ||
-    (() => null)
+    componentsForPathname[pathname] || componentsForPathname[trimmedPathname] || defaultComponent
   )
 }

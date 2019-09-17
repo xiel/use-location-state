@@ -18,8 +18,8 @@ export function unwrapResult<A>(result: { current: [A, SetQueryStateItemFn<A>] }
 }
 
 // nicer access to the current value and setter function from the result ref
-export function unwrapABResult<A, B>(result: {
-  current: { a: [A, SetQueryStateItemFn<A>]; b: [B, SetQueryStateItemFn<B>] }
+export function unwrapABResult<A, ASet, B, BSet>(result: {
+  current: { a: [A, ASet]; b: [B, BSet] }
 }) {
   return {
     a: {

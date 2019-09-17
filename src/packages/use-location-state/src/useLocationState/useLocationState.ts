@@ -2,8 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useLocationStateInterface from './useLocationStateInterface'
 import { SetLocationState, SetLocationStateOptions } from './useLocationState.types'
 
-interface Props {}
-
 export default function useLocationState<T>(
   itemName: string,
   defaultValue: T,
