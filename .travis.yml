@@ -10,3 +10,4 @@ script:
   - yarn build
   - yarn test --silent --coverage
   - npx codecov
+  - npx bundlesize
