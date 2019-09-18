@@ -42,20 +42,24 @@ const [commentText, setCommentText] = useLocationState('commentText', '')
 const [priceMax, setPriceMax] = useQueryState('priceMax', 30)
 ```
 
-### Usage - useQueryState()
+### useLocationState()
+
+`useLocationState()` is perfect, when you want to store state that does not need to be reflected in the URL or in case you need more complex data structures like nested objects.
+
+
+### useQueryState()
 
  `useQueryState()` is a great, when you want to store information about the current state of you app in the URL. 
 
 ```javascript
 const [value, setValue] = useQueryState('itemName', 'default value')
 ```
-
-The name you pass will be used in the query string store the state (after the state was changed).
+The name you pass will be used as a parameter name in the query string, when setting a new value:
 
 ```javascript
 setValue('different value')
 ```
-After calling the set function with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button).
+After calling the update function `setValue()` with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button).
 
 ```javascript
 http://localhost:3000/#itemName=different+value
