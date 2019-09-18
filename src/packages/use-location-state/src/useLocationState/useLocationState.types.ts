@@ -1,3 +1,5 @@
+export const LOCATION_STATE_KEY = '__useLocationState'
+
 export type LocationStateValue<K = unknown> =
   | string
   | number
@@ -7,6 +9,10 @@ export type LocationStateValue<K = unknown> =
   | Array<K>
 
 export type LocationState = Record<string, LocationStateValue>
+
+export type LocationStateOpts = {
+  locationStateInterface?: LocationStateInterface
+}
 
 export interface LocationStateInterface {
   getLocationState: () => LocationState

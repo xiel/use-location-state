@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LocationStateInterface } from './useLocationState.types'
+import { LOCATION_STATE_KEY, LocationStateInterface } from './useLocationState.types'
 
 interface Props {
   disabled?: boolean
 }
 
-const LOCATION_STATE_KEY = '__useLocationState'
 const hasWindowHistory = typeof window !== `undefined` && 'history' in window
 
 export default function useLocationStateInterface({ disabled = false }: Props = {}) {

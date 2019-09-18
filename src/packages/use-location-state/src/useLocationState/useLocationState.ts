@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useLocationStateInterface from './useLocationStateInterface'
-import { SetLocationState, SetLocationStateOptions } from './useLocationState.types'
+import { LocationStateOpts, SetLocationState, SetLocationStateOptions } from './useLocationState.types'
 
 const validTypes = ['string', 'number', 'boolean', 'object', 'undefined']
+const locationStateOptsDefaults = Object.freeze({})
 
 export default function useLocationState<S>(
   itemName: string,
-  defaultValue: S | (() => S)
+  defaultValue: S | (() => S),
+  { locationStateInterface }: LocationStateOpts = locationStateOptsDefaults
 ): [S, SetLocationState<S>] {
   // itemName & defaultValue is not allowed to be changed after init
   ;[defaultValue] = useState(defaultValue)
@@ -26,7 +28,8 @@ export default function useLocationState<S>(
   })
 
   // the interface to get/set the state
-  const activeLSI = useLocationStateInterface()
+  const standardLSI = useLocationStateInterface({ disabled: !!locationStateInterface })
+  const activeLSI = locationStateInterface || standardLSI
   const ref = useRef({
     activeLSI,
   })
