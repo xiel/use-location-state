@@ -168,3 +168,29 @@ exports[`LocationStateDemo can set name with button 3`] = `
 }
 </pre>
 `;
+
+exports[`LocationStateDemo can set null in date field 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": true,
+ "date": null
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set null in date field 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": true,
+ "date": null
+}
+</pre>
+`;

@@ -6,7 +6,7 @@ import LocationStateCheckbox from '../components/LocationStateCheckbox'
 export default function LocationStateDemo() {
   const [name, setName] = useLocationState('name', 'Sarah')
   const [age, setAge] = useLocationState('age', 25)
-  const [date, setDate] = useLocationState('date', new Date('2019-01-01'))
+  const [date, setDate] = useLocationState<Date | null>('date', new Date('2019-01-01'))
   const [active] = useLocationState('active', false)
 
   return (
@@ -100,8 +100,10 @@ export default function LocationStateDemo() {
         <input
           id="input-date"
           type="date"
-          value={date.toJSON().slice(0, 10)}
-          onChange={e => setDate(new Date(e.target.value))}
+          value={(date && date.toJSON() && date.toJSON().slice(0, 10)) || ''}
+          onChange={e =>
+            setDate(new Date(e.target.value).toJSON() ? new Date(e.target.value) : null)
+          }
         />
       </fieldset>
     </div>

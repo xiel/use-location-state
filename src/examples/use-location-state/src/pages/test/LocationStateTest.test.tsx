@@ -86,4 +86,12 @@ describe('LocationStateDemo', () => {
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
+  test('can set null in date field', () => {
+    const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
+    fireEvent.change(getByLabelText('date:'), { target: { value: null } })
+    expect(getByTestId('pre-query-state')).toMatchSnapshot()
+    fireEvent.change(getByLabelText('date:'), { target: { value: '' } })
+    expect(getByTestId('pre-query-state')).toMatchSnapshot()
+  })
+
 })
