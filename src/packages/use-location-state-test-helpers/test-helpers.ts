@@ -7,7 +7,7 @@ export async function asyncAct(callback: () => any) {
 }
 
 // nicer access to the current value and setter function from the result ref
-export function unwrapResult<A, B>(result: { current: [A, B] }) {
+export function unwrapResult<A, ASet>(result: { current: [A, ASet] }) {
   return {
     get value() {
       return result.current[0]
