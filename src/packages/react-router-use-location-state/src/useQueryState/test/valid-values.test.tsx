@@ -1,18 +1,8 @@
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from '@testing-library/react-hooks'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { SetQueryStateItemFn } from 'use-location-state'
-import { useQueryState } from '../../react-router-use-location-state'
-
-// nicer access to the current value and setter function from the result ref
-export function unwrapResult<A>(result: { current: [A, SetQueryStateItemFn<A>] }) {
-  return {
-    get value() {
-      return result.current[0]
-    },
-    setValue: result.current[1],
-  }
-}
+import { useQueryState } from '../useQueryState'
+import { unwrapResult } from 'use-location-state-test-helpers/test-helpers'
 
 describe.each`
   defaultValue               | newValue               | newValueQueryString

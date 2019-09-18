@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationStateDemo can set active with checkbox - push 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set active with checkbox 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set active with checkbox 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": true
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with button 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with button 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 30,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with button 3`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 45,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with button 4`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with text field 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set age with text field 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 33,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name & age with button 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name & age with button 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Felix",
+ "age": 30,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name & age with button 3`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Kim",
+ "age": 45,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name & age with button 4`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with button 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with button 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Felix",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with button 3`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Kim",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with button 4`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with text field 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Sarah",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;
+
+exports[`LocationStateDemo can set name with text field 2`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Mila",
+ "age": 25,
+ "active": false
+}
+</pre>
+`;

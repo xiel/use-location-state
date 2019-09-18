@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import { useLocationState } from '../../use-location-state'
 import { unwrapABResult } from 'use-location-state-test-helpers/test-helpers'
+import { useLocationState } from '../useLocationState'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 describe.each`
   defaultValue               | newValue
@@ -28,13 +29,19 @@ describe.each`
   ${{ testObj: 1 }}          | ${{ testObj: 5 }}
   ${[1, 2, 3]}               | ${[4, 5, 6]}
 `('defaultValue: $defaultValue, newValue: $newValue', ({ defaultValue = '', newValue }) => {
-  test(`should return default value and set newValue successfully`, () => {
+  test(`should return default value and set newValue successfully`, async () => {
     act(() => window.history.replaceState({}, '', ''))
-    const { result, unmount } = renderHook(() => {
-      const a = useLocationState('item', defaultValue)
-      const b = useLocationState('item', defaultValue)
-      return { a, b }
-    })
+    const warn = jest.spyOn(console, 'warn')
+    const error = jest.spyOn(console, 'error')
+
+    const { result, unmount } = renderHook(
+      () => {
+        const a = useLocationState('item', defaultValue)
+        const b = useLocationState('item', defaultValue)
+        return { a, b }
+      },
+      { wrapper: Router }
+    )
 
     const { a, b } = unwrapABResult(result)
 
@@ -53,8 +60,20 @@ describe.each`
     act(() => a.setValue(defaultValue))
     expect(a.value).toEqual(defaultValue)
     expect(b.value).toEqual(defaultValue)
-    expect(window.history.state).toEqual({ __useLocationState: {} })
 
-    act(() => void unmount())
+    expect(warn).toHaveBeenCalledTimes(0)
+    expect(error).toHaveBeenCalledTimes(0)
+
+    warn.mockRestore()
+    error.mockRestore()
+    await act(async () => void unmount())
   })
+})
+
+it('should warn when used outside of router', async () => {
+  const warn = jest.spyOn(console, 'warn').mockImplementation()
+  const { unmount } = renderHook(() => useLocationState('item', ''))
+  expect(warn).toHaveBeenCalledTimes(1)
+  warn.mockRestore()
+  await act(async () => void unmount())
 })

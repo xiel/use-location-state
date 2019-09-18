@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useQueryState } from '../../use-location-state'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
-import { asyncAct, unwrapABResult, unwrapResult } from '../../../../../test-helpers/test-helpers'
+import { asyncAct, unwrapABResult, unwrapResult } from 'use-location-state-test-helpers/test-helpers'
 
 describe('useQueryState', () => {
   it('should automatically use hashQSI when no queryStringInterface is defined', async () => {
