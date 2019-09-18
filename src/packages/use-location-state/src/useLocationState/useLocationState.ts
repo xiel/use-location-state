@@ -8,21 +8,20 @@ const locationStateOptsDefaults = Object.freeze({})
 export default function useLocationState<S>(
   itemName: string,
   defaultValue: S | (() => S),
-  { locationStateInterface }: LocationStateOpts = locationStateOptsDefaults
+  { locationStateInterface }: LocationStateOpts = locationStateOptsDefaults,
 ): [S, SetLocationState<S>] {
   // itemName & defaultValue is not allowed to be changed after init
-  ;[defaultValue] = useState(defaultValue)
-
+  [defaultValue] = useState(defaultValue)
   // throw for invalid values like functions
   if (!validTypes.includes(typeof defaultValue)) {
     throw new Error('unsupported defaultValue')
   }
 
   // item name gets a generated suffix based on defaultValue type, to make accidental clashes less likely
-  ;[itemName] = useState(() => {
+  [itemName] = useState(() => {
     const suffixObscurer = btoa || ((s: string) => s)
     const suffix = suffixObscurer(
-      Array.isArray(defaultValue) ? 'array' : typeof defaultValue
+      Array.isArray(defaultValue) ? 'array' : typeof defaultValue,
     ).replace(/=/g, '')
     return `${itemName}__${suffix}`
   })
@@ -50,7 +49,7 @@ export default function useLocationState<S>(
       delete newState[itemName]
       activeLSI.setLocationState(newState, opts)
     },
-    [itemName]
+    [itemName],
   )
 
   const setLocationStateItem: SetLocationState<S> = useCallback(
@@ -89,10 +88,10 @@ export default function useLocationState<S>(
           ...getLocationState(),
           ...stateExtendOverwrite,
         },
-        opts
+        opts,
       )
     },
-    [defaultValue, itemName, resetLocationStateItem]
+    [defaultValue, itemName, resetLocationStateItem],
   )
 
   useEffect(() => {

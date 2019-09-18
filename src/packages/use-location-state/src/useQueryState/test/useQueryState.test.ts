@@ -9,7 +9,7 @@ describe('useQueryState', () => {
       ({ itemName, defaultValue }) => useQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
-      }
+      },
     )
     const r = unwrapResult(result)
     expect(r.value).toEqual('Sarah')

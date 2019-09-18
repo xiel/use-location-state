@@ -43,7 +43,7 @@ export default function useLocationStateInterface({ disabled = false }: Props = 
         window.dispatchEvent(customEvent)
       },
     }),
-    [enabled]
+    [enabled],
   )
 
   useEffect(() => {

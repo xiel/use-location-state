@@ -5,7 +5,7 @@ import { QueryStateOpts, SetQueryStateFn } from './useQueryState.types'
 
 export default function useQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
-  queryStateOpts: QueryStateOpts
+  queryStateOpts: QueryStateOpts,
 ): [QueryState, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
   const hashQSI = useHashQueryStringInterface({ disabled: !!queryStringInterface })
@@ -17,7 +17,7 @@ export default function useQueryStateObj<T extends QueryState>(
       ...defaultQueryState,
       ...parseQueryState(queryString),
     }),
-    [defaultQueryState, queryString]
+    [defaultQueryState, queryString],
   )
 
   const ref = useRef({

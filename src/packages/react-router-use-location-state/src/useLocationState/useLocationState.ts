@@ -3,7 +3,7 @@ import { useReactRouterLocationStateInterface } from './useReactRouterLocationSt
 
 export function useLocationState<S>(
   itemName: string,
-  defaultValue: S | (() => S)
+  defaultValue: S | (() => S),
 ): [S, SetLocationState<S>] {
   return useLocationStateImported(itemName, defaultValue, {
     locationStateInterface: useReactRouterLocationStateInterface(),

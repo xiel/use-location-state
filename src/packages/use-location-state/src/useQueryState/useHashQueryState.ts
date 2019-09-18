@@ -6,7 +6,7 @@ import useQueryStateObj from './useQueryStateObj'
 
 export function useHashQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
-  queryStateOpts: QueryStateOptsSetInterface = {}
+  queryStateOpts: QueryStateOptsSetInterface = {},
 ) {
   const hashQSI = useHashQueryStringInterface()
   return useQueryStateObj(defaultQueryState, {
@@ -18,7 +18,7 @@ export function useHashQueryStateObj<T extends QueryState>(
 export default function useHashQueryState<T>(
   itemName: string,
   defaultValue: T,
-  queryStateOpts: QueryStateOptsSetInterface = {}
+  queryStateOpts: QueryStateOptsSetInterface = {},
 ) {
   const hashQSI = useHashQueryStringInterface()
   return useQueryState(itemName, defaultValue, {

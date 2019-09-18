@@ -19,7 +19,7 @@ describe('method - push', () => {
       ({ itemName, defaultValue }) => useQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
-      }
+      },
     )
     const name = unwrapResult(result)
     expect(name.value).toEqual('Sarah')

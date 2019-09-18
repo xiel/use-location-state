@@ -18,7 +18,7 @@ export function parseQueryState(queryString: string): QueryState | null {
   const params = new URLSearchParams(stripLeadingHashOrQuestionMark(queryString))
 
   params.forEach((value, key) => {
-    if(key in queryState.constructor.prototype) {
+    if (key in queryState.constructor.prototype) {
       return console.warn(`parseQueryState | invalid key "${key}" will be ignored`)
     }
 
@@ -89,7 +89,7 @@ export const newStringArray: () => string[] = () => []
 
 export function parseQueryStateValue<T>(
   value: QueryStateValue,
-  defaultValue: T
+  defaultValue: T,
 ): ValueType | null {
   const defaultValueType = typeof defaultValue
 

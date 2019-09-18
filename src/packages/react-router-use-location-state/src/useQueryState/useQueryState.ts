@@ -4,7 +4,7 @@ import { useReactRouterQueryStringInterface } from './useReactRouterQueryStringI
 export function useQueryState<T>(
   itemName: string,
   defaultValue: T,
-  queryStateOpts?: QueryStateOpts
+  queryStateOpts?: QueryStateOpts,
 ): [T, SetQueryStateItemFn<T>] {
   return useQueryStateImported(itemName, defaultValue, {
     queryStringInterface: useReactRouterQueryStringInterface(),

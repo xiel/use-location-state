@@ -10,16 +10,16 @@ function sameAsJsonString(compareValueA: any, compareValueB: any) {
 export default function useQueryState<T>(
   itemName: string,
   defaultValue: T,
-  queryStateOpts: QueryStateOpts = {}
+  queryStateOpts: QueryStateOpts = {},
 ): [T, SetQueryStateItemFn<T>] {
   // defaultValue is not allowed to be changed after init
-  ;[defaultValue] = useState(defaultValue)
+  [defaultValue] = useState(defaultValue)
   const defaultQueryStateValue = toQueryStateValue(defaultValue)
   const defaultQueryState = useMemo(() => {
     return defaultQueryStateValue
       ? {
-          [itemName]: defaultQueryStateValue,
-        }
+        [itemName]: defaultQueryStateValue,
+      }
       : {}
   }, [itemName, defaultQueryStateValue])
 
@@ -43,11 +43,11 @@ export default function useQueryState<T>(
       ) {
         console.warn(
           'value of ' +
-            JSON.stringify(newValue) +
-            ' is not supported. "' +
-            itemName +
-            '" will reset to default value',
-          defaultValue
+          JSON.stringify(newValue) +
+          ' is not supported. "' +
+          itemName +
+          '" will reset to default value',
+          defaultValue,
         )
         newQueryStateValue = null
       }
@@ -62,7 +62,7 @@ export default function useQueryState<T>(
 
       setQueryState({ [itemName]: newQueryStateValue }, opts)
     },
-    [defaultValue, itemName, setQueryState]
+    [defaultValue, itemName, setQueryState],
   )
 
   // fallback to default value
