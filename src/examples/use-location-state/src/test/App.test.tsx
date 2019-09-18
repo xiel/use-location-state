@@ -27,6 +27,7 @@ describe.each`
   ${'/array-demo'}      | ${'Array Demo'}
   ${'/array-demo/'}     | ${'Array Demo'}
   ${'/location-state/'} | ${'useLocationState Demo'}
+  ${'/404/'}            | ${'404 Not found'}
 `('allows some pathname tolerance @ $pathname expect $title', ({ pathname, title }) => {
   afterAll(() => {
     window.history.replaceState(null, '', '/')

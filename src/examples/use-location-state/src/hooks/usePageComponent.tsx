@@ -5,7 +5,10 @@ interface Props {
   defaultComponent?: React.ComponentType
 }
 
-export default function usePageComponent({ componentsForPathname, defaultComponent }: Props) {
+export default function usePageComponent({
+  componentsForPathname,
+  defaultComponent = () => <h3>404 Not found</h3>,
+}: Props) {
   let pathname = window.location.pathname || '/'
   let trimmedPathname = ''
 
