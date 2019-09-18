@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useLocationState } from '../../use-location-state'
-import { asyncAct, unwrapABResult } from '../../helpers/test-helpers'
+import { asyncAct, unwrapABResult } from '../../../../../test-helpers/test-helpers'
 
 describe('useLocationState', () => {
   it('should keep to useLocationState hooks with the same name in sync', async () => {

@@ -1,5 +1,4 @@
 import { act } from 'react-test-renderer'
-import { SetQueryStateItemFn } from '../useQueryState/useQueryState.types'
 
 export async function asyncAct(callback: () => any) {
   return await act(async () => {
@@ -8,7 +7,7 @@ export async function asyncAct(callback: () => any) {
 }
 
 // nicer access to the current value and setter function from the result ref
-export function unwrapResult<A>(result: { current: [A, SetQueryStateItemFn<A>] }) {
+export function unwrapResult<A, B>(result: { current: [A, B] }) {
   return {
     get value() {
       return result.current[0]

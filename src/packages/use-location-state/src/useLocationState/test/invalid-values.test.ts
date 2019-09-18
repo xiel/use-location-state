@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useLocationState } from '../../use-location-state'
-import { unwrapABResult } from '../../helpers/test-helpers'
+import { unwrapABResult } from '../../../../../test-helpers/test-helpers'
 
 const { spyOn } = jest
 

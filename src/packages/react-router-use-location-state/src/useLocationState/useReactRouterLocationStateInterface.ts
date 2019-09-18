@@ -1,5 +1,5 @@
 import { LOCATION_STATE_KEY, LocationStateInterface } from 'use-location-state'
-import { useRouter } from './useRouter'
+import { useRouter } from '../helpers/useRouter'
 
 export function useReactRouterLocationStateInterface(): LocationStateInterface | undefined {
   const router = useRouter()

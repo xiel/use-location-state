@@ -1,2 +1,2 @@
-export { useQueryState } from './useQueryState'
-export { useLocationState } from './useLocationState'
+export { useQueryState } from './useQueryState/useQueryState'
+export { useLocationState } from './useLocationState/useLocationState'

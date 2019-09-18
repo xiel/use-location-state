@@ -1,5 +1,5 @@
 import { QueryStringInterface } from 'use-location-state'
-import { useRouter } from './useRouter'
+import { useRouter } from '../helpers/useRouter'
 
 export function useReactRouterQueryStringInterface(): QueryStringInterface | undefined {
   const router = useRouter()
