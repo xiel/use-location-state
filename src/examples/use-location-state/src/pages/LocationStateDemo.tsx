@@ -11,7 +11,7 @@ export default function LocationStateDemo() {
 
   return (
     <div>
-      <h2>Intro</h2>
+      <h2>useLocationState Demo</h2>
 
       <QueryStateDisplay
         queryState={{
@@ -100,7 +100,7 @@ export default function LocationStateDemo() {
         <input
           id="input-date"
           type="date"
-          value={(date.toJSON() && date.toJSON().slice(0, 10)) || ''}
+          value={date.toJSON().slice(0, 10)}
           onChange={e => setDate(new Date(e.target.value))}
         />
       </fieldset>

@@ -22,10 +22,11 @@ it('renders index.tsx without crashing', async () => {
 })
 
 describe.each`
-  pathname          | title
-  ${'/'}            | ${'Intro'}
-  ${'/array-demo'}  | ${'Array Demo'}
-  ${'/array-demo/'} | ${'Array Demo'}
+  pathname              | title
+  ${'/'}                | ${'Intro'}
+  ${'/array-demo'}      | ${'Array Demo'}
+  ${'/array-demo/'}     | ${'Array Demo'}
+  ${'/location-state/'} | ${'useLocationState Demo'}
 `('allows some pathname tolerance @ $pathname expect $title', ({ pathname, title }) => {
   afterAll(() => {
     window.history.replaceState(null, '', '/')
