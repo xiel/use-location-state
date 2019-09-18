@@ -35,7 +35,7 @@ export default function useLocationState<T>(
   }, [currentState, defaultValue, itemName])
 
   const resetLocationStateItem = useCallback(
-    (opts: SetLocationStateOptions = {}) => {
+    (opts: SetLocationStateOptions) => {
       const { activeLSI } = ref.current
       const newState = { ...activeLSI.getLocationState() }
       delete newState[itemName]
