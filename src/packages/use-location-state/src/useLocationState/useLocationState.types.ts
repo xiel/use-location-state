@@ -17,8 +17,9 @@ export interface SetLocationStateOptions {
   method?: 'replace' | 'push'
 }
 
+type SetStateAction<S> = S | ((prevState: S) => S)
+
 export type SetLocationState<T> = (
-  newValue: T | ((value: T) => T),
+  newValue: SetStateAction<T>,
   opts?: SetLocationStateOptions
 ) => void
-export type ResetLocationState = (opts?: SetLocationStateOptions) => void

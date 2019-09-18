@@ -38,6 +38,8 @@ describe.each`
   ${true}                    | ${true}
   ${false}                   | ${true}
   ${false}                   | ${false}
+  ${null}                    | ${true}
+  ${undefined}               | ${true}
   ${{ testObj: 1 }}          | ${{ testObj: 5 }}
   ${[1, 2, 3]}               | ${[4, 5, 6]}
 `('defaultValue: $defaultValue, newValue: $newValue', ({ defaultValue = '', newValue }) => {
