@@ -26,3 +26,4 @@ jobs:
         npx bundlesize
       env:
         CI: true
+        BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
