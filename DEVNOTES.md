@@ -13,11 +13,11 @@ yarn build; yarn lerna version
 create a pre-release version before
 
 ```
-yarn lerna publish from-package --dist-tag next
+yarn lerna publish from-package --dist-tag next --ignore-prepublish
 ```
 
 ## publish a stable release - dist-tag: latest
 
 ```
-yarn lerna publish from-package --dist-tag latest
+yarn lerna publish from-package --dist-tag latest --ignore-prepublish
 ```
