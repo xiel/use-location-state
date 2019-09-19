@@ -22,7 +22,7 @@ jobs:
         yarn
         yarn build
         yarn test --silent --coverage
-        npx codecov
-        npx bundlesize -t ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
+        npx codecov -t ${{ secrets.CODECOV_GITHUB_TOKEN }} 
+        npx bundlesize
       env:
         CI: true
