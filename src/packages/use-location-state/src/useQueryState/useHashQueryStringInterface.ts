@@ -9,8 +9,8 @@ const hasWindowLocation =
   typeof window !== `undefined` && 'location' in window && 'history' in window
 
 export function useHashQueryStringInterface({
-                                              disabled = false,
-                                            }: Props = {}): QueryStringInterface {
+  disabled = false,
+}: Props = {}): QueryStringInterface {
   const enabled = !disabled && hasWindowLocation
   const hashQSI: QueryStringInterface = useMemo(
     () => ({
@@ -25,7 +25,7 @@ export function useHashQueryStringInterface({
         window.history[method === 'replace' ? 'replaceState' : 'pushState'](
           window.history.state,
           '',
-          '#' + newQueryString,
+          '#' + newQueryString
         )
 
         // manually dispatch a hashchange event (replace state does not trigger this event)
@@ -37,7 +37,7 @@ export function useHashQueryStringInterface({
         setR(r => r + 1)
       },
     }),
-    [enabled],
+    [enabled]
   )
   // this state is used to trigger re-renders
   const [, setR] = useState(0)

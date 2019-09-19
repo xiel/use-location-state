@@ -24,7 +24,7 @@ describe('useQueryStateObj hook', () => {
       },
       {
         initialProps: { name: 'Sarah' },
-      },
+      }
     )
 
     const name = unwrapResult(result)

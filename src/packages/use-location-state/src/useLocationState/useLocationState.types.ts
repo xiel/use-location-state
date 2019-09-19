@@ -27,5 +27,5 @@ type SetStateAction<S> = S | ((prevState: S) => S)
 
 export type SetLocationState<T> = (
   newValue: SetStateAction<T>,
-  opts?: SetLocationStateOptions,
+  opts?: SetLocationStateOptions
 ) => void

@@ -1,4 +1,8 @@
-import { EMPTY_ARRAY_STRING, parseQueryStateValue, toQueryStateValue } from '../src/query-state-core'
+import {
+  EMPTY_ARRAY_STRING,
+  parseQueryStateValue,
+  toQueryStateValue,
+} from '../src/query-state-core'
 
 describe.each`
   value                 | defaultValue  | parsedValue
@@ -6,7 +10,7 @@ describe.each`
   ${EMPTY_ARRAY_STRING} | ${['']}       | ${[]}
   ${EMPTY_ARRAY_STRING} | ${[]}         | ${[]}
   ${''}                 | ${[]}         | ${['']}
-  ${undefined}          | ${''}        | ${null}
+  ${undefined}          | ${''}         | ${null}
   ${'0'}                | ${0}          | ${0}
   ${'0'}                | ${100}        | ${0}
   ${'true'}             | ${false}      | ${true}
@@ -24,7 +28,7 @@ describe.each`
     test(`should return value transformed into correct type or null (invalid transform)`, () => {
       expect(parseQueryStateValue(value, defaultValue)).toEqual(parsedValue)
     })
-  },
+  }
 )
 
 describe.each`

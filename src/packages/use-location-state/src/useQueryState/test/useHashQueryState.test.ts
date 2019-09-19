@@ -23,7 +23,7 @@ describe('useHashQueryState', () => {
       ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
-      },
+      }
     )
     const val = () => result.current[0]
     const setVal: typeof result.current[1] = newValue => result.current[1](newValue)
@@ -42,7 +42,7 @@ describe('useHashQueryState', () => {
       ({ itemName, defaultValue }) => useHashQueryState(itemName, defaultValue),
       {
         initialProps: { itemName: 'name', defaultValue: 'Sarah' },
-      },
+      }
     )
     const val = () => result.current[0]
     const setVal: typeof result.current[1] = newValue => result.current[1](newValue)
@@ -72,7 +72,7 @@ describe('useHashQueryState', () => {
       },
       {
         initialProps: { itemName: 'name', defaultValueNum: 25, defaultValueStr: 'Sarah' },
-      },
+      }
     )
 
     const { a: num, b: str } = unwrapABResult(result)

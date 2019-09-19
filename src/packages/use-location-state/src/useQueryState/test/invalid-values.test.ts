@@ -20,7 +20,7 @@ describe('invalid input defaultValue', () => {
       const { result, unmount } = renderHook(() =>
         useQueryState('anything', defaultValue, {
           queryStringInterface: testQSI,
-        }),
+        })
       )
       expect(result.error).toMatchInlineSnapshot(`[Error: unsupported defaultValue]`)
       expect(testQSI.getQueryString()).toBe('')
@@ -47,7 +47,7 @@ describe('invalid value in setter', () => {
       const { result, unmount } = renderHook(() =>
         useQueryState('itemName', 'valid default value', {
           queryStringInterface: testQSI,
-        }),
+        })
       )
       const r = unwrapResult(result)
 

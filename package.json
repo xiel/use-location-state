@@ -16,14 +16,16 @@
     "commitizen": "^4.0.3",
     "copyfiles": "2.1.1",
     "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.5",
     "lerna": "^3.16.4",
     "prettier": "^1.17.0",
+    "pretty-quick": "^1.11.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "^3.1.1",
     "react-test-renderer": "^16.9.0",
-    "use-location-state-test-helpers": "*",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "use-location-state-test-helpers": "*"
   },
   "scripts": {
     "commit": "git-cz",
@@ -31,6 +33,7 @@
     "dev": "yarn build; yarn lerna run dev --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
     "test": "react-scripts test",
+    "prettier": "prettier --write 'src/**/*.{js,ts,tsx}'",
     "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
   },
   "version": "0.0.0-development",
@@ -49,6 +52,11 @@
       "maxSize": "5 kB"
     }
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jx,tsx,ts}",

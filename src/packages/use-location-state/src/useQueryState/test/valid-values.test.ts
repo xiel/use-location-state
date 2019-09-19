@@ -35,7 +35,7 @@ describe.each`
       const { result, unmount } = renderHook(() =>
         useQueryState('item', defaultValue, {
           queryStringInterface: testQSI,
-        }),
+        })
       )
       const r = unwrapResult(result)
       // default
@@ -53,5 +53,5 @@ describe.each`
 
       unmount()
     })
-  },
+  }
 )

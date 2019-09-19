@@ -9,10 +9,13 @@ export default function useTestQueryStringInterface(): QueryStringInterface {
     latestQueryString.current = queryString
   })
 
-  return useMemo(() => ({
-    getQueryString: () => latestQueryString.current,
-    setQueryString: (newQueryString) => {
-      setQueryString(newQueryString)
-    },
-  }), [])
+  return useMemo(
+    () => ({
+      getQueryString: () => latestQueryString.current,
+      setQueryString: newQueryString => {
+        setQueryString(newQueryString)
+      },
+    }),
+    []
+  )
 }

@@ -39,7 +39,6 @@ describe('parseQueryState parses', () => {
     })
   })
 
-
   it('query string with invalid keys should be ignored', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
     expect(parseQueryState('toString=true&valid=value&__proto__=true')).toEqual({ valid: 'value' })
@@ -94,11 +93,10 @@ describe('createMergedQuery', () => {
       createMergedQuery(
         { otherwiseEmpty: 'false', notDefined: 'true' },
         { notDefined: undefined },
-        { otherwiseEmpty: 'true' },
-      ),
+        { otherwiseEmpty: 'true' }
+      )
     ).toEqual('otherwiseEmpty=true')
   })
-
 
   it('with array value', () => {
     expect(createMergedQuery({ arr: ['1', '2', '3'] })).toEqual('arr=1&arr=2&arr=3')
@@ -115,5 +113,4 @@ describe('createMergedQuery', () => {
   it('with empty array', () => {
     expect(createMergedQuery({ arr: [] })).toEqual('arr=' + encodeURIComponent(EMPTY_ARRAY_STRING))
   })
-
 })
