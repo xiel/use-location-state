@@ -33,7 +33,7 @@ Using __`react-router`__ or another popular router? For the best experience inst
 
 ## Usage
 
-`useLocationState()` and `useQueryState()` work similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook), as they also return the currentValue and a update function in a tuple.
+`useLocationState()` and `useQueryState()` work similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook), as they also return the current value and a update function in a tuple `[currentValue, updateValueFn]`. 
 
 The *important difference* is that __you must pass a name__ before your __default value__ for your state.
 
@@ -44,8 +44,18 @@ const [priceMax, setPriceMax] = useQueryState('priceMax', 30)
 
 ### useLocationState()
 
-`useLocationState()` is perfect, when you want to store state that does not need to be reflected in the URL or in case you need more complex data structures like nested objects.
+`useLocationState()` is perfect, when you want to store a state that should not be reflected in the URL or in case of a complex data structure like a nested object/array.
 
+```javascript
+const [commentText, setCommentText] = useLocationState('commentText', '')
+```
+
+The name you pass, in this case `'commentText'`, will be used as a key when storing the value. So when you use the same name in another component, you will get the same state.
+
+```javascript
+setCommentText('Wow, this works like a charm!')
+```
+The updated state will be restored when the pages reloads and after the user navigated to a new page and comes back using a back/forward action.
 
 ### useQueryState()
 
@@ -59,7 +69,7 @@ The name you pass will be used as a parameter name in the query string, when set
 ```javascript
 setValue('different value')
 ```
-After calling the update function `setValue()` with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button).
+After calling the update function `setValue()` with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button) or by loading the same URL anywhere else.
 
 ```javascript
 http://localhost:3000/#itemName=different+value
@@ -68,9 +78,9 @@ http://localhost:3000/#itemName=different+value
 useQueryState() uses the browsers `location.hash` property by default.
 Check out the router integrations to use `location.search` instead.
 
-#### Push
+### Push
 
-In cases where you want the updated state to be represented as a new entry in the history, you can pass a options object to the set function, with the method property set to `'push'`. 
+In cases where you want the updated state to be represented as a __new entry in the history__ you can pass a options object to the set function, with the method property set to `'push'`. 
 
 ```javascript
 setValue('a pushed value', { method: 'push' })
