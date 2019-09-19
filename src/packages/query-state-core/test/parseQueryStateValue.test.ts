@@ -10,7 +10,7 @@ describe.each`
   ${EMPTY_ARRAY_STRING} | ${['']}       | ${[]}
   ${EMPTY_ARRAY_STRING} | ${[]}         | ${[]}
   ${''}                 | ${[]}         | ${['']}
-  ${undefined}          | ${''}        | ${null}
+  ${undefined}          | ${''}         | ${null}
   ${'0'}                | ${0}          | ${0}
   ${'0'}                | ${100}        | ${0}
   ${'true'}             | ${false}      | ${true}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQueryState } from 'use-location-state'
 import QueryStateDisplay from '../components/QueryStateDisplay'
-import DemoCheckbox from '../components/DemoCheckbox'
+import QueryStateCheckbox from '../components/QueryStateCheckbox'
 
 export default function QueryStateDemo() {
   const [name, setName] = useQueryState('name', 'Sarah')
@@ -90,8 +90,8 @@ export default function QueryStateDemo() {
 
       <h4>active</h4>
       <fieldset>
-        <DemoCheckbox />
-        <DemoCheckbox method="push" />
+        <QueryStateCheckbox />
+        <QueryStateCheckbox method="push" />
       </fieldset>
 
       <h4>Date</h4>

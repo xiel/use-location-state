@@ -1,3 +1,5 @@
-export * from './hooks/types'
-export { default as useQueryState } from './hooks/useQueryState'
-export { default as useHashQueryState } from './hooks/useHashQueryState'
+export * from './useQueryState/useQueryState.types'
+export * from './useLocationState/useLocationState.types'
+export { default as useQueryState } from './useQueryState/useQueryState'
+export { default as useHashQueryState } from './useQueryState/useHashQueryState'
+export { default as useLocationState } from './useLocationState/useLocationState'

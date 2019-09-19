@@ -4,13 +4,15 @@ import Header from './components/Header'
 // demo pages
 import QueryStateDemo from './pages/QueryStateDemo'
 import ArrayDemo from './pages/ArrayDemo'
+import LocationStateDemo from './pages/LocationStateDemo'
 
 export default function App() {
   return (
     <div className="page-wrapper">
-      <Header />
       <Router>
+        <Header />
         <Route path="/" exact component={QueryStateDemo} />
+        <Route path="/location-state" component={LocationStateDemo} />
         <Route path="/array-demo" component={ArrayDemo} />
       </Router>
     </div>

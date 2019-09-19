@@ -1,4 +1,4 @@
-# useQueryState()
+<h1 style="width: 100%; text-align: center;"> { useLocationState, useQueryState }</h1>
 
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
 [![Build Status](https://travis-ci.com/xiel/use-location-state.svg?branch=master)](https://travis-ci.com/xiel/use-location-state)
@@ -7,15 +7,21 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/xiel/use-location-state.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-store and retrieve state into/from the browsers location state using modern hooks
+store and retrieve state into/from the browsers [location history](https://developer.mozilla.org/en-US/docs/Web/API/History) using modern hooks
 
 ## ✨ Features
 
 - makes it easy to provide a nice UX to your users, by restoring part of the app state after navigation actions
-- makes it easy to share application in current state
-- supported value types: `string | number | boolean | string[] | Date`
-- handles stringification and parsing from query string of for supported value types
-- invalid entries from the query string are discarded and the component will receive the defaultValue instead
+- makes it easy to share the application in a customizable state
+- __`useLocationState(name, defaultValue)`__
+  - restores the latest value after navigation actions (back/forward), by keeping value in `history.state`
+  - supported value types: `string | number | boolean | Date | Array | Object`
+  - handles complex & nested values - all values that can be serialized are supported
+- __`useQueryState(name, defaultValue)`__
+  - restores the latest value from URL (`location.href`) and after navigation actions (back/forward)
+  - supported value types: `string | number | boolean | Date | string[]`
+  - handles stringification and parsing from query string of for supported value types
+  - invalid entries from the query string are discarded and the component will receive the defaultValue instead
 
 ## Installation
 
@@ -23,23 +29,47 @@ store and retrieve state into/from the browsers location state using modern hook
 yarn add use-location-state
 ```
 
-Or install one of the optional [router integrations](#router-integration-optional)
+Using __`react-router`__ or another popular router? For the best experience install one of the [router integrations](#router-integration-optional).
 
 ## Usage
 
-The useQueryState() works similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook) and returns the current value and a set function in a pair.
+`useLocationState()` and `useQueryState()` work similar to the `useState()` [hook](https://reactjs.org/docs/hooks-overview.html#state-hook), as they also return the current value and a update function in a tuple `[currentValue, updateValueFn]`. 
 
-The *important difference* is that you need to pass a __name__ before your __default value__ for your state.
+The *important difference* is that __you must pass a name__ before your __default value__ for your state.
+
+```javascript
+const [commentText, setCommentText] = useLocationState('commentText', '')
+const [priceMax, setPriceMax] = useQueryState('priceMax', 30)
+```
+
+### useLocationState()
+
+`useLocationState()` is perfect, when you want to store a state that should not be reflected in the URL or in case of a complex data structure like a nested object/array.
+
+```javascript
+const [commentText, setCommentText] = useLocationState('commentText', '')
+```
+
+The name you pass, in this case `'commentText'`, will be used as a key when storing the value. So when you use the same name in another component, you will get the same state.
+
+```javascript
+setCommentText('Wow, this works like a charm!')
+```
+The updated state will be restored when the pages reloads and after the user navigated to a new page and comes back using a back/forward action.
+
+### useQueryState()
+
+ `useQueryState()` is a great, when you want to store information about the current state of you app in the URL. 
 
 ```javascript
 const [value, setValue] = useQueryState('itemName', 'default value')
 ```
-The name you pass will be used in the query string store the state (after the state was changed).
+The name you pass will be used as a parameter name in the query string, when setting a new value:
 
 ```javascript
 setValue('different value')
 ```
-After calling the set function with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button).
+After calling the update function `setValue()` with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button) or by loading the same URL anywhere else.
 
 ```javascript
 http://localhost:3000/#itemName=different+value
@@ -48,9 +78,9 @@ http://localhost:3000/#itemName=different+value
 useQueryState() uses the browsers `location.hash` property by default.
 Check out the router integrations to use `location.search` instead.
 
-#### Push
+### Push
 
-In cases where you want the updated state to be represented as a new entry in the history, you can pass a options argument to the set function, with the method property set to `'push'`. 
+In cases where you want the updated state to be represented as a __new entry in the history__ you can pass a options object to the set function, with the method property set to `'push'`. 
 
 ```javascript
 setValue('a pushed value', { method: 'push' })
@@ -106,7 +136,7 @@ At the moment we provide integrations for:
 yarn add react-router-use-location-state
 ```
 ```javascript
-import { useQueryState } from 'react-router-use-location-state'
+import { useLocationState, useQueryState } from 'react-router-use-location-state'
 ```
 Usage works the same as described above, except that the URL will look like this now:
 ```javascript

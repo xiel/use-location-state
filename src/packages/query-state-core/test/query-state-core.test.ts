@@ -18,11 +18,11 @@ describe('parseQueryState parses', () => {
   })
 
   it('query string with multiple parameters with the same name as array', () => {
-    expect(parseQueryState('a=abc&a=efg')).toEqual({ a: ['abc','efg'] })
+    expect(parseQueryState('a=abc&a=efg')).toEqual({ a: ['abc', 'efg'] })
   })
 
   it('creates array from query string with multiple value values for same key', () => {
-    expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({ filters: ["1", "2", "3"] })
+    expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({ filters: ['1', '2', '3'] })
   })
 
   it('query string with "true" boolean parameter', () => {
@@ -39,10 +39,9 @@ describe('parseQueryState parses', () => {
     })
   })
 
-
   it('query string with invalid keys should be ignored', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
-    expect(parseQueryState('toString=true&valid=value&__proto__=true')).toEqual({ valid: "value" })
+    expect(parseQueryState('toString=true&valid=value&__proto__=true')).toEqual({ valid: 'value' })
     expect(warnSpy).toHaveBeenCalledTimes(2)
     warnSpy.mockRestore()
   })
@@ -99,21 +98,19 @@ describe('createMergedQuery', () => {
     ).toEqual('otherwiseEmpty=true')
   })
 
-
   it('with array value', () => {
-    expect(createMergedQuery({ arr: ['1','2','3'] })).toEqual('arr=1&arr=2&arr=3')
+    expect(createMergedQuery({ arr: ['1', '2', '3'] })).toEqual('arr=1&arr=2&arr=3')
   })
 
   it('with array value overwrite (no automatic concat)', () => {
-    expect(createMergedQuery({ arr: ['1'] }, { arr: ['a','b'] })).toEqual('arr=a&arr=b')
+    expect(createMergedQuery({ arr: ['1'] }, { arr: ['a', 'b'] })).toEqual('arr=a&arr=b')
   })
 
   it('with array with empty', () => {
     expect(createMergedQuery({ arr: [''] })).toEqual('arr=')
   })
 
-    it('with empty array', () => {
+  it('with empty array', () => {
     expect(createMergedQuery({ arr: [] })).toEqual('arr=' + encodeURIComponent(EMPTY_ARRAY_STRING))
   })
-
 })

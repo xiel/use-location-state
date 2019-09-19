@@ -1,6 +1,6 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render } from '@testing-library/react'
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ArrayDemo from '../ArrayDemo'
 
 const location = window.location
@@ -17,11 +17,21 @@ afterEach(() => {
 
 describe('ArrayDemo', () => {
   test('ArrayDemo renders without crash/loop', async () => {
-    expect(render(<Router><Route path="/" component={ArrayDemo} /></Router>))
+    expect(
+      render(
+        <Router>
+          <Route path="/" component={ArrayDemo} />
+        </Router>
+      )
+    )
   })
 
   test('can enable tag using button', async () => {
-    const { getByLabelText } = render(<Router><Route path="/" component={ArrayDemo} /></Router>)
+    const { getByLabelText } = render(
+      <Router>
+        <Route path="/" component={ArrayDemo} />
+      </Router>
+    )
     expect(location.search).toEqual('')
 
     // should put new names into the hash (and age default value comes along)
