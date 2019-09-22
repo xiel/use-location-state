@@ -8,7 +8,7 @@
     },
     "publish": {
       "allowBranch": "master",
-      "ignoreChanges": ["ignored-file", "*.md"],
+      "ignoreChanges": ["ignored-file"],
       "message": "chore(release): publish"
     },
     "bootstrap": {
