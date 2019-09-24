@@ -6,7 +6,7 @@
   "description": "react hook to the browsers location query state",
   "peerDependencies": {
     "react": "^16.9.0",
-    "react-router": "^5.0.0"
+    "react-router": "^5.1.0"
   },
   "dependencies": {
     "use-location-state": "^2.3.0"
@@ -20,7 +20,7 @@
     "@types/react-router": "^5.0.0",
     "@types/react-router-dom": "^4.3.3",
     "react": "^16.9.0",
-    "react-router": "^5.0.0",
+    "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "rollup": "^1.19.3",
     "rollup-plugin-typescript2": "^0.24.0",
