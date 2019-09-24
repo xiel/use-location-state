@@ -50,7 +50,7 @@ const [priceMax, setPriceMax] = useQueryState('priceMax', 30)
 const [commentText, setCommentText] = useLocationState('commentText', '')
 ```
 
-The name you pass, in this case `'commentText'`, will be used as a key when storing the value. So when you use the same name in another component, you will get the same state.
+The name you pass, in this case `'commentText'`, will be used as a key when storing the value. So when you use the same name (and default value) in another component, you will get the same state.
 
 ```javascript
 setCommentText('Wow, this works like a charm!')
