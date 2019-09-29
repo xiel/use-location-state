@@ -22,6 +22,8 @@ store and retrieve state into/from the browsers [location history](https://devel
   - supported value types: `string | number | boolean | Date | string[]`
   - handles stringification and parsing from query string of for supported value types
   - invalid entries from the query string are discarded and the component will receive the defaultValue instead
+  
+![use-location-state in action](https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500)
 
 ## Installation
 
