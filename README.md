@@ -23,7 +23,9 @@ store and retrieve state into/from the browsers [location history](https://devel
   - handles stringification and parsing from query string of for supported value types
   - invalid entries from the query string are discarded and the component will receive the defaultValue instead
   
-![use-location-state in action](https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500)
+<p style="text-align: center">
+<img src="https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500"/>
+</p>
 
 ## Installation
 
