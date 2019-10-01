@@ -1,7 +1,6 @@
 <h1 style="width: 100%; text-align: center;"> { useLocationState, useQueryState }</h1>
 
 [![npm (tag)](https://img.shields.io/npm/v/use-location-state/latest.svg)](https://www.npmjs.com/package/use-location-state)
-[![Build Status](https://travis-ci.com/xiel/use-location-state.svg?branch=master)](https://travis-ci.com/xiel/use-location-state)
 [![Greenkeeper badge](https://badges.greenkeeper.io/xiel/use-location-state.svg)](https://greenkeeper.io/)
 [![codecov badge](https://img.shields.io/codecov/c/github/xiel/use-location-state/master.svg?color=hotpink)](https://codecov.io/gh/xiel/use-location-state)
 ![GitHub top language](https://img.shields.io/github/languages/top/xiel/use-location-state.svg)
@@ -22,6 +21,10 @@ store and retrieve state into/from the browsers [location history](https://devel
   - supported value types: `string | number | boolean | Date | string[]`
   - handles stringification and parsing from query string of for supported value types
   - invalid entries from the query string are discarded and the component will receive the defaultValue instead
+  
+<p style="text-align: center">
+<img src="https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500"/>
+</p>
 
 ## Installation
 
