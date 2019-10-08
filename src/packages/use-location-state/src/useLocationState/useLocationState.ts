@@ -19,7 +19,7 @@ export default function useLocationState<S>(
 
   // item name gets a generated suffix based on defaultValue type, to make accidental clashes less likely
   ;[itemName] = useState(() => {
-    const suffixObscurer = btoa || ((s: string) => s)
+    const suffixObscurer = typeof btoa !== "undefined" ? btoa : ((s: string) => s)
     const suffix = suffixObscurer(
       Array.isArray(defaultValue) ? 'array' : typeof defaultValue
     ).replace(/=/g, '')
