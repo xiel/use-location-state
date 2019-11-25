@@ -9,10 +9,10 @@
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^1.19.3",
-    "rollup-plugin-typescript2": "^0.24.0",
-    "tslib": "^1.9.3",
-    "typescript": "^3.6.3"
+    "rollup": "*",
+    "rollup-plugin-typescript2": "*",
+    "tslib": "*",
+    "typescript": "*"
   },
   "files": [
     "dist"

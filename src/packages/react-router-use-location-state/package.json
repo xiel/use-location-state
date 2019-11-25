@@ -19,10 +19,10 @@
     "@types/react": "^16.8.14",
     "@types/react-router": "^5.0.0",
     "react": "^16.9.0",
-    "rollup": "^1.19.3",
-    "rollup-plugin-typescript2": "^0.24.0",
-    "tslib": "^1.9.3",
-    "typescript": "^3.6.3"
+    "rollup": "*",
+    "rollup-plugin-typescript2": "*",
+    "tslib": "*",
+    "typescript": "*"
   },
   "files": [
     "dist"
