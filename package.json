@@ -28,11 +28,11 @@
     "react-dom": "^16.9.0",
     "react-scripts": "^3.1.1",
     "react-test-renderer": "^16.9.0",
-    "typescript": "^3.6.3",
-    "use-location-state-test-helpers": "*",
     "rollup": "^1.27.5",
     "rollup-plugin-typescript2": "^0.25.2",
-    "tslib": "^1.10.0"
+    "tslib": "^1.10.0",
+    "typescript": "^3.6.3",
+    "use-location-state-test-helpers": "*"
   },
   "scripts": {
     "commit": "git-cz",
