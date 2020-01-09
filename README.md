@@ -148,6 +148,19 @@ http://localhost:3000/?itemName=different+value
   <img width="150" alt="Edit react-router-use-location-state-example" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
+### Gatsby & @reach/router
+
+Gatsby & Reach Router are supported. Gatsby currently always scrolls up on location (state) changes. To keep the scroll position, when you update location state using the update function of `useLocationState`, add these lines to the **gatsby-browser.js** file in gatsby root folder.
+
+```javascript
+// keeps same scroll pos when history state is pushed/replaced (same location === same position)
+// see: https://www.gatsbyjs.org/docs/browser-apis/#shouldUpdateScroll
+exports.shouldUpdateScroll = ({ routerProps, getSavedScrollPosition }) => {
+  const currentPosition = getSavedScrollPosition(routerProps.location)
+  return currentPosition || true
+}
+```
+
 ### More routers soon - work in progress
 
 Your favorite router is missing? Feel free to [suggest a router](https://github.com/xiel/use-location-state/issues).
