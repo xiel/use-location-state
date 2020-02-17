@@ -20,7 +20,7 @@
     "@types/react-router": "^5.0.0",
     "react": "^16.9.0",
     "rollup": "*",
-    "rollup-plugin-typescript2": "*",
+    "rollup-plugin-typescript2": ">=0.26.0",
     "tslib": "*",
     "typescript": "*"
   },
