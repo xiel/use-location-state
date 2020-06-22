@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { useNextQueryState } from '../hooks/useNextQueryState'
 
 export default memo(function AddName() {
@@ -17,6 +17,7 @@ export default memo(function AddName() {
         Add Name:{' '}
         <input autoFocus type="text" value={name} onChange={e => nameSet(e.target.value)} />
       </label>
+      <button>add name</button>
     </form>
   )
 })
