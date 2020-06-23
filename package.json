@@ -55,7 +55,7 @@
   },
   "bundlesize": [
     {
-      "path": "./src/packages/**/dist/*.js",
+      "path": "./src/packages/*/dist/*.js",
       "maxSize": "5 kB"
     }
   ],
