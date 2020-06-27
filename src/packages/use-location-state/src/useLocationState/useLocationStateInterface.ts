@@ -48,11 +48,11 @@ export default function useLocationStateInterface({ disabled = false }: Props = 
 
   useEffect(() => {
     if (!enabled) return
-    const hashChangeHandler = () => {
+    const popstateHandler = () => {
       setR(r => r + 1)
     }
-    window.addEventListener('popstate', hashChangeHandler, false)
-    return () => window.removeEventListener('popstate', hashChangeHandler, false)
+    window.addEventListener('popstate', popstateHandler, false)
+    return () => window.removeEventListener('popstate', popstateHandler, false)
   }, [enabled])
 
   return locationStateInterface
