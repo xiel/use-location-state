@@ -1,8 +1,8 @@
 import { QueryState } from 'query-state-core'
-import { QueryStateOptsSetInterface } from './useQueryState.types'
+import { QueryStateOptsSetInterface, QueryStateType } from './useQueryState.types'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
-import useQueryState from './useQueryState'
-import useQueryStateObj from './useQueryStateObj'
+import { useQueryState } from './useQueryState'
+import { useQueryStateObj } from './useQueryStateObj'
 
 export function useHashQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
@@ -15,7 +15,7 @@ export function useHashQueryStateObj<T extends QueryState>(
   })
 }
 
-export default function useHashQueryState<T>(
+export function useHashQueryState<T extends QueryStateType>(
   itemName: string,
   defaultValue: T,
   queryStateOpts: QueryStateOptsSetInterface = {}

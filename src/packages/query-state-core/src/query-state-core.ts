@@ -65,7 +65,7 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
   return params.toString()
 }
 
-export function toQueryStateValue(value: ValueType | any): QueryStateValue | null {
+export function toQueryStateValue(value: ValueType | unknown): QueryStateValue | null {
   if (Array.isArray(value)) {
     return value.map(v => v.toString())
   } else if (value || value === '' || value === false || value === 0) {
@@ -87,15 +87,19 @@ export function toQueryStateValue(value: ValueType | any): QueryStateValue | nul
 
 export const newStringArray: () => string[] = () => []
 
-export function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T): ValueType | null {
+export function parseQueryStateValue<T extends ValueType>(
+  value: QueryStateValue,
+  defaultValue: T
+): T | null {
   const defaultValueType = typeof defaultValue
+  let num: number
 
   if (Array.isArray(defaultValue)) {
     // special case of empty array saved in query string to keep it distinguishable from ['']
     if (value === EMPTY_ARRAY_STRING) {
-      return []
+      return newStringArray() as T
     }
-    return newStringArray().concat(value)
+    return newStringArray().concat(value) as T
   }
 
   if (typeof value !== 'string' && !Array.isArray(value)) {
@@ -106,21 +110,21 @@ export function parseQueryStateValue<T>(value: QueryStateValue, defaultValue: T)
     const valueAsDate = new Date(value.toString())
 
     if (!isNaN(valueAsDate.valueOf())) {
-      return valueAsDate
+      return valueAsDate as T
     }
   }
 
   switch (defaultValueType) {
     case 'string':
-      return value.toString()
+      return value.toString() as T
     case 'number':
-      const num = Number(value)
-      return num || num === 0 ? num : null
+      num = Number(value)
+      return (num || num === 0 ? num : null) as T
     case 'boolean':
       if (value === 'true') {
-        return true
+        return true as T
       } else if (value === 'false') {
-        return false
+        return false as T
       }
       break
     default:

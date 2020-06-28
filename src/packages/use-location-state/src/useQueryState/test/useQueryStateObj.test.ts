@@ -2,7 +2,7 @@ import { cleanup } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useHashQueryStateObj } from '../useHashQueryState'
 import { useHashQueryStringInterface } from '../useHashQueryStringInterface'
-import useQueryStateObj from '../useQueryStateObj'
+import { useQueryStateObj } from '../useQueryStateObj'
 import { unwrapResult } from 'use-location-state-test-helpers/test-helpers'
 
 // reset jest mocked hash

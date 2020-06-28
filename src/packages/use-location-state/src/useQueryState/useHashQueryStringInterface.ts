@@ -18,6 +18,7 @@ export function useHashQueryStringInterface({
         if (!enabled) return ''
         return window.location.hash
       },
+
       setQueryString: (newQueryString, { method = 'replace' }) => {
         if (!enabled) return
 

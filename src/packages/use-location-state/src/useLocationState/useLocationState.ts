@@ -1,17 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { LocationStateOpts } from './useLocationState.types'
-import { Dispatch, useLocationReducer } from './useLocationReducer'
+import { LocationDispatch, useLocationReducer } from './useLocationReducer'
+import { LazyValueFn, SetStateAction } from '../types/sharedTypes'
 
 const locationStateOptsDefaults = Object.freeze({})
 
-export type LazyValueFn<S> = () => S
-export type SetStateAction<S> = S | ((prevState: S) => S)
-
-export default function useLocationState<S>(
+export function useLocationState<S>(
   itemName: string,
   initialState: S | LazyValueFn<S>,
   opts: LocationStateOpts = locationStateOptsDefaults
-): [S, Dispatch<SetStateAction<S>>] {
+): [S, LocationDispatch<SetStateAction<S>>] {
   if (typeof initialState === 'function') {
     return useLocationReducer<S, SetStateAction<S>, any>(
       itemName,
