@@ -30,7 +30,7 @@
     "rollup": "^2.0.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "react-scripts": "3.4.1",
-    "tslib": "^1.10.0",
+    "tslib": "^2.0.0",
     "typescript": "^3.9.5",
     "use-location-state-test-helpers": "*"
   },
