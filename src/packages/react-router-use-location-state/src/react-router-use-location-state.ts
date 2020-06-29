@@ -1,2 +1,13 @@
-export { useQueryState } from './useQueryState/useQueryState'
-export { useLocationState } from './useLocationState/useLocationState'
+export * from './useQueryState/useQueryState'
+export * from './useLocationState/useLocationState'
+
+export type {
+  QueryDispatch,
+  LocationDispatch,
+  Reducer,
+  ReducerWithoutAction,
+  ReducerState,
+  ReducerAction,
+  LazyValueFn,
+  SetStateAction,
+} from 'use-location-state'
