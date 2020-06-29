@@ -3,7 +3,7 @@ import { createMergedQuery, parseQueryState, QueryState, QueryStateMerge } from 
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { QueryStateOpts, SetQueryStateFn } from './useQueryState.types'
 
-export default function useQueryStateObj<T extends QueryState>(
+export function useQueryStateObj<T extends QueryState>(
   defaultQueryState: T,
   queryStateOpts: QueryStateOpts
 ): [QueryState, SetQueryStateFn<T>] {

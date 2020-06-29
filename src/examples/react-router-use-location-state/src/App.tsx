@@ -5,6 +5,7 @@ import Header from './components/Header'
 import QueryStateDemo from './pages/QueryStateDemo'
 import ArrayDemo from './pages/ArrayDemo'
 import LocationStateDemo from './pages/LocationStateDemo'
+import QueryReducerDemo from './pages/QueryReducer/QueryReducer'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" exact component={QueryStateDemo} />
         <Route path="/location-state" component={LocationStateDemo} />
         <Route path="/array-demo" component={ArrayDemo} />
+        <Route path="/query-reducer" component={QueryReducerDemo} />
       </Router>
     </div>
   )

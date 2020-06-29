@@ -7,9 +7,8 @@
     "@types/react-dom": "^16.8.2",
     "add": "^2.0.6",
     "node-sass": "^4.11.0",
-    "react-scripts": "^3.0.1",
-    "typescript": "*",
-    "yarn": "^1.15.2"
+    "react-scripts": "3.4.1",
+    "typescript": "*"
   },
   "dependencies": {
     "@types/react-router": "^5.1.3",

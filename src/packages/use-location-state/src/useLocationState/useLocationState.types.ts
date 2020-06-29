@@ -1,3 +1,5 @@
+import { SetStateAction } from '../types/sharedTypes'
+
 export const LOCATION_STATE_KEY = '__useLocationState'
 
 export type LocationStateValue<K = unknown> =
@@ -22,8 +24,6 @@ export interface LocationStateInterface {
 export interface SetLocationStateOptions {
   method?: 'replace' | 'push'
 }
-
-type SetStateAction<S> = S | ((prevState: S) => S)
 
 export type SetLocationState<T> = (
   newValue: SetStateAction<T>,
