@@ -40,6 +40,9 @@ export default function QueryStateDemo() {
         <button type="button" onClick={() => setName('Sarah')}>
           name: "Sarah" (default value)
         </button>
+        <button type="button" onClick={() => setName(null)}>
+          name: null (default value)
+        </button>
       </fieldset>
 
       <h4>Age</h4>
