@@ -57,7 +57,12 @@ describe('QueryStateDemo', () => {
       </Router>
     )
     expect(location.search).toEqual('')
-    act(() => void fireEvent.change(getByLabelText('name:'), { target: { value: 'Mila' } }))
+    act(
+      () =>
+        void fireEvent.change(getByLabelText('name:'), {
+          target: { value: 'Mila' },
+        })
+    )
     expect(location.search).toEqual('?name=Mila')
   })
 
@@ -86,7 +91,12 @@ describe('QueryStateDemo', () => {
       </Router>
     )
     expect(location.search).toEqual('')
-    act(() => void fireEvent.change(getByLabelText('age:'), { target: { value: '33' } }))
+    act(
+      () =>
+        void fireEvent.change(getByLabelText('age:'), {
+          target: { value: '33' },
+        })
+    )
     expect(location.search).toEqual('?age=33')
   })
 
@@ -135,7 +145,11 @@ describe('QueryStateDemo', () => {
     fireEvent.click(getByLabelText('active (method: push)'))
     expect(replaceState).toBeCalledTimes(0)
     expect(pushState).toBeCalledTimes(1)
-    expect(pushState).toHaveBeenCalledWith(expect.anything(), null, '/?active=true')
+    expect(pushState).toHaveBeenCalledWith(
+      expect.anything(),
+      null,
+      '/?active=true'
+    )
   })
 })
 

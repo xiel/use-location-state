@@ -25,7 +25,8 @@ describe('useQueryState', () => {
 
   describe('should enforce types', () => {
     test('usage of two queryState hooks with different types on the same item name', () => {
-      const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
+      const testQSI = renderHook(() => useTestQueryStringInterface()).result
+        .current
 
       // put the clashing hooks into the same render test hook (so they always update together)
       const { result, unmount } = renderHook(() => {

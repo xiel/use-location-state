@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { createMergedQuery, parseQueryState, QueryState, QueryStateMerge } from 'query-state-core'
+import {
+  createMergedQuery,
+  parseQueryState,
+  QueryState,
+  QueryStateMerge,
+} from 'query-state-core'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { QueryStateOpts, SetQueryStateFn } from './useQueryState.types'
 
@@ -8,7 +13,9 @@ export function useQueryStateObj<T extends QueryState>(
   queryStateOpts: QueryStateOpts
 ): [QueryState, SetQueryStateFn<T>] {
   const { queryStringInterface } = queryStateOpts
-  const hashQSI = useHashQueryStringInterface(queryStringInterface && { disabled: true })
+  const hashQSI = useHashQueryStringInterface(
+    queryStringInterface && { disabled: true }
+  )
   const activeQSI = queryStringInterface || hashQSI
   const queryString = activeQSI.getQueryString()
   const [, setLatestMergedQueryString] = useState<string>()
@@ -47,7 +54,11 @@ export function useQueryStateObj<T extends QueryState>(
       ...parseQueryState(activeQSI.getQueryString()),
     }
 
-    const mergedQueryString = createMergedQuery(currentQueryState || {}, newState, stripOverwrite)
+    const mergedQueryString = createMergedQuery(
+      currentQueryState || {},
+      newState,
+      stripOverwrite
+    )
 
     activeQSI.setQueryString(mergedQueryString, opts || {})
 

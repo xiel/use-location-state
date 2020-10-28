@@ -6,10 +6,10 @@ const defaultTags: string[] = []
 export default function ArrayDemo() {
   const [tags, setTags] = useQueryState('tags', defaultTags)
 
-  const toggleTag: ChangeEventHandler<HTMLInputElement> = e => {
+  const toggleTag: ChangeEventHandler<HTMLInputElement> = (e) => {
     const tag = e.target.value
     if (tags.includes(e.target.value)) {
-      setTags(tags.filter(t => t !== tag))
+      setTags(tags.filter((t) => t !== tag))
     } else {
       setTags([...tags, tag])
     }

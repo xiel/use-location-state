@@ -11,8 +11,8 @@ export default function QueryStateDemo() {
     <div>
       <h2>Intro</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, atque,
-        corporis debitis esse.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+        architecto, atque, corporis debitis esse.
       </p>
       <QueryStateDisplay
         queryState={{
@@ -33,7 +33,12 @@ export default function QueryStateDemo() {
           name: "Sarah" (default value)
         </button>
         <label htmlFor="input-name">name:</label>
-        <input id="input-name" type="text" value={name} onChange={e => setName(e.target.value)} />
+        <input
+          id="input-name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </p>
       <h4>Age</h4>
       <p>
@@ -51,7 +56,7 @@ export default function QueryStateDemo() {
           id="input-age"
           type="text"
           value={`${age}`}
-          onChange={e => setAge(Number(e.target.value))}
+          onChange={(e) => setAge(Number(e.target.value))}
         />
       </p>
       <h4>name & age</h4>

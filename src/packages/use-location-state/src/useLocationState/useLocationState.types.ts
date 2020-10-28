@@ -18,7 +18,10 @@ export type LocationStateOpts = {
 
 export interface LocationStateInterface {
   getLocationState: () => LocationState
-  setLocationState: (newState: LocationState, opts: SetLocationStateOptions) => void
+  setLocationState: (
+    newState: LocationState,
+    opts: SetLocationStateOptions
+  ) => void
 }
 
 export interface SetLocationStateOptions {

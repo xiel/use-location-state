@@ -78,7 +78,9 @@ describe('QueryStateDemo', () => {
     expect(location.hash).toEqual('#age=45&name=Kim')
 
     // set back to default value
-    act(() => void fireEvent.click(getByText('name: "Sarah", age: 25 (default)')))
+    act(
+      () => void fireEvent.click(getByText('name: "Sarah", age: 25 (default)'))
+    )
     expect(location.hash).toEqual('')
   })
 
@@ -106,7 +108,9 @@ describe('QueryStateDemo', () => {
   test('can set date with date field', () => {
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
-    fireEvent.change(getByLabelText('date:'), { target: { value: '2019-05-01' } })
+    fireEvent.change(getByLabelText('date:'), {
+      target: { value: '2019-05-01' },
+    })
     expect(location.hash).toEqual('#date=2019-05-01T00%3A00%3A00.000Z')
   })
 
@@ -114,7 +118,9 @@ describe('QueryStateDemo', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
-    fireEvent.change(getByLabelText('date:'), { target: { value: '2019-05-01' } })
+    fireEvent.change(getByLabelText('date:'), {
+      target: { value: '2019-05-01' },
+    })
     expect(location.hash).toEqual('#date=2019-05-01T00%3A00%3A00.000Z')
     fireEvent.change(getByLabelText('date:'), { target: { value: null } })
     expect(location.hash).toEqual('')

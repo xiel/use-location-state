@@ -31,7 +31,8 @@ describe.each`
   'defaultValue $defaultValue, newValue $newValue',
   ({ defaultValue = '', newValue, newValueQueryString }) => {
     test(`should return default value and set newValue successfully`, () => {
-      const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
+      const testQSI = renderHook(() => useTestQueryStringInterface()).result
+        .current
       const { result, unmount } = renderHook(() =>
         useQueryState('item', defaultValue, {
           queryStringInterface: testQSI,

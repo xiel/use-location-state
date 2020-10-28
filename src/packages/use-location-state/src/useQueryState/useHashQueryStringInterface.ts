@@ -35,7 +35,7 @@ export function useHashQueryStringInterface({
         customEvent.initEvent('hashchange', false, false)
         window.dispatchEvent(customEvent)
 
-        setR(r => r + 1)
+        setR((r) => r + 1)
       },
     }),
     [enabled]
@@ -46,10 +46,11 @@ export function useHashQueryStringInterface({
   useEffect(() => {
     if (!enabled) return
     const hashChangeHandler = () => {
-      setR(r => r + 1)
+      setR((r) => r + 1)
     }
     window.addEventListener('hashchange', hashChangeHandler, false)
-    return () => window.removeEventListener('hashchange', hashChangeHandler, false)
+    return () =>
+      window.removeEventListener('hashchange', hashChangeHandler, false)
   }, [enabled])
 
   return hashQSI

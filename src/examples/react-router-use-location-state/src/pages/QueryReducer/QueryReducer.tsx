@@ -68,7 +68,10 @@ export default function QueryReducerDemo() {
               />
             ))}
             <hr />
-            <button type="button" onClick={() => filtersDispatch({ type: 'clear' })}>
+            <button
+              type="button"
+              onClick={() => filtersDispatch({ type: 'clear' })}
+            >
               clear activeFilters
             </button>
           </form>

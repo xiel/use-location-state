@@ -1,7 +1,9 @@
 import { QueryStringInterface } from 'use-location-state'
 import { useRouter } from '../helpers/useRouter'
 
-export function useReactRouterQueryStringInterface(): QueryStringInterface | undefined {
+export function useReactRouterQueryStringInterface():
+  | QueryStringInterface
+  | undefined {
   const router = useRouter()
   const history = router && router.history
 
@@ -13,7 +15,9 @@ export function useReactRouterQueryStringInterface(): QueryStringInterface | und
   return {
     getQueryString: () => history.location.search,
     setQueryString: (newQueryString, { method = 'replace' }) => {
-      history[method](`${history.location.pathname}?${newQueryString}${history.location.hash}`)
+      history[method](
+        `${history.location.pathname}?${newQueryString}${history.location.hash}`
+      )
     },
   }
 }

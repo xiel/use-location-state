@@ -18,7 +18,7 @@ afterEach(() => {
 describe('useQueryStateObj hook', () => {
   it('should work with passed HashQueryStringInterface', async () => {
     const { result, unmount } = renderHook(
-      props => {
+      (props) => {
         const hashQSI = useHashQueryStringInterface()
         return useQueryStateObj(props, { queryStringInterface: hashQSI })
       },
@@ -42,9 +42,12 @@ describe('useQueryStateObj hook', () => {
 
 describe('useHashQueryStateObj hook', () => {
   it('should work with internal HashQueryStringInterface', async () => {
-    const { result, unmount } = renderHook(props => useHashQueryStateObj(props), {
-      initialProps: { name: 'Sarah' },
-    })
+    const { result, unmount } = renderHook(
+      (props) => useHashQueryStateObj(props),
+      {
+        initialProps: { name: 'Sarah' },
+      }
+    )
 
     const name = unwrapResult(result)
 

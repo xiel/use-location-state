@@ -1,4 +1,8 @@
-import { createMergedQuery, EMPTY_ARRAY_STRING, parseQueryState } from '../src/query-state-core'
+import {
+  createMergedQuery,
+  EMPTY_ARRAY_STRING,
+  parseQueryState,
+} from '../src/query-state-core'
 
 describe('parseQueryState parses', () => {
   it('empty string', () => {
@@ -22,7 +26,9 @@ describe('parseQueryState parses', () => {
   })
 
   it('creates array from query string with multiple value values for same key', () => {
-    expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({ filters: ['1', '2', '3'] })
+    expect(parseQueryState('filters=1&filters=2&filters=3')).toEqual({
+      filters: ['1', '2', '3'],
+    })
   })
 
   it('query string with "true" boolean parameter', () => {
@@ -41,7 +47,9 @@ describe('parseQueryState parses', () => {
 
   it('query string with invalid keys should be ignored', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
-    expect(parseQueryState('toString=true&valid=value&__proto__=true')).toEqual({ valid: 'value' })
+    expect(
+      parseQueryState('toString=true&valid=value&__proto__=true')
+    ).toEqual({ valid: 'value' })
     expect(warnSpy).toHaveBeenCalledTimes(2)
     warnSpy.mockRestore()
   })
@@ -58,14 +66,24 @@ describe('createMergedQuery', () => {
 
   it('stable sort keys', () => {
     const abcQueryString = 'a=true&b=true&c=true'
-    expect(createMergedQuery({ a: 'true' }, { b: 'true' }, { c: 'true' })).toEqual(abcQueryString)
-    expect(createMergedQuery({ c: 'true' }, { a: 'true' }, { b: 'true' })).toEqual(abcQueryString)
-    expect(createMergedQuery({ b: 'true' }, { c: 'true' }, { a: 'true' })).toEqual(abcQueryString)
-    expect(createMergedQuery({ b: 'true', c: 'true', a: 'true' })).toEqual(abcQueryString)
+    expect(
+      createMergedQuery({ a: 'true' }, { b: 'true' }, { c: 'true' })
+    ).toEqual(abcQueryString)
+    expect(
+      createMergedQuery({ c: 'true' }, { a: 'true' }, { b: 'true' })
+    ).toEqual(abcQueryString)
+    expect(
+      createMergedQuery({ b: 'true' }, { c: 'true' }, { a: 'true' })
+    ).toEqual(abcQueryString)
+    expect(createMergedQuery({ b: 'true', c: 'true', a: 'true' })).toEqual(
+      abcQueryString
+    )
   })
 
   it('with boolean values', () => {
-    expect(createMergedQuery({ bool: 'true', bool2: 'false' })).toEqual('bool=true&bool2=false')
+    expect(createMergedQuery({ bool: 'true', bool2: 'false' })).toEqual(
+      'bool=true&bool2=false'
+    )
   })
 
   it('with removed null values', () => {
@@ -77,11 +95,15 @@ describe('createMergedQuery', () => {
   })
 
   it('with removed entries by overwrite with null', () => {
-    expect(createMergedQuery({ nullable: 'true' }, { nullable: null })).toEqual('')
+    expect(createMergedQuery({ nullable: 'true' }, { nullable: null })).toEqual(
+      ''
+    )
   })
 
   it('with boolean overwriting null', () => {
-    expect(createMergedQuery({ nulled: null }, { nulled: 'false' })).toEqual('nulled=false')
+    expect(createMergedQuery({ nulled: null }, { nulled: 'false' })).toEqual(
+      'nulled=false'
+    )
   })
 
   it('allows empty objects', () => {
@@ -99,11 +121,15 @@ describe('createMergedQuery', () => {
   })
 
   it('with array value', () => {
-    expect(createMergedQuery({ arr: ['1', '2', '3'] })).toEqual('arr=1&arr=2&arr=3')
+    expect(createMergedQuery({ arr: ['1', '2', '3'] })).toEqual(
+      'arr=1&arr=2&arr=3'
+    )
   })
 
   it('with array value overwrite (no automatic concat)', () => {
-    expect(createMergedQuery({ arr: ['1'] }, { arr: ['a', 'b'] })).toEqual('arr=a&arr=b')
+    expect(createMergedQuery({ arr: ['1'] }, { arr: ['a', 'b'] })).toEqual(
+      'arr=a&arr=b'
+    )
   })
 
   it('with array with empty', () => {
@@ -111,6 +137,8 @@ describe('createMergedQuery', () => {
   })
 
   it('with empty array', () => {
-    expect(createMergedQuery({ arr: [] })).toEqual('arr=' + encodeURIComponent(EMPTY_ARRAY_STRING))
+    expect(createMergedQuery({ arr: [] })).toEqual(
+      'arr=' + encodeURIComponent(EMPTY_ARRAY_STRING)
+    )
   })
 })

@@ -15,14 +15,19 @@ export type QueryDispatch<A> = (value: A, opts?: SetQueryStringOptions) => void
 
 const queryStateOptsDefaults: QueryStateOpts = Object.freeze({})
 
-export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction<R>>>(
+export function useQueryReducer<
+  R extends Reducer<ReducerState<R>, ReducerAction<R>>
+>(
   itemName: string,
   reducer: R,
   initialState: ReducerState<R>,
   queryStateOpts?: QueryStateOpts
 ): [ReducerState<R>, QueryDispatch<ReducerAction<R>>]
 
-export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction<R>>, InitialArg>(
+export function useQueryReducer<
+  R extends Reducer<ReducerState<R>, ReducerAction<R>>,
+  InitialArg
+>(
   itemName: string,
   reducer: R,
   initialArg: InitialArg,
@@ -30,11 +35,16 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
   queryStateOpts?: QueryStateOpts
 ): [ReducerState<R>, QueryDispatch<ReducerAction<R>>]
 
-export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction<R>>, InitialArg>(
+export function useQueryReducer<
+  R extends Reducer<ReducerState<R>, ReducerAction<R>>,
+  InitialArg
+>(
   itemName: string,
   reducer: R,
   initialStateOrInitialArg: ReducerState<R> | InitialArg,
-  initStateFnOrOpts?: QueryStateOpts | ((initialArg: InitialArg) => ReducerState<R>),
+  initStateFnOrOpts?:
+    | QueryStateOpts
+    | ((initialArg: InitialArg) => ReducerState<R>),
   queryStateOpts?: QueryStateOpts
 ): [ReducerState<R>, QueryDispatch<ReducerAction<R>>] {
   const mergedQueryStateOpts = Object.assign(
@@ -44,7 +54,9 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
     typeof initStateFnOrOpts === 'object' ? initStateFnOrOpts : null
   )
   const { queryStringInterface } = mergedQueryStateOpts
-  const hashQSI = useHashQueryStringInterface(queryStringInterface ? { disabled: true } : undefined)
+  const hashQSI = useHashQueryStringInterface(
+    queryStringInterface ? { disabled: true } : undefined
+  )
   const activeQSI = queryStringInterface || hashQSI
 
   // itemName & defaultValue is not allowed to be changed after init
@@ -54,7 +66,10 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
       : (initialStateOrInitialArg as ReducerState<R>)
   )
 
-  const defaultQueryStateValue = useMemo(() => toQueryStateValue(defaultValue), [defaultValue])
+  const defaultQueryStateValue = useMemo(
+    () => toQueryStateValue(defaultValue),
+    [defaultValue]
+  )
 
   if (defaultQueryStateValue === null) {
     throw new Error('unsupported defaultValue')
@@ -73,7 +88,7 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
       const currentState = parseQueryState(activeQSI.getQueryString()) || {}
       const newState = { ...currentState, [itemName]: null }
       activeQSI.setQueryString(createMergedQuery(newState), opts)
-      setR(rC => rC + 1)
+      setR((rC) => rC + 1)
     },
     [itemName, ref]
   )
@@ -81,7 +96,12 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
   const [, setR] = useState(0)
   const dispatch: QueryDispatch<ReducerAction<R>> = useCallback(
     (action, opts = {}) => {
-      const { activeQSI, defaultValue, mergedQueryStateOpts, reducer } = ref.current
+      const {
+        activeQSI,
+        defaultValue,
+        mergedQueryStateOpts,
+        reducer,
+      } = ref.current
       const { stripDefaults = true } = mergedQueryStateOpts
       const currentState = parseQueryState(activeQSI.getQueryString()) || {}
       const currentValue =
@@ -106,7 +126,10 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
       // when a params are set to the same value as in the defaults
       // we remove them to avoid having two URLs reproducing the same state unless stripDefaults === false
       if (stripDefaults) {
-        if (Array.isArray(defaultValue) && sameAsJsonString(newValue, defaultValue)) {
+        if (
+          Array.isArray(defaultValue) &&
+          sameAsJsonString(newValue, defaultValue)
+        ) {
           return resetQueryStateItem(opts)
         } else if (newValue === defaultValue) {
           return resetQueryStateItem(opts)
@@ -122,7 +145,7 @@ export function useQueryReducer<R extends Reducer<ReducerState<R>, ReducerAction
       )
 
       // force re-render
-      setR(rC => rC + 1)
+      setR((rC) => rC + 1)
     },
     [itemName, ref, resetQueryStateItem]
   )

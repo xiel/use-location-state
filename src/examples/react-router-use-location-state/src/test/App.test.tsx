@@ -27,14 +27,17 @@ describe.each`
   ${'/array-demo'}     | ${'Array Demo'}
   ${'/array-demo/'}    | ${'Array Demo'}
   ${'/query-reducer/'} | ${'useQueryReducer Demo'}
-`('allows some pathname tolerance @ $pathname expect $title', ({ pathname, title }) => {
-  afterAll(() => {
-    window.history.replaceState(null, '', '/')
-  })
+`(
+  'allows some pathname tolerance @ $pathname expect $title',
+  ({ pathname, title }) => {
+    afterAll(() => {
+      window.history.replaceState(null, '', '/')
+    })
 
-  test(`@ ${pathname} should render page with title ${title}`, () => {
-    window.history.replaceState(null, '', pathname)
-    const { getByText } = render(<App />)
-    expect(getByText(title))
-  })
-})
+    test(`@ ${pathname} should render page with title ${title}`, () => {
+      window.history.replaceState(null, '', pathname)
+      const { getByText } = render(<App />)
+      expect(getByText(title))
+    })
+  }
+)

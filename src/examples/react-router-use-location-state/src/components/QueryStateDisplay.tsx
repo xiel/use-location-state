@@ -5,5 +5,9 @@ interface Props {
 }
 
 export default function QueryStateDisplay({ queryState = {} }: Props) {
-  return <pre data-testid="pre-query-state">{JSON.stringify(queryState, null, ' ')}</pre>
+  return (
+    <pre data-testid="pre-query-state">
+      {JSON.stringify(queryState, null, ' ')}
+    </pre>
+  )
 }

@@ -6,12 +6,19 @@ interface Props {
   method?: 'replace' | 'push'
 }
 
-export default memo(function LocationStateCheckbox({ name = 'active', method }: Props) {
+export default memo(function LocationStateCheckbox({
+  name = 'active',
+  method,
+}: Props) {
   const [active, setActive] = useLocationState(name, false)
 
   return (
     <label>
-      <input type="checkbox" checked={active} onChange={() => setActive(!active, { method })} />
+      <input
+        type="checkbox"
+        checked={active}
+        onChange={() => setActive(!active, { method })}
+      />
       {name} {method && `(method: ${method})`}
     </label>
   )

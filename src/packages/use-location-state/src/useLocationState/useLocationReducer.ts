@@ -1,13 +1,22 @@
 import { useCallback, useMemo, useState } from 'react'
 import useLocationStateInterface from './useLocationStateInterface'
-import { LocationStateOpts, SetLocationStateOptions } from './useLocationState.types'
+import {
+  LocationStateOpts,
+  SetLocationStateOptions,
+} from './useLocationState.types'
 import { useRefLatest } from '../hooks/useRefLatest'
 
 const validTypes = ['string', 'number', 'boolean', 'object', 'undefined']
 const locationStateOptsDefaults: LocationStateOpts = Object.freeze({})
 
-export type LocationDispatch<A> = (value: A, opts?: SetLocationStateOptions) => void
-export type LocationReducerFn<State, Action> = (state: State, action: Action) => State
+export type LocationDispatch<A> = (
+  value: A,
+  opts?: SetLocationStateOptions
+) => void
+export type LocationReducerFn<State, Action> = (
+  state: State,
+  action: Action
+) => State
 
 export function useLocationReducer<State, Action>(
   itemName: string,
@@ -28,7 +37,9 @@ export function useLocationReducer<State, Action, InitialArg>(
   itemName: string,
   reducer: LocationReducerFn<State, Action>,
   initialStateOrInitialArg: State | InitialArg,
-  maybeInitStateFnOrOpts?: LocationStateOpts | ((initialArg: InitialArg) => State),
+  maybeInitStateFnOrOpts?:
+    | LocationStateOpts
+    | ((initialArg: InitialArg) => State),
   opts?: LocationStateOpts
 ): [State, LocationDispatch<Action>] {
   const { locationStateInterface } =
@@ -38,7 +49,8 @@ export function useLocationReducer<State, Action, InitialArg>(
 
   // itemName & defaultValue is not allowed to be changed after init
   const [defaultValue] = useState<State>(() => {
-    return maybeInitStateFnOrOpts && typeof maybeInitStateFnOrOpts === 'function'
+    return maybeInitStateFnOrOpts &&
+      typeof maybeInitStateFnOrOpts === 'function'
       ? maybeInitStateFnOrOpts(initialStateOrInitialArg as InitialArg)
       : (initialStateOrInitialArg as State)
   })
@@ -58,7 +70,9 @@ export function useLocationReducer<State, Action, InitialArg>(
   })
 
   // the interface to get/set the state
-  const standardLSI = useLocationStateInterface(locationStateInterface && { disabled: true })
+  const standardLSI = useLocationStateInterface(
+    locationStateInterface && { disabled: true }
+  )
   const activeLSI = locationStateInterface || standardLSI
   const ref = useRefLatest({
     activeLSI,
@@ -92,7 +106,9 @@ export function useLocationReducer<State, Action, InitialArg>(
       } = ref.current
       const currentState = getLocationState()
       const currentValue: State =
-        itemName in currentState ? (currentState[itemName] as any) : defaultValue
+        itemName in currentState
+          ? (currentState[itemName] as any)
+          : defaultValue
       const newValue: State = reducer(currentValue, action)
 
       if (newValue === defaultValue) {
