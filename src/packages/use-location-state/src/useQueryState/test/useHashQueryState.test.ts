@@ -1,7 +1,10 @@
 import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useHashQueryState } from '../../use-location-state'
-import { asyncAct, unwrapABResult } from 'use-location-state-test-helpers/test-helpers'
+import {
+  asyncAct,
+  unwrapABResult,
+} from 'use-location-state-test-helpers/test-helpers'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -26,7 +29,8 @@ describe('useHashQueryState', () => {
       }
     )
     const val = () => result.current[0]
-    const setVal: typeof result.current[1] = newValue => result.current[1](newValue)
+    const setVal: typeof result.current[1] = (newValue) =>
+      result.current[1](newValue)
 
     expect(val()).toEqual('Sarah')
 
@@ -45,7 +49,8 @@ describe('useHashQueryState', () => {
       }
     )
     const val = () => result.current[0]
-    const setVal: typeof result.current[1] = newValue => result.current[1](newValue)
+    const setVal: typeof result.current[1] = (newValue) =>
+      result.current[1](newValue)
 
     expect(val()).toEqual('Sarah')
     await asyncAct(async () => void setVal('Kim'))
@@ -71,7 +76,11 @@ describe('useHashQueryState', () => {
         return { a, b }
       },
       {
-        initialProps: { itemName: 'name', defaultValueNum: 25, defaultValueStr: 'Sarah' },
+        initialProps: {
+          itemName: 'name',
+          defaultValueNum: 25,
+          defaultValueStr: 'Sarah',
+        },
       }
     )
 

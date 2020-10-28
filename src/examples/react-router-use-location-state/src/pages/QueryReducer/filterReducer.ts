@@ -16,12 +16,17 @@ export type ActionTypes = ClearAction | AddAction | RemoveAction
 
 export const emptyFilters: FilterKeys = Object.freeze([])
 
-export function filterReducer(filterKeys: FilterKeys, action: ActionTypes): FilterKeys {
+export function filterReducer(
+  filterKeys: FilterKeys,
+  action: ActionTypes
+): FilterKeys {
   switch (action.type) {
     case 'clear':
       return []
     case 'add':
-      return Array.from(new Set(filterKeys.concat(action.toAdd).filter((x) => x)))
+      return Array.from(
+        new Set(filterKeys.concat(action.toAdd).filter((x) => x))
+      )
     case 'remove':
       return filterKeys.filter((x) => !action.toRemove.includes(x))
     default:

@@ -44,8 +44,11 @@ describe.each`
   ${Symbol('Any')}          | ${null}
   ${new Date('2019-01-01')} | ${'2019-01-01T00:00:00.000Z'}
   ${new Date('xxx')}        | ${null}
-`('toQueryStateValue value $value, stateValue $stateValue', ({ value, stateValue }) => {
-  test(`should return value transformed into string or array of strings (or null when not possible)`, () => {
-    expect(toQueryStateValue(value)).toEqual(stateValue)
-  })
-})
+`(
+  'toQueryStateValue value $value, stateValue $stateValue',
+  ({ value, stateValue }) => {
+    test(`should return value transformed into string or array of strings (or null when not possible)`, () => {
+      expect(toQueryStateValue(value)).toEqual(stateValue)
+    })
+  }
+)

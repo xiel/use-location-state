@@ -1,6 +1,9 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { useLocationState } from '../../use-location-state'
-import { asyncAct, unwrapABResult } from 'use-location-state-test-helpers/test-helpers'
+import {
+  asyncAct,
+  unwrapABResult,
+} from 'use-location-state-test-helpers/test-helpers'
 
 describe('useLocationState', () => {
   it('should keep to useLocationState hooks with the same name in sync', async () => {
@@ -37,7 +40,9 @@ describe('useLocationState', () => {
     expect(a.value).toEqual('Kim')
     expect(b.value).toEqual('')
 
-    await asyncAct(async () => a.setValue(currentValue => currentValue + 'berly'))
+    await asyncAct(async () =>
+      a.setValue((currentValue) => currentValue + 'berly')
+    )
 
     expect(a.value).toEqual('Kimberly')
     expect(b.value).toEqual('Kimberly')
@@ -58,7 +63,7 @@ describe('useLocationState', () => {
     expect(a.value).toEqual([1, 2, 3])
     expect(b.value).toEqual([])
 
-    await asyncAct(async () => a.setValue(arr => arr.concat(4, 5, 6)))
+    await asyncAct(async () => a.setValue((arr) => arr.concat(4, 5, 6)))
 
     expect(a.value).toEqual([1, 2, 3, 4, 5, 6])
     expect(b.value).toEqual([1, 2, 3, 4, 5, 6])

@@ -7,7 +7,7 @@ export default function useTestQueryStringInterface(): QueryStringInterface {
 
   return {
     getQueryString: () => latestQueryString.current,
-    setQueryString: newQueryString => {
+    setQueryString: (newQueryString) => {
       latestQueryString.current = newQueryString
       setQueryString(newQueryString)
     },

@@ -25,7 +25,12 @@ export default function QueryStateDemo() {
       <h4>name</h4>
       <fieldset>
         <label htmlFor="input-name">name:</label>
-        <input id="input-name" type="text" value={name} onChange={e => setName(e.target.value)} />
+        <input
+          id="input-name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <button type="button" onClick={() => setName('Felix')}>
           name: "Felix"
         </button>
@@ -44,7 +49,7 @@ export default function QueryStateDemo() {
           id="input-age"
           type="number"
           value={age}
-          onChange={e => setAge(Number(e.target.value))}
+          onChange={(e) => setAge(Number(e.target.value))}
         />
         <button type="button" onClick={() => setAge(30)}>
           age: 30
@@ -101,7 +106,7 @@ export default function QueryStateDemo() {
           id="input-date"
           type="date"
           value={date.toJSON().slice(0, 10)}
-          onChange={e => setDate(new Date(e.target.value))}
+          onChange={(e) => setDate(new Date(e.target.value))}
         />
       </fieldset>
     </div>

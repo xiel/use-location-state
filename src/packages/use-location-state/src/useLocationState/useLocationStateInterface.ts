@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { LOCATION_STATE_KEY, LocationStateInterface } from './useLocationState.types'
+import {
+  LOCATION_STATE_KEY,
+  LocationStateInterface,
+} from './useLocationState.types'
 
 interface Props {
   disabled?: boolean
@@ -7,7 +10,9 @@ interface Props {
 
 const hasWindowHistory = typeof window !== `undefined` && 'history' in window
 
-export default function useLocationStateInterface({ disabled = false }: Props = {}) {
+export default function useLocationStateInterface({
+  disabled = false,
+}: Props = {}) {
   const enabled = !disabled && hasWindowHistory
 
   // this state is used to trigger re-renders
@@ -34,7 +39,11 @@ export default function useLocationStateInterface({ disabled = false }: Props = 
         }
 
         // update history state using replace / push
-        window.history[method === 'replace' ? 'replaceState' : 'pushState'](updatedState, '', '')
+        window.history[method === 'replace' ? 'replaceState' : 'pushState'](
+          updatedState,
+          '',
+          ''
+        )
 
         // manually dispatch a hashchange event (replace state does not trigger this event)
         // so all subscribers get notified (old way for IE11)
@@ -49,7 +58,7 @@ export default function useLocationStateInterface({ disabled = false }: Props = 
   useEffect(() => {
     if (!enabled) return
     const popstateHandler = () => {
-      setR(r => r + 1)
+      setR((r) => r + 1)
     }
     window.addEventListener('popstate', popstateHandler, false)
     return () => window.removeEventListener('popstate', popstateHandler, false)

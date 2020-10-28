@@ -54,7 +54,12 @@ describe('LocationStateDemo', () => {
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
-    act(() => void fireEvent.change(getByLabelText('name:'), { target: { value: 'Mila' } }))
+    act(
+      () =>
+        void fireEvent.change(getByLabelText('name:'), {
+          target: { value: 'Mila' },
+        })
+    )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
@@ -83,7 +88,12 @@ describe('LocationStateDemo', () => {
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
-    act(() => void fireEvent.change(getByLabelText('age:'), { target: { value: '33' } }))
+    act(
+      () =>
+        void fireEvent.change(getByLabelText('age:'), {
+          target: { value: '33' },
+        })
+    )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 

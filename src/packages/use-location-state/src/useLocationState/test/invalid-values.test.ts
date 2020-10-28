@@ -15,9 +15,13 @@ describe('invalid input defaultValue', () => {
       act(() => window.history.replaceState({}, '', ''))
 
       const replaceState = spyOn(window.history, 'replaceState')
-      const { result, unmount } = renderHook(() => useLocationState('anything', defaultValue))
+      const { result, unmount } = renderHook(() =>
+        useLocationState('anything', defaultValue)
+      )
 
-      expect(result.error).toMatchInlineSnapshot(`[Error: unsupported defaultValue]`)
+      expect(result.error).toMatchInlineSnapshot(
+        `[Error: unsupported defaultValue]`
+      )
       expect(replaceState).toHaveBeenCalledTimes(0)
 
       // restore mock

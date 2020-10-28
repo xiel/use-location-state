@@ -30,9 +30,12 @@ describe.each`
     })
 
     test(`should return default value and set newValue successfully`, () => {
-      const { result, unmount } = renderHook(() => useQueryState('item', defaultValue), {
-        wrapper: Router,
-      })
+      const { result, unmount } = renderHook(
+        () => useQueryState('item', defaultValue),
+        {
+          wrapper: Router,
+        }
+      )
       const r = unwrapResult(result)
       // default
       expect(result.error).toBe(undefined)

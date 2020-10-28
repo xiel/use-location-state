@@ -6,7 +6,10 @@ import LocationStateCheckbox from '../components/LocationStateCheckbox'
 export default function LocationStateDemo() {
   const [name, setName] = useLocationState('name', 'Sarah')
   const [age, setAge] = useLocationState('age', 25)
-  const [date, setDate] = useLocationState<Date | null>('date', new Date('2019-01-01'))
+  const [date, setDate] = useLocationState<Date | null>(
+    'date',
+    new Date('2019-01-01')
+  )
   const [active] = useLocationState('active', false)
 
   return (
@@ -25,7 +28,12 @@ export default function LocationStateDemo() {
       <h4>name</h4>
       <fieldset>
         <label htmlFor="input-name">name:</label>
-        <input id="input-name" type="text" value={name} onChange={e => setName(e.target.value)} />
+        <input
+          id="input-name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <button type="button" onClick={() => setName('Felix')}>
           name: "Felix"
         </button>
@@ -44,7 +52,7 @@ export default function LocationStateDemo() {
           id="input-age"
           type="number"
           value={age}
-          onChange={e => setAge(Number(e.target.value))}
+          onChange={(e) => setAge(Number(e.target.value))}
         />
         <button type="button" onClick={() => setAge(30)}>
           age: 30
@@ -101,8 +109,12 @@ export default function LocationStateDemo() {
           id="input-date"
           type="date"
           value={(date && date.toJSON() && date.toJSON().slice(0, 10)) || ''}
-          onChange={e =>
-            setDate(new Date(e.target.value).toJSON() ? new Date(e.target.value) : null)
+          onChange={(e) =>
+            setDate(
+              new Date(e.target.value).toJSON()
+                ? new Date(e.target.value)
+                : null
+            )
           }
         />
       </fieldset>

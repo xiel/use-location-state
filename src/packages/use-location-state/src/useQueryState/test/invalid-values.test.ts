@@ -16,13 +16,16 @@ describe('invalid input defaultValue', () => {
     test(`should throw`, () => {
       const orgError = console.error
       console.error = jest.fn()
-      const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
+      const testQSI = renderHook(() => useTestQueryStringInterface()).result
+        .current
       const { result, unmount } = renderHook(() =>
         useQueryState('anything', defaultValue, {
           queryStringInterface: testQSI,
         })
       )
-      expect(result.error).toMatchInlineSnapshot(`[Error: unsupported defaultValue]`)
+      expect(result.error).toMatchInlineSnapshot(
+        `[Error: unsupported defaultValue]`
+      )
       expect(testQSI.getQueryString()).toBe('')
       act(() => void unmount())
       console.error = orgError
@@ -43,7 +46,8 @@ describe('invalid value in setter', () => {
     test(`should throw`, () => {
       const orgWarn = console.warn
       console.warn = jest.fn()
-      const testQSI = renderHook(() => useTestQueryStringInterface()).result.current
+      const testQSI = renderHook(() => useTestQueryStringInterface()).result
+        .current
       const { result, unmount } = renderHook(() =>
         useQueryState('itemName', 'valid default value', {
           queryStringInterface: testQSI,

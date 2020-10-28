@@ -2,7 +2,10 @@ export type ValueType = string | string[] | number | boolean | Date
 export type QueryStateValue = string | string[]
 export type QueryStateResetValue = null | undefined
 export type QueryState = Record<string, QueryStateValue>
-export type QueryStateMerge = Record<string, QueryStateValue | QueryStateResetValue>
+export type QueryStateMerge = Record<
+  string,
+  QueryStateValue | QueryStateResetValue
+>
 
 export const EMPTY_ARRAY_STRING = '[\u00A0]'
 
@@ -15,11 +18,15 @@ export function stripLeadingHashOrQuestionMark(s: string = '') {
 
 export function parseQueryState(queryString: string): QueryState | null {
   const queryState: QueryState = {}
-  const params = new URLSearchParams(stripLeadingHashOrQuestionMark(queryString))
+  const params = new URLSearchParams(
+    stripLeadingHashOrQuestionMark(queryString)
+  )
 
   params.forEach((value, key) => {
     if (key in queryState.constructor.prototype) {
-      return console.warn(`parseQueryState | invalid key "${key}" will be ignored`)
+      return console.warn(
+        `parseQueryState | invalid key "${key}" will be ignored`
+      )
     }
 
     if (key in queryState) {
@@ -50,7 +57,7 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
 
     if (Array.isArray(value)) {
       if (value.length) {
-        value.forEach(v => {
+        value.forEach((v) => {
           params.append(key, v || '')
         })
       } else {
@@ -65,9 +72,11 @@ export function createMergedQuery(...queryStates: QueryStateMerge[]) {
   return params.toString()
 }
 
-export function toQueryStateValue(value: ValueType | unknown): QueryStateValue | null {
+export function toQueryStateValue(
+  value: ValueType | unknown
+): QueryStateValue | null {
   if (Array.isArray(value)) {
-    return value.map(v => v.toString())
+    return value.map((v) => v.toString())
   } else if (value || value === '' || value === false || value === 0) {
     if (value instanceof Date) {
       return value.toJSON()

@@ -26,11 +26,15 @@ describe('stripLeadingHashOrQuestionMark', () => {
   })
 
   it('should only strip leading hash tag', () => {
-    expect(stripLeadingHashOrQuestionMark('#qwe=rtz#abc?=+')).toBe('qwe=rtz#abc?=+')
+    expect(stripLeadingHashOrQuestionMark('#qwe=rtz#abc?=+')).toBe(
+      'qwe=rtz#abc?=+'
+    )
   })
 
   it('should only strip leading question mark', () => {
-    expect(stripLeadingHashOrQuestionMark('?qwe=rtz#abc?=+[1,2,3]')).toBe('qwe=rtz#abc?=+[1,2,3]')
+    expect(stripLeadingHashOrQuestionMark('?qwe=rtz#abc?=+[1,2,3]')).toBe(
+      'qwe=rtz#abc?=+[1,2,3]'
+    )
   })
 
   it('should handle empty strings', () => {

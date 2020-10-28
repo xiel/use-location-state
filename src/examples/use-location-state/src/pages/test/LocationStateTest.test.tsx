@@ -55,7 +55,9 @@ describe('LocationStateDemo', () => {
     act(() => void fireEvent.click(getByText('name: "Kim", age: 45')))
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
     // set back to default value
-    act(() => void fireEvent.click(getByText('name: "Sarah", age: 25 (default)')))
+    act(
+      () => void fireEvent.click(getByText('name: "Sarah", age: 25 (default)'))
+    )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
@@ -79,7 +81,9 @@ describe('LocationStateDemo', () => {
 
   test('can set date with date field', () => {
     const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
-    fireEvent.change(getByLabelText('date:'), { target: { value: '2019-05-01' } })
+    fireEvent.change(getByLabelText('date:'), {
+      target: { value: '2019-05-01' },
+    })
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 

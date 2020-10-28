@@ -1,7 +1,13 @@
-import { LOCATION_STATE_KEY, LocationStateInterface, LocationStateValue } from 'use-location-state'
+import {
+  LOCATION_STATE_KEY,
+  LocationStateInterface,
+  LocationStateValue,
+} from 'use-location-state'
 import { useRouter } from '../helpers/useRouter'
 
-export function useReactRouterLocationStateInterface(): LocationStateInterface | undefined {
+export function useReactRouterLocationStateInterface():
+  | LocationStateInterface
+  | undefined {
   const router = useRouter()
   const history = router && router.history
 
@@ -12,9 +18,14 @@ export function useReactRouterLocationStateInterface(): LocationStateInterface |
 
   return {
     getLocationState: () => {
-      const historyState = history.location.state as Record<any, LocationStateValue>
+      const historyState = history.location.state as Record<
+        any,
+        LocationStateValue
+      >
       return (
-        (historyState && LOCATION_STATE_KEY in historyState && historyState[LOCATION_STATE_KEY]) ||
+        (historyState &&
+          LOCATION_STATE_KEY in historyState &&
+          historyState[LOCATION_STATE_KEY]) ||
         {}
       )
     },
