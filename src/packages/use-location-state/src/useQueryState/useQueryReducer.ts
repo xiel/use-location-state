@@ -11,7 +11,10 @@ import { useRefLatest } from '../hooks/useRefLatest'
 import { SetLocationStateOptions } from '../useLocationState/useLocationState.types'
 import { Reducer, ReducerAction } from '../types/sharedTypes'
 
-export type QueryDispatch<A> = (value: A, opts?: SetQueryStringOptions) => void
+export type QueryDispatch<A> = (
+  value: A | null,
+  opts?: SetQueryStringOptions
+) => void
 
 const queryStateOptsDefaults: QueryStateOpts = Object.freeze({})
 
@@ -108,6 +111,10 @@ export function useQueryReducer<
         itemName in currentState
           ? parseQueryStateValue(currentState[itemName], defaultValue)
           : defaultValue
+
+      if (action === null) {
+        return resetQueryStateItem(opts)
+      }
 
       const newValue = reducer(currentValue ?? defaultValue, action)
       const newQueryStateValue = toQueryStateValue(newValue)
