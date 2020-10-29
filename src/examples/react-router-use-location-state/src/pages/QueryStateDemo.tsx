@@ -10,10 +10,6 @@ export default function QueryStateDemo() {
   return (
     <div>
       <h2>Intro</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-        architecto, atque, corporis debitis esse.
-      </p>
       <QueryStateDisplay
         queryState={{
           name,
@@ -32,9 +28,11 @@ export default function QueryStateDemo() {
         <button type="button" onClick={() => setName('Sarah')}>
           name: "Sarah" (default value)
         </button>
-        <button type="button" onClick={() => setName(null)}>
-          name: null (default value)
-        </button>
+        {name !== 'Sarah' && (
+          <button type="button" onClick={() => setName(null)}>
+            setName(null)
+          </button>
+        )}
         <label htmlFor="input-name">name:</label>
         <input
           id="input-name"

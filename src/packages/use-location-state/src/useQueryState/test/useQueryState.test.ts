@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import { useQueryState } from '../../use-location-state'
+import { useQueryState } from '../useQueryState'
 import useTestQueryStringInterface from './useTestQueryStringInterface'
 import {
   asyncAct,
@@ -60,5 +60,35 @@ describe('useQueryState', () => {
       expect(b.value).toBe(123)
       unmount()
     })
+  })
+
+  it('should reset query string when null is passed as value', () => {
+    const testQSI = renderHook(() => useTestQueryStringInterface()).result
+      .current
+
+    // put the clashing hooks into the same render test hook (so they always update together)
+    const { result, unmount } = renderHook(() =>
+      useQueryState('name', 'Sarah', {
+        queryStringInterface: testQSI,
+      })
+    )
+
+    const r = unwrapResult(result)
+
+    // expect to get the default values
+    expect(testQSI.getQueryString()).toBe('')
+    expect(r.value).toBe('Sarah')
+
+    // set a value different than the default
+    act(() => void r.setValue('Kim'))
+    expect(r.value).toBe('Kim')
+    expect(testQSI.getQueryString()).toBe('name=Kim')
+
+    // when setting the value to null, we expect to get the default value again, and the query string should be reset
+    act(() => void r.setValue(null))
+    expect(r.value).toBe('Sarah')
+    expect(testQSI.getQueryString()).toBe('')
+
+    unmount()
   })
 })
