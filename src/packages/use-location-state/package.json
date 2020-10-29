@@ -8,9 +8,9 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "query-state-core": "^2.4.0"
+    "query-state-core": "^2.5.0"
   },
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
