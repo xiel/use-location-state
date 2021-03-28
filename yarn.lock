@@ -2572,9 +2572,9 @@
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
 "@types/react-router@^5.0.0":
-  version "5.1.8"
-  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.8.tgz#4614e5ba7559657438e17766bb95ef6ed6acc3fa"
-  integrity sha512-HzOyJb+wFmyEhyfp4D4NYrumi+LQgQL/68HvJO+q6XtuHSDvw6Aqov7sCAhjbNq3bUPgPqbdvjXC5HeB2oEAPg==
+  version "5.1.13"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.13.tgz#051c0d229bd48ad90558a1db500708127cc512f7"
+  integrity sha512-ZIuaO9Yrln54X6elg8q2Ivp6iK6p4syPsefEYAhRDAoqNh48C8VYUmB9RkXjKSQAJSJV0mbIFCX7I4vZDcHrjg==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
