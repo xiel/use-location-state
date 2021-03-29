@@ -16,7 +16,7 @@
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
   "devDependencies": {
-    "@types/react": "^16.8.14",
+    "@types/react": "^17.0.3",
     "@types/react-router": "^5.0.0",
     "react": "^16.9.0",
     "rollup": ">=2.0.0",
