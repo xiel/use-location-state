@@ -56,10 +56,9 @@ describe.each`
 )
 
 it('should warn when used outside of router', () => {
-  const orgWarn = console.warn
-  console.warn = jest.fn()
+  const consoleError = jest.spyOn(console, 'error').mockImplementation()
   const { unmount } = renderHook(() => useQueryState('item', ''))
-  expect(console.warn).toHaveBeenCalledTimes(1)
+  expect(consoleError).toHaveBeenCalledTimes(1)
+  consoleError.mockRestore()
   unmount()
-  console.warn = orgWarn
 })

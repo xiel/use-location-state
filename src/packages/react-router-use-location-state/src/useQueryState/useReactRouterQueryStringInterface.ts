@@ -1,22 +1,22 @@
 import { QueryStringInterface } from 'use-location-state'
-import { useRouter } from '../helpers/useRouter'
+import { useLocation, useNavigate } from 'react-router'
 
 export function useReactRouterQueryStringInterface():
   | QueryStringInterface
   | undefined {
-  const router = useRouter()
-  const history = router && router.history
-
-  if (!history) {
-    console.warn('useRouter - router was not found')
-    return
-  }
+  const location = useLocation()
+  const navigate = useNavigate()
 
   return {
-    getQueryString: () => history.location.search,
+    getQueryString: () => location.search,
     setQueryString: (newQueryString, { method = 'replace' }) => {
-      history[method](
-        `${history.location.pathname}?${newQueryString}${history.location.hash}`
+      navigate(
+        {
+          search: `?${newQueryString}`,
+        },
+        {
+          replace: method === 'replace',
+        }
       )
     },
   }

@@ -49,7 +49,7 @@ describe.each`
 
       // default
       expect(result.error).toBe(undefined)
-      expect(window.history.state).toEqual({})
+      expect(window.history.state).toEqual({ idx: 0 })
       expect(a.value).toEqual(defaultValue)
       expect(b.value).toEqual(defaultValue)
 
@@ -74,9 +74,9 @@ describe.each`
 )
 
 it('should warn when used outside of router', async () => {
-  const warn = jest.spyOn(console, 'warn').mockImplementation()
+  const consoleError = jest.spyOn(console, 'error').mockImplementation()
   const { unmount } = renderHook(() => useLocationState('item', ''))
-  expect(warn).toHaveBeenCalledTimes(1)
-  warn.mockRestore()
-  await act(async () => void unmount())
+  expect(consoleError).toHaveBeenCalledTimes(1)
+  consoleError.mockRestore()
+  unmount()
 })

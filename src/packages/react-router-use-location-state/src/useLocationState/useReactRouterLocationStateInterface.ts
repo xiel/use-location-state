@@ -3,25 +3,17 @@ import {
   LocationStateInterface,
   LocationStateValue,
 } from 'use-location-state'
-import { useRouter } from '../helpers/useRouter'
+import { useLocation, useNavigate } from 'react-router'
 
 export function useReactRouterLocationStateInterface():
   | LocationStateInterface
   | undefined {
-  const router = useRouter()
-  const history = router && router.history
-
-  if (!history) {
-    console.warn('useRouter - router was not found')
-    return
-  }
+  const location = useLocation()
+  const navigate = useNavigate()
 
   return {
     getLocationState: () => {
-      const historyState = history.location.state as Record<
-        any,
-        LocationStateValue
-      >
+      const historyState = location.state as Record<any, LocationStateValue>
       return (
         (historyState &&
           LOCATION_STATE_KEY in historyState &&
@@ -30,13 +22,18 @@ export function useReactRouterLocationStateInterface():
       )
     },
     setLocationState: (nextState, { method = 'replace' }) => {
-      const historyState = history.location.state || {}
+      const historyState = location.state || {}
       const updatedState = {
         ...historyState,
         [LOCATION_STATE_KEY]: nextState,
       }
-      // create current href, history re-routes incorrectly to "/" for ""
-      history[method](history.createHref(history.location), updatedState)
+      navigate(
+        {},
+        {
+          replace: method === 'replace',
+          state: updatedState,
+        }
+      )
     },
   }
 }
