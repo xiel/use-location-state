@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
@@ -13,10 +12,18 @@ export default function App() {
     <div className="page-wrapper">
       <Router>
         <Header />
-        <Route path="/location-state" element={<LocationStateDemo />} />
-        <Route path="/array-demo" element={<ArrayDemo />} />
-        <Route path="/query-reducer" element={<QueryReducerDemo />} />
-        <Route path="/" element={<QueryStateDemo />} />
+        <Route path="/location-state">
+          <LocationStateDemo />
+        </Route>
+        <Route path="/array-demo">
+          <ArrayDemo />
+        </Route>
+        <Route path="/query-reducer">
+          <QueryReducerDemo />
+        </Route>
+        <Route path="/:any">
+          <QueryStateDemo />
+        </Route>
       </Router>
     </div>
   )
