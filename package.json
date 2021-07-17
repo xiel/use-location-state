@@ -40,6 +40,7 @@
     "dev": "yarn build; yarn lerna run dev --parallel",
     "build": "yarn copy:readme; yarn lerna run build",
     "test": "react-scripts test",
+    "lint": "prettier --check 'src/**/*.{js,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,ts,tsx}'",
     "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
   },
