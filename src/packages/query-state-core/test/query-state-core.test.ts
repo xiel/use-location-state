@@ -47,9 +47,9 @@ describe('parseQueryState parses', () => {
 
   it('query string with invalid keys should be ignored', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
-    expect(
-      parseQueryState('toString=true&valid=value&__proto__=true')
-    ).toEqual({ valid: 'value' })
+    expect(parseQueryState('toString=true&valid=value&__proto__=true')).toEqual(
+      { valid: 'value' }
+    )
     expect(warnSpy).toHaveBeenCalledTimes(2)
     warnSpy.mockRestore()
   })

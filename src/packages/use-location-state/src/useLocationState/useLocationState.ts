@@ -15,14 +15,14 @@ export function useLocationState<S>(
       itemName,
       stateReducer,
       undefined,
-      (initialState as unknown) as LazyValueFn<S>,
+      initialState as unknown as LazyValueFn<S>,
       opts
     )
   }
   return useLocationReducer<S, SetStateAction<S>>(
     itemName,
     stateReducer,
-    (initialState as unknown) as S,
+    initialState as unknown as S,
     opts
   )
 }

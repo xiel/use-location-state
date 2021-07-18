@@ -99,12 +99,8 @@ export function useQueryReducer<
   const [, setR] = useState(0)
   const dispatch: QueryDispatch<ReducerAction<R>> = useCallback(
     (action, opts = {}) => {
-      const {
-        activeQSI,
-        defaultValue,
-        mergedQueryStateOpts,
-        reducer,
-      } = ref.current
+      const { activeQSI, defaultValue, mergedQueryStateOpts, reducer } =
+        ref.current
       const { stripDefaults = true } = mergedQueryStateOpts
       const currentState = parseQueryState(activeQSI.getQueryString()) || {}
       const currentValue =
