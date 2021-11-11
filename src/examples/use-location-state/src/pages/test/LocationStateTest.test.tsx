@@ -68,8 +68,8 @@ describe('LocationStateDemo', () => {
   })
 
   test('can set active with checkbox - push', () => {
-    const replaceState = spyOn(window.history, 'replaceState')
-    const pushState = spyOn(window.history, 'pushState')
+    const replaceState = jest.spyOn(window.history, 'replaceState')
+    const pushState = jest.spyOn(window.history, 'pushState')
     const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
     expect(replaceState).toBeCalledTimes(0)
     expect(pushState).toBeCalledTimes(0)
