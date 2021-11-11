@@ -2,8 +2,6 @@ import { act, renderHook } from '@testing-library/react-hooks'
 import { useLocationState } from '../../use-location-state'
 import { unwrapABResult } from 'use-location-state-test-helpers/test-helpers'
 
-const { spyOn } = jest
-
 describe('invalid input defaultValue', () => {
   describe.each`
     defaultValue
@@ -14,7 +12,7 @@ describe('invalid input defaultValue', () => {
       // reset state
       act(() => window.history.replaceState({}, '', ''))
 
-      const replaceState = spyOn(window.history, 'replaceState')
+      const replaceState = jest.spyOn(window.history, 'replaceState')
       const { result, unmount } = renderHook(() =>
         useLocationState('anything', defaultValue)
       )
@@ -41,7 +39,7 @@ describe('invalid value in setter', () => {
     test(`should throw`, async () => {
       // reset state and spy
       act(() => window.history.replaceState({}, '', ''))
-      const warn = spyOn(console, 'warn').mockImplementation()
+      const warn = jest.spyOn(console, 'warn').mockImplementation()
 
       const { result, unmount } = renderHook(() => {
         const a = useLocationState('itemName', 'valid default value')

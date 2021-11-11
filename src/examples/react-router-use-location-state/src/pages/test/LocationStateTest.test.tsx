@@ -2,9 +2,7 @@ import React from 'react'
 import { act, cleanup, fireEvent, render } from '@testing-library/react'
 import LocationStateDemo from '../LocationStateDemo'
 import QueryStateDisplay from '../../components/QueryStateDisplay'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-const location = window.location
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 // reset jest mocked hash
 beforeAll(() => {
@@ -21,7 +19,9 @@ describe('LocationStateDemo', () => {
     expect(
       render(
         <Router>
-          <Route path="/" component={LocationStateDemo} />
+          <Routes>
+            <Route path="/" element={<LocationStateDemo />} />
+          </Routes>
         </Router>
       )
     )
@@ -30,7 +30,9 @@ describe('LocationStateDemo', () => {
   test('can set name with button', () => {
     const { getByText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -50,7 +52,9 @@ describe('LocationStateDemo', () => {
   test('can set name with text field', () => {
     const { getByLabelText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -66,7 +70,9 @@ describe('LocationStateDemo', () => {
   test('can set age with button', () => {
     const { getByText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -84,7 +90,9 @@ describe('LocationStateDemo', () => {
   test('can set age with text field', () => {
     const { getByLabelText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -100,7 +108,9 @@ describe('LocationStateDemo', () => {
   test('can set name & age with button', () => {
     const { getByText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -119,7 +129,9 @@ describe('LocationStateDemo', () => {
   test('can set active with checkbox', () => {
     const { getByLabelText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
@@ -129,18 +141,20 @@ describe('LocationStateDemo', () => {
   })
 
   test('can set active with checkbox - push', () => {
-    const replaceState = spyOn(window.history, 'replaceState')
-    const pushState = spyOn(window.history, 'pushState')
+    const replaceState = jest.spyOn(window.history, 'replaceState')
+    const pushState = jest.spyOn(window.history, 'pushState')
     const { getByLabelText, getByTestId } = render(
       <Router>
-        <Route path="/" component={LocationStateDemo} />
+        <Routes>
+          <Route path="/" element={<LocationStateDemo />} />
+        </Routes>
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
-    expect(replaceState).toBeCalledTimes(0)
+    expect(replaceState).toBeCalledTimes(1)
     expect(pushState).toBeCalledTimes(0)
     fireEvent.click(getByLabelText('active (method: push)'))
-    expect(replaceState).toBeCalledTimes(0)
+    expect(replaceState).toBeCalledTimes(1)
     expect(pushState).toBeCalledTimes(1)
   })
 })
