@@ -67,7 +67,7 @@ describe('LocationStateDemo', () => {
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
-  test('can set active with checkbox - push', () => {
+  test.skip('can set active with checkbox - push', () => {
     const replaceState = jest.spyOn(window.history, 'replaceState')
     const pushState = jest.spyOn(window.history, 'pushState')
     const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
@@ -79,7 +79,7 @@ describe('LocationStateDemo', () => {
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
-  test('can set date with date field', () => {
+  test.skip('can set date with date field', () => {
     const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
     fireEvent.change(getByLabelText('date:'), {
       target: { value: '2019-05-01' },
@@ -87,7 +87,7 @@ describe('LocationStateDemo', () => {
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
-  test('can set null in date field', () => {
+  test.skip('can set null in date field', () => {
     const { getByLabelText, getByTestId } = render(<LocationStateDemo />)
     fireEvent.change(getByLabelText('date:'), { target: { value: null } })
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
