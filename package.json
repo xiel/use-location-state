@@ -9,8 +9,8 @@
   "devDependencies": {
     "@testing-library/react": "^11.1.0",
     "@testing-library/react-hooks": "^7.0.1",
-    "@types/jsdom": "^16.1.0",
     "@types/jest": "^26.0.3",
+    "@types/jsdom": "^16.1.0",
     "@types/react-test-renderer": "^16.9.0",
     "bundlesize": "^0.18.0",
     "codecov": "^3.6.1",
@@ -20,16 +20,16 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
-    "husky": "^4.0.10",
+    "husky": "^7.0.0",
     "lerna": "^4.0.0",
     "prettier": "^2.0.5",
-    "pretty-quick": "^3.1.0",
+    "pretty-quick": "^3.1.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-scripts": "^4.0.3",
     "react-test-renderer": "^16.9.0",
     "rollup": "^2.0.0",
     "rollup-plugin-typescript2": "^0.29.0",
-    "react-scripts": "^4.0.3",
     "tslib": "^2.0.0",
     "typescript": "^4.0.5",
     "use-location-state-test-helpers": "*"
@@ -42,7 +42,8 @@
     "test": "react-scripts test",
     "lint": "prettier --check 'src/**/*.{js,ts,tsx}'",
     "prettier": "prettier --write 'src/**/*.{js,ts,tsx}'",
-    "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/"
+    "copy:readme": "npx copyfiles README.md src/packages/use-location-state/; npx copyfiles README.md src/packages/react-router-use-location-state/",
+    "prepare": "husky install"
   },
   "version": "0.0.0-development",
   "repository": {
@@ -60,11 +61,6 @@
       "maxSize": "5 kB"
     }
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jx,tsx,ts}",
