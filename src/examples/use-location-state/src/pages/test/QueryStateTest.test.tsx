@@ -11,6 +11,9 @@ beforeAll(() => {
 })
 
 afterEach(() => {
+  // Restore all spyOn mocks
+  jest.restoreAllMocks()
+
   cleanup()
   location.hash = ''
 })
@@ -105,7 +108,7 @@ describe('QueryStateDemo', () => {
     expect(pushState).toHaveBeenCalledWith(undefined, '', '#active=true')
   })
 
-  test.skip('can set date with date field', () => {
+  test('can set date with date field', () => {
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
     fireEvent.change(getByLabelText('date:'), {
@@ -114,7 +117,7 @@ describe('QueryStateDemo', () => {
     expect(location.hash).toEqual('#date=2019-05-01T00%3A00%3A00.000Z')
   })
 
-  test.skip('can reset date with date field', () => {
+  test('can reset date with date field', () => {
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation()
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
