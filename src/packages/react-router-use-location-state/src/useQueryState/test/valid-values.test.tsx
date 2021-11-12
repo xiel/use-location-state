@@ -54,12 +54,3 @@ describe.each`
     })
   }
 )
-
-it('should warn when used outside of router', () => {
-  const orgWarn = console.warn
-  console.warn = jest.fn()
-  const { unmount } = renderHook(() => useQueryState('item', ''))
-  expect(console.warn).toHaveBeenCalledTimes(1)
-  unmount()
-  console.warn = orgWarn
-})
