@@ -1,6 +1,6 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render } from '@testing-library/react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ArrayDemo from '../ArrayDemo'
 
 const location = window.location
@@ -20,7 +20,9 @@ describe('ArrayDemo', () => {
     expect(
       render(
         <Router>
-          <Route path="/" component={ArrayDemo} />
+          <Routes>
+            <Route path="/" element={<ArrayDemo />} />
+          </Routes>
         </Router>
       )
     )
@@ -29,7 +31,9 @@ describe('ArrayDemo', () => {
   test('can enable tag using button', async () => {
     const { getByLabelText } = render(
       <Router>
-        <Route path="/" component={ArrayDemo} />
+        <Routes>
+          <Route path="/" element={<ArrayDemo />} />
+        </Routes>
       </Router>
     )
     expect(location.search).toEqual('')

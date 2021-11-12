@@ -11,6 +11,9 @@ beforeAll(() => {
 })
 
 afterEach(() => {
+  // Restore all spyOn mocks
+  jest.restoreAllMocks()
+
   cleanup()
   location.hash = ''
 })
@@ -93,8 +96,8 @@ describe('QueryStateDemo', () => {
   })
 
   test('can set active with checkbox - push', () => {
-    const replaceState = spyOn(window.history, 'replaceState')
-    const pushState = spyOn(window.history, 'pushState')
+    const replaceState = jest.spyOn(window.history, 'replaceState')
+    const pushState = jest.spyOn(window.history, 'pushState')
     const { getByLabelText } = render(<QueryStateDemo />)
     expect(location.hash).toEqual('')
     expect(replaceState).toBeCalledTimes(0)

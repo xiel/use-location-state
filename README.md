@@ -139,14 +139,17 @@ In case you want use [`location.search`](https://developer.mozilla.org/en-US/doc
 We plan to provide clean and easy-to-use integrations for all popular routers.
 At the moment we provide integrations for:
 
-### react-router (react-router@^5.0.0)
+### react-router (react-router@^6.0.0)
 
 ```bash
 yarn add react-router-use-location-state
 ```
 
 ```javascript
-import { useLocationState, useQueryState } from 'react-router-use-location-state'
+import {
+  useLocationState,
+  useQueryState,
+} from 'react-router-use-location-state'
 ```
 
 Usage works the same as described above, except that the URL will look like this now:

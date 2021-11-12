@@ -1,27 +1,27 @@
 import {
   LOCATION_STATE_KEY,
+  LocationState,
   LocationStateInterface,
   LocationStateValue,
 } from 'use-location-state'
-import { useRouter } from '../helpers/useRouter'
+import { useLocation, useNavigate } from 'react-router'
+
+// Needed for updates that happen right after each other (sync) as we do not have access to the latest history ref (since react router v6)
+let virtualState: LocationState | null = null
 
 export function useReactRouterLocationStateInterface():
   | LocationStateInterface
   | undefined {
-  const router = useRouter()
-  const history = router && router.history
+  const location = useLocation()
+  const navigate = useNavigate()
 
-  if (!history) {
-    console.warn('useRouter - router was not found')
-    return
-  }
+  // Use the real one again as soon as location changes and update was incorporated
+  virtualState = null
 
   return {
     getLocationState: () => {
-      const historyState = history.location.state as Record<
-        any,
-        LocationStateValue
-      >
+      const historyState =
+        virtualState || (location.state as Record<any, LocationStateValue>)
       return (
         (historyState &&
           LOCATION_STATE_KEY in historyState &&
@@ -30,13 +30,18 @@ export function useReactRouterLocationStateInterface():
       )
     },
     setLocationState: (nextState, { method = 'replace' }) => {
-      const historyState = history.location.state || {}
+      const historyState = location.state || {}
       const updatedState = {
         ...historyState,
         [LOCATION_STATE_KEY]: nextState,
       }
-      // create current href, history re-routes incorrectly to "/" for ""
-      history[method](history.createHref(history.location), updatedState)
+
+      navigate(location, {
+        state: updatedState,
+        replace: method === 'replace',
+      })
+
+      virtualState = updatedState
     },
   }
 }

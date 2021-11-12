@@ -31,7 +31,7 @@ exports[`LocationStateDemo can set age with button 1`] = `
   data-testid="pre-query-state"
 >
   {
- "name": "Mila",
+ "name": "Sarah",
  "age": 30,
  "active": false,
  "date": "2019-01-01T00:00:00.000Z"
@@ -44,7 +44,7 @@ exports[`LocationStateDemo can set age with button 2`] = `
   data-testid="pre-query-state"
 >
   {
- "name": "Mila",
+ "name": "Sarah",
  "age": 45,
  "active": false,
  "date": "2019-01-01T00:00:00.000Z"
@@ -57,7 +57,7 @@ exports[`LocationStateDemo can set age with button 3`] = `
   data-testid="pre-query-state"
 >
   {
- "name": "Mila",
+ "name": "Sarah",
  "age": 25,
  "active": false,
  "date": "2019-01-01T00:00:00.000Z"
@@ -70,7 +70,7 @@ exports[`LocationStateDemo can set age with text field 1`] = `
   data-testid="pre-query-state"
 >
   {
- "name": "Mila",
+ "name": "Sarah",
  "age": 33,
  "active": false,
  "date": "2019-01-01T00:00:00.000Z"
@@ -85,7 +85,7 @@ exports[`LocationStateDemo can set date with date field 1`] = `
   {
  "name": "Sarah",
  "age": 25,
- "active": true,
+ "active": false,
  "date": "2019-05-01T00:00:00.000Z"
 }
 </pre>
@@ -169,6 +169,19 @@ exports[`LocationStateDemo can set name with button 3`] = `
 </pre>
 `;
 
+exports[`LocationStateDemo can set name with text field 1`] = `
+<pre
+  data-testid="pre-query-state"
+>
+  {
+ "name": "Mila",
+ "age": 25,
+ "active": false,
+ "date": "2019-01-01T00:00:00.000Z"
+}
+</pre>
+`;
+
 exports[`LocationStateDemo can set null in date field 1`] = `
 <pre
   data-testid="pre-query-state"
@@ -176,7 +189,7 @@ exports[`LocationStateDemo can set null in date field 1`] = `
   {
  "name": "Sarah",
  "age": 25,
- "active": true,
+ "active": false,
  "date": null
 }
 </pre>
@@ -189,7 +202,7 @@ exports[`LocationStateDemo can set null in date field 2`] = `
   {
  "name": "Sarah",
  "age": 25,
- "active": true,
+ "active": false,
  "date": null
 }
 </pre>
