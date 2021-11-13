@@ -1,6 +1,6 @@
 {
   "name": "react-router-use-location-state-example",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0",
   "private": true,
   "devDependencies": {
     "@types/react": "^16.8.8",
@@ -16,7 +16,7 @@
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^6.0.2",
-    "react-router-use-location-state": "^3.0.0-alpha.0"
+    "react-router-use-location-state": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
