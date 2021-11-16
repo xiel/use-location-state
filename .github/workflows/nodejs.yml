@@ -22,7 +22,9 @@ jobs:
           yarn build
           yarn test --silent --coverage
           yarn lint
-          npx codecov -t ${{ secrets.CODECOV_GITHUB_TOKEN }}
+          curl -Os https://uploader.codecov.io/latest/linux/codecov 
+          chmod +x codecov
+          ./codecov -t ${{ secrets.CODECOV_GITHUB_TOKEN }}
           npx bundlesize
         env:
           CI: true
