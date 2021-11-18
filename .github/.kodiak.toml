@@ -6,3 +6,8 @@ version = 1
 # automerge label. This option only applies when `merge.require_automerge_label`
 # is enabled.
 notify_on_conflict = false # default: true
+
+[update]
+# When a pull request's author matches update.ignored_usernames, Kodiak will never update the pull request, unless update.autoupdate_label is applied to the pull request.
+# If the user is a bot user, remove the [bot] suffix from their username. So instead of dependabot-preview[bot], use dependabot-preview.
+ignored_usernames = ["dependabot"]
