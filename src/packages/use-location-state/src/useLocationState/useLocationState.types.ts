@@ -12,6 +12,11 @@ export type LocationStateValue<K = unknown> =
 
 export type LocationState = Record<string, LocationStateValue>
 
+export type GlobalLocationState = {
+  [LOCATION_STATE_KEY]: LocationState
+  [key: string]: unknown
+}
+
 export type LocationStateOpts = {
   locationStateInterface?: LocationStateInterface
 }

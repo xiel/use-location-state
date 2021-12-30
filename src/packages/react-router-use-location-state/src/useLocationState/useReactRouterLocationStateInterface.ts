@@ -1,13 +1,12 @@
 import {
+  GlobalLocationState,
   LOCATION_STATE_KEY,
-  LocationState,
   LocationStateInterface,
-  LocationStateValue,
 } from 'use-location-state'
 import { useLocation, useNavigate } from 'react-router'
 
 // Needed for updates that happen right after each other (sync) as we do not have access to the latest history ref (since react router v6)
-let virtualState: LocationState | null = null
+let virtualState: GlobalLocationState | null = null
 
 export function useReactRouterLocationStateInterface():
   | LocationStateInterface
@@ -21,7 +20,7 @@ export function useReactRouterLocationStateInterface():
   return {
     getLocationState: () => {
       const historyState =
-        virtualState || (location.state as Record<any, LocationStateValue>)
+        virtualState || (location.state as GlobalLocationState)
       return (
         (historyState &&
           LOCATION_STATE_KEY in historyState &&
@@ -30,7 +29,7 @@ export function useReactRouterLocationStateInterface():
       )
     },
     setLocationState: (nextState, { method = 'replace' }) => {
-      const historyState = location.state || {}
+      const historyState = (location.state || {}) as GlobalLocationState
       const updatedState = {
         ...historyState,
         [LOCATION_STATE_KEY]: nextState,
