@@ -9,9 +9,9 @@
     "react-router": "^6.0.2"
   },
   "dependencies": {
-    "use-location-state": "^3.0.0"
+    "use-location-state": "^3.0.1"
   },
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
