@@ -5,7 +5,7 @@
   "types": "dist/use-location-state.d.ts",
   "description": "react hook to the browsers location query state",
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^17.0.2"
   },
   "dependencies": {
     "query-state-core": "^3.0.0"
@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^17.0.5",
-    "react": "^16.9.0",
+    "react": "^17.0.2",
     "rollup": ">=2.0.0",
     "rollup-plugin-typescript2": ">=0.26.0",
     "tslib": "*",
