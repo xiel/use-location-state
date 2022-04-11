@@ -8,7 +8,7 @@
   ],
   "devDependencies": {
     "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/react-hooks": "^8.0.0",
     "@types/jest": "^27.0.3",
     "@types/jsdom": "^16.1.0",
     "@types/react-test-renderer": "^17.0.1",
