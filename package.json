@@ -11,7 +11,7 @@
     "@testing-library/react-hooks": "^8.0.0",
     "@types/jest": "^27.0.3",
     "@types/jsdom": "^16.1.0",
-    "@types/react-test-renderer": "^17.0.1",
+    "@types/react-test-renderer": "^18.0.0",
     "bundlesize": "^0.18.0",
     "codecov": "^3.6.1",
     "commitizen": "^4.0.3",
