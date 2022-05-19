@@ -23,7 +23,7 @@ store and retrieve state into/from the browsers [location history](https://devel
   - handles stringification and parsing from query string of for supported value types
   - invalid entries from the query string are discarded and the component will receive the defaultValue instead
 
-<img style="display: block; margin: auto;" src="https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500" />
+<img alt="" style="display: block; margin: auto;" src="https://repository-images.githubusercontent.com/182417896/058a9d00-e2e1-11e9-8467-8923219ec500" />
 
 ## Installation
 
@@ -76,7 +76,7 @@ setValue('different value')
 
 After calling the update function `setValue()` with a new value, the state will be saved withing the query string of the browser, so that the new state is reproducable after reloads or history navigation (using forward / back button) or by loading the same URL anywhere else.
 
-```javascript
+```
 http://localhost:3000/#itemName=different+value
 ```
 
@@ -111,7 +111,7 @@ function MyComponent() {
 }
 ```
 
-<a href="https://codesandbox.io/embed/zqm4o19yrx">
+<a href="https://codesandbox.io/s/use-location-state-demo-49n1kw">
   <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
 </a>
 
@@ -154,7 +154,7 @@ import {
 
 Usage works the same as described above, except that the URL will look like this now:
 
-```javascript
+```
 http://localhost:3000/?itemName=different+value
 ```
 
