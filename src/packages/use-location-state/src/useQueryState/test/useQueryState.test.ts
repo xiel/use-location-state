@@ -91,4 +91,33 @@ describe('useQueryState', () => {
 
     unmount()
   })
+
+  it('should update value if defaultValue changes', () => {
+    const testQSI = renderHook(() => useTestQueryStringInterface()).result
+      .current
+
+    // put the clashing hooks into the same render test hook (so they always update together)
+    const { result, rerender, unmount } = renderHook(
+      (defaultValue) =>
+        useQueryState('name', defaultValue, {
+          queryStringInterface: testQSI,
+        }),
+      { initialProps: 'Foo' }
+    )
+
+    const r = unwrapResult(result)
+
+    // expect to get the default values
+    expect(testQSI.getQueryString()).toBe('')
+    expect(r.value).toBe('Foo')
+
+    // update the default value
+    rerender('Bar')
+    // act(() => void r.setValue('Kim'))
+
+    expect(testQSI.getQueryString()).toBe('')
+    expect(r.value).toBe('Bar')
+
+    unmount()
+  })
 })

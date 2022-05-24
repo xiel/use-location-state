@@ -1,5 +1,5 @@
 import { QueryStateOpts, SetQueryStringOptions } from './useQueryState.types'
-import { ReducerState, useCallback, useMemo, useState } from 'react'
+import { ReducerState, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   createMergedQuery,
   parseQueryState,
@@ -62,12 +62,22 @@ export function useQueryReducer<
   )
   const activeQSI = queryStringInterface || hashQSI
 
-  // itemName & defaultValue is not allowed to be changed after init
-  const [defaultValue] = useState<ReducerState<R>>(() =>
+  // itemName is not allowed to be changed after init
+  const [defaultValue, setDefaultValue] = useState<ReducerState<R>>(() =>
     initStateFnOrOpts && typeof initStateFnOrOpts === 'function'
       ? initStateFnOrOpts(initialStateOrInitialArg as InitialArg)
       : (initialStateOrInitialArg as ReducerState<R>)
   )
+
+  // Update the default value if the initState/function changes
+  useEffect(() => {
+    const newDefaultValue =
+      initStateFnOrOpts && typeof initStateFnOrOpts === 'function'
+        ? initStateFnOrOpts(initialStateOrInitialArg as InitialArg)
+        : (initialStateOrInitialArg as ReducerState<R>)
+
+    setDefaultValue(newDefaultValue)
+  }, [initStateFnOrOpts, initialStateOrInitialArg])
 
   const defaultQueryStateValue = useMemo(
     () => toQueryStateValue(defaultValue),
