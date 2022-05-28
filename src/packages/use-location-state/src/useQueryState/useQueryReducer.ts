@@ -5,6 +5,7 @@ import {
   parseQueryState,
   parseQueryStateValue,
   toQueryStateValue,
+  ValueType,
 } from 'query-state-core'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { useRefLatest } from '../hooks/useRefLatest'
@@ -18,19 +19,14 @@ export type QueryDispatch<A> = (
 
 const queryStateOptsDefaults: QueryStateOpts = Object.freeze({})
 
-export function useQueryReducer<
-  R extends Reducer<ReducerState<R>, ReducerAction<R>>
->(
+export function useQueryReducer<R extends Reducer<ValueType, any>>(
   itemName: string,
   reducer: R,
   initialState: ReducerState<R>,
   queryStateOpts?: QueryStateOpts
 ): [ReducerState<R>, QueryDispatch<ReducerAction<R>>]
 
-export function useQueryReducer<
-  R extends Reducer<ReducerState<R>, ReducerAction<R>>,
-  InitialArg
->(
+export function useQueryReducer<R extends Reducer<ValueType, any>, InitialArg>(
   itemName: string,
   reducer: R,
   initialArg: InitialArg,
@@ -38,10 +34,7 @@ export function useQueryReducer<
   queryStateOpts?: QueryStateOpts
 ): [ReducerState<R>, QueryDispatch<ReducerAction<R>>]
 
-export function useQueryReducer<
-  R extends Reducer<ReducerState<R>, ReducerAction<R>>,
-  InitialArg
->(
+export function useQueryReducer<R extends Reducer<ValueType, any>, InitialArg>(
   itemName: string,
   reducer: R,
   initialStateOrInitialArg: ReducerState<R> | InitialArg,
