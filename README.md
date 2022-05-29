@@ -44,6 +44,10 @@ const [commentText, setCommentText] = useLocationState('commentText', '')
 const [priceMax, setPriceMax] = useQueryState('priceMax', 30)
 ```
 
+The `defaultValue` works as a fallback and is returned when there is no value in the query or location state for this parameter.
+
+The `defaultValue` can not be changed after the first render, so that same url always provides the same state.
+
 ### useLocationState()
 
 `useLocationState()` is perfect, when you want to store a state that should not be reflected in the URL or in case of a complex data structure like a nested object/array.
