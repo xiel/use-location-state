@@ -5,6 +5,7 @@ import {
   parseQueryState,
   parseQueryStateValue,
   toQueryStateValue,
+  ValueType,
 } from 'query-state-core'
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { useRefLatest } from '../hooks/useRefLatest'
@@ -69,12 +70,7 @@ export function useQueryReducer<
       : (initialStateOrInitialArg as ReducerState<R>)
   )
 
-  const defaultQueryStateValue = useMemo(
-    () => toQueryStateValue(defaultValue),
-    [defaultValue]
-  )
-
-  if (defaultQueryStateValue === null) {
+  if (!useIsValidQueryStateValue(defaultValue)) {
     throw new Error('unsupported defaultValue')
   }
 
@@ -160,6 +156,14 @@ export function useQueryReducer<
       : defaultValue) ?? defaultValue
 
   return [currentValue, dispatch]
+}
+
+function useIsValidQueryStateValue(value: unknown): value is ValueType {
+  const defaultQueryStateValue = useMemo(
+    () => toQueryStateValue(value),
+    [value]
+  )
+  return defaultQueryStateValue !== null
 }
 
 function sameAsJsonString(compareValueA: any, compareValueB: any) {
