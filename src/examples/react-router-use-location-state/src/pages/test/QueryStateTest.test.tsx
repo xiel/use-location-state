@@ -156,10 +156,11 @@ describe('QueryStateDemo', () => {
       </Router>
     )
     expect(location.search).toEqual('')
-    expect(replaceState).toBeCalledTimes(1)
+    const replaceStateCalls = replaceState.mock.calls.length
+    expect(replaceState).toBeCalledTimes(replaceStateCalls)
     expect(pushState).toBeCalledTimes(0)
     fireEvent.click(getByLabelText('active (method: push)'))
-    expect(replaceState).toBeCalledTimes(1)
+    expect(replaceState).toBeCalledTimes(replaceStateCalls)
     expect(pushState).toBeCalledTimes(1)
     expect(pushState).toHaveBeenCalledWith(
       expect.anything(),
