@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
-import { useNextQueryState } from '../hooks/useNextQueryState'
+import { useQueryState } from 'use-location-state/next'
 
 export default memo(function NamesList() {
-  const [names] = useNextQueryState('names', [])
+  const [names] = useQueryState('names', [])
 
   return (
     <ul>

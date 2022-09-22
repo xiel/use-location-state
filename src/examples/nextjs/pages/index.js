@@ -3,15 +3,13 @@ import React from 'react'
 
 import NamesList from '../components/NamesList'
 import AddName from '../components/AddName'
-import { useNextQueryState } from '../hooks/useNextQueryState'
+import { useQueryState } from 'use-location-state/next'
 
 // give SSR as access to query parameter (otherwise react hydration warning)
-export async function getServerSideProps(props) {
-  return { props: {} }
-}
+export { getServerSideProps } from 'use-location-state/next'
 
 export default function IndexPage() {
-  const [count, setCount] = useNextQueryState('count', 0)
+  const [count, setCount] = useQueryState('count', 0)
 
   return (
     <div>
