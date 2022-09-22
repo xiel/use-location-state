@@ -49,9 +49,7 @@ describe.each`
 
       // default
       expect(result.error).toBe(undefined)
-      expect(window.history.state).toEqual({
-        idx: 0,
-      })
+      expect(window.history.state).toEqual({})
       expect(a.value).toEqual(defaultValue)
       expect(b.value).toEqual(defaultValue)
 
