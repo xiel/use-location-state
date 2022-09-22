@@ -2,6 +2,7 @@
   "extends": ["eslint:recommended", "react-app", "plugin:prettier/recommended"],
   "rules": {
     "react/self-closing-comp": ["error", { "component": true, "html": true }],
-    "react/jsx-boolean-value": "error"
+    "react/jsx-boolean-value": "error",
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }
