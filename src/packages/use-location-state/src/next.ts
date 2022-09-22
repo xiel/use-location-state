@@ -39,7 +39,7 @@ export function useQueryReducer<R extends Reducer<any, any>>(
 
 /**
  * Empty getServerSideProps to give server-side router access to query
- * This fixes hydration warnings e.g. Warning: Text content did not match. Server: "0" Client: "6"
+ * This fixes hydration warnings e.g. Warning: Text content did not match. Server: "xzy" Client: "abc"
  */
 export async function getServerSideProps<P = unknown>(props: P) {
   return { props: {} }

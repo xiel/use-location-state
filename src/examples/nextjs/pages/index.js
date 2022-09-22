@@ -5,7 +5,7 @@ import NamesList from '../components/NamesList'
 import AddName from '../components/AddName'
 import { useQueryState } from 'use-location-state/next'
 
-// give SSR as access to query parameter (otherwise react hydration warning)
+// Give SSR as access to query parameter (otherwise react logs a hydration mismatch warning)
 export { getServerSideProps } from 'use-location-state/next'
 
 export default function IndexPage() {

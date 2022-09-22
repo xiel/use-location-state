@@ -34,7 +34,10 @@
     "typescript": "*"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts",
+    "next.d.ts",
+    "next.js"
   ],
   "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {
