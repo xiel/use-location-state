@@ -15,6 +15,9 @@ afterEach(() => {
 })
 
 describe('LocationStateDemo', () => {
+  const replaceState = jest.spyOn(window.history, 'replaceState')
+  const pushState = jest.spyOn(window.history, 'pushState')
+
   test('LocationStateDemo renders without crash/loop', () => {
     expect(
       render(
@@ -136,13 +139,11 @@ describe('LocationStateDemo', () => {
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
 
-    fireEvent.click(getByLabelText('active'))
+    act(() => void fireEvent.click(getByLabelText('active')))
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
   })
 
   test('can set active with checkbox - push', () => {
-    const replaceState = jest.spyOn(window.history, 'replaceState')
-    const pushState = jest.spyOn(window.history, 'pushState')
     const { getByLabelText, getByTestId } = render(
       <Router>
         <Routes>
@@ -151,10 +152,13 @@ describe('LocationStateDemo', () => {
       </Router>
     )
     expect(getByTestId('pre-query-state')).toMatchSnapshot()
-    expect(replaceState).toBeCalledTimes(1)
+    const replaceStateCalls = replaceState.mock.calls.length
+    expect(replaceState).toBeCalledTimes(replaceStateCalls)
     expect(pushState).toBeCalledTimes(0)
-    fireEvent.click(getByLabelText('active (method: push)'))
-    expect(replaceState).toBeCalledTimes(1)
+
+    act(() => void fireEvent.click(getByLabelText('active (method: push)')))
+
+    expect(replaceState).toBeCalledTimes(replaceStateCalls)
     expect(pushState).toBeCalledTimes(1)
   })
 })
