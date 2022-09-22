@@ -69,5 +69,6 @@
       "!**/build/**",
       "!**/*.config.{js,jx,tsx,ts}"
     ]
-  }
+  },
+  "dependencies": {}
 }
