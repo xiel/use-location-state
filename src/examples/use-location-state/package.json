@@ -1,6 +1,6 @@
 {
   "name": "01-simple",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "private": true,
   "devDependencies": {
     "@types/react": "^16.8.8",
@@ -15,7 +15,7 @@
     "react": "^17.0.2",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^17.0.2",
-    "use-location-state": "^3.1.0"
+    "use-location-state": "^3.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
