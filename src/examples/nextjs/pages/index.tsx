@@ -4,7 +4,8 @@ import { useQueryState } from 'use-location-state/next'
 import NamesList from '../components/NamesList'
 import AddName from '../components/AddName'
 
-// Give SSR as access to query parameter (otherwise react logs a hydration mismatch warning)
+// Page must be server rendered otherwise React warns about a hydration mismatch
+// You can use your own getServerSideProps function or use this empty one
 export { getServerSideProps } from 'use-location-state/next'
 
 export default function IndexPage() {

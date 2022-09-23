@@ -6,6 +6,7 @@ import {
   QueryStateOpts,
   QueryStringInterface,
 } from './useQueryState/useQueryState.types'
+import { GetServerSideProps } from 'next'
 export * from './useLocationState/useLocationState'
 
 const useNextRouterQueryStringInterface = (): QueryStringInterface => {
@@ -38,9 +39,9 @@ export function useQueryReducer<R extends Reducer<any, any>>(
 }
 
 /**
- * Empty getServerSideProps to give server-side router access to query
+ * Empty getServerSideProps to trigger server-side rendering and give router access to query. (static rendered pages may not rely on query)
  * This fixes hydration warnings e.g. Warning: Text content did not match. Server: "xzy" Client: "abc"
  */
-export async function getServerSideProps<P = unknown>(props: P) {
+export const getServerSideProps: GetServerSideProps = async () => {
   return { props: {} }
 }
