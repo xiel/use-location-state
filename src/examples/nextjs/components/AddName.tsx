@@ -21,6 +21,7 @@ export default function AddName() {
           type="text"
           value={name}
           onChange={(e) => nameSet(e.target.value)}
+          required
         />
       </label>
       <button>add name</button>
