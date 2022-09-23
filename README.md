@@ -160,6 +160,10 @@ export default function Page() {
 
 [1] Page must be server rendered (SRR), otherwise React warns about a hydration mismatch, when your initial rendering depends on the query state. Export your own `getServerSideProps` function or the provided empty one.
 
+<a href="https://codesandbox.io/s/github/xiel/use-location-state/tree/master/src/examples/nextjs?file=/pages/index.tsx">
+  <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
+
 ### react-router (react-router@^6.0.0)
 
 Install & import the package for react-router
