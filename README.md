@@ -143,7 +143,30 @@ In case you want use [`location.search`](https://developer.mozilla.org/en-US/doc
 We plan to provide clean and easy-to-use integrations for all popular routers.
 At the moment we provide integrations for:
 
+### Next.js
+
+Import from `use-location-state/next` to use the router build into Next.js, which enables you to use the query state also during **SSR**.
+
+```javascript
+import { useQueryState } from 'use-location-state/next'
+
+export { getServerSideProps } from 'use-location-state/next' // [1]
+
+export default function Page() {
+  const [count, setCount] = useQueryState('count', 0)
+  //...
+}
+```
+
+[1] Page must be server rendered (SRR), otherwise React warns about a hydration mismatch, when your initial rendering depends on the query state. Export your own `getServerSideProps` function or the provided empty one.
+
+<a href="https://codesandbox.io/s/github/xiel/use-location-state/tree/master/src/examples/nextjs?file=/pages/index.tsx">
+  <img width="150" alt="Example in CodeSandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+</a>
+
 ### react-router (react-router@^6.0.0)
+
+Install & import the package for react-router
 
 ```bash
 yarn add react-router-use-location-state

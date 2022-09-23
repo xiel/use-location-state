@@ -4,8 +4,19 @@
   "module": "dist/use-location-state.esm.js",
   "types": "dist/use-location-state.d.ts",
   "description": "react hook to the browsers location query state",
+  "exports": {
+    ".": {
+      "import": "dist/use-location-state.esm.js",
+      "default": "dist/use-location-state.cjs.js"
+    },
+    "./next": {
+      "import": "dist/next.esm.js",
+      "default": "dist/next.cjs.js"
+    }
+  },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.2"
+    "react": "^16.8.0 || ^17.0.2 || ^18.0.0",
+    "next": "*"
   },
   "dependencies": {
     "query-state-core": "^3.0.0"
@@ -19,11 +30,15 @@
     "react": "^17.0.2",
     "rollup": ">=2.0.0",
     "rollup-plugin-typescript2": ">=0.26.0",
+    "next-router-mock": "^0.7.4",
     "tslib": "*",
     "typescript": "*"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts",
+    "next.d.ts",
+    "next.js"
   ],
   "repository": "git+https://github.com/xiel/use-location-state.git",
   "scripts": {

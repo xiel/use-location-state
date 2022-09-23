@@ -8,7 +8,7 @@ build
 yarn-error.log
 react-app-env.d.ts
 coverage
-*.js
 src/packages/use-location-state/README.md
 src/packages/react-router-use-location-state/README.md
 /report.*.json
+.next/

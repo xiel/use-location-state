@@ -27,6 +27,21 @@ export default [
       { file: pkg.module, format: 'es' },
     ],
   },
+  {
+    input: `src/next.ts`,
+    external: [
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
+      'next/router',
+    ],
+    plugins: [
+      typescript(typescriptPluginOptions), // so Rollup can convert TypeScript to JavaScript
+    ],
+    output: [
+      { file: 'dist/next.cjs.js', format: 'cjs' },
+      { file: 'dist/next.esm.js', format: 'es' },
+    ],
+  },
 ]
 
 // rollup config with typescript was adopted from:
