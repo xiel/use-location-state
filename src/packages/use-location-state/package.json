@@ -6,12 +6,14 @@
   "description": "react hook to the browsers location query state",
   "exports": {
     ".": {
-      "import": "dist/use-location-state.esm.js",
-      "default": "dist/use-location-state.cjs.js"
+      "import": "./dist/use-location-state.esm.js",
+      "types": "./dist/use-location-state.d.ts",
+      "default": "./dist/use-location-state.cjs.js"
     },
     "./next": {
-      "import": "dist/next.esm.js",
-      "default": "dist/next.cjs.js"
+      "import": "./dist/next.esm.js",
+      "types": "./dist/next.d.ts",
+      "default": "./dist/next.cjs.js"
     }
   },
   "peerDependencies": {
