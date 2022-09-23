@@ -15,22 +15,22 @@
     }
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.2 || ^18.0.0",
-    "next": "*"
+    "next": "*",
+    "react": "^16.8.0 || ^17.0.2 || ^18.0.0"
   },
   "dependencies": {
-    "query-state-core": "^3.0.0"
+    "query-state-core": "^3.1.0"
   },
-  "version": "3.0.2",
+  "version": "3.1.0",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
   "devDependencies": {
     "@types/react": "^17.0.5",
+    "next-router-mock": "^0.7.4",
     "react": "^17.0.2",
     "rollup": ">=2.0.0",
     "rollup-plugin-typescript2": ">=0.26.0",
-    "next-router-mock": "^0.7.4",
     "tslib": "*",
     "typescript": "*"
   },
