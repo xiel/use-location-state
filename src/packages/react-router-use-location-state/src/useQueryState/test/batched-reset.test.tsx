@@ -105,14 +105,12 @@ function resetReactRouter() {
     () => {
       const navigate = useNavigate()
 
-      useEffect(
-        () =>
-          navigate({
-            pathname: '',
-            search: '',
-          }),
-        [navigate]
-      )
+      useEffect(() => {
+        navigate({
+          pathname: '',
+          search: '',
+        })
+      }, [navigate])
     },
     { wrapper }
   )
