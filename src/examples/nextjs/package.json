@@ -1,7 +1,7 @@
 {
   "name": "use-location-state-next-demo",
   "private": true,
-  "version": "3.1.1",
+  "version": "3.1.2",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -14,7 +14,7 @@
     "prettier": "^2.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "use-location-state": "^3.1.1"
+    "use-location-state": "^3.1.2"
   },
   "license": "ISC"
 }

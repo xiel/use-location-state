@@ -17,14 +17,14 @@
     }
   },
   "peerDependencies": {
+    "@types/react": "^16.8.0 || ^17.0.2 || ^18.0.0",
     "next": "*",
-    "react": "^16.8.0 || ^17.0.2 || ^18.0.0",
-    "@types/react": "^16.8.0 || ^17.0.2 || ^18.0.0"
+    "react": "^16.8.0 || ^17.0.2 || ^18.0.0"
   },
   "dependencies": {
     "query-state-core": "^3.1.0"
   },
-  "version": "3.1.1",
+  "version": "3.1.2",
   "author": "Felix Leupold <felix@xiel.de>",
   "homepage": "https://github.com/xiel/use-location-state",
   "license": "MIT",
