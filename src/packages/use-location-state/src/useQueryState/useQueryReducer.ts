@@ -1,5 +1,5 @@
 import { QueryStateOpts, SetQueryStringOptions } from './useQueryState.types'
-import { ReducerState, useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import {
   createMergedQuery,
   parseQueryState,
@@ -10,7 +10,7 @@ import {
 import { useHashQueryStringInterface } from './useHashQueryStringInterface'
 import { useRefLatest } from '../hooks/useRefLatest'
 import { SetLocationStateOptions } from '../useLocationState/useLocationState.types'
-import { Reducer, ReducerAction } from '../types/sharedTypes'
+import { Reducer, ReducerAction, ReducerState } from '../types/sharedTypes'
 
 export type QueryDispatch<A> = (
   value: A | null,
