@@ -9,7 +9,7 @@ import {
 import mockRouter from 'next-router-mock'
 import { useRouter } from 'next/router'
 
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { BrowserRouter as wrapper } from 'react-router-dom'
 
 jest.mock('next/router', () => require('next-router-mock'))
@@ -42,7 +42,7 @@ describe.each`
       mockRouter.setCurrentUrl('')
     })
 
-    test(`should return default value and set newValue successfully`, () => {
+    test(`should return default value and set newValue successfully`, async () => {
       const { result, unmount } = renderHook(() => {
         routerAsPath = useRouter().asPath
 
@@ -61,13 +61,13 @@ describe.each`
       expect(routerAsPath).toEqual('')
       expect(r.value).toEqual(defaultValue)
       // new value
-      act(() => r.setValue(newValue))
+      await act(async () => r.setValue(newValue))
       expect(routerAsPath).toEqual(newValueQueryString)
       expect(r.value).toEqual(newValue)
       expect(reducerState).toEqual(newValue)
 
       // back to default
-      act(() => r.setValue(defaultValue))
+      await act(async () => r.setValue(defaultValue))
       expect(r.value).toEqual(defaultValue)
       expect(routerAsPath).toEqual('')
 
@@ -92,7 +92,7 @@ test('Exports for next in root folder', () => {
 })
 
 describe('Resetting to original value in batch with a following no-op', () => {
-  test('using clicks', () => {
+  test('using clicks', async () => {
     const onRender = jest.fn()
 
     function Comp() {
@@ -100,6 +100,7 @@ describe('Resetting to original value in batch with a following no-op', () => {
       const [age, setAge] = useQueryState('age', 18)
       const state = { age, name }
       onRender(state)
+      console.log(state)
       return (
         <>
           <button
@@ -125,20 +126,28 @@ describe('Resetting to original value in batch with a following no-op', () => {
     render(<Comp />, { wrapper })
 
     expect(window.location.search).toEqual('')
-    screen.getByRole('button', { name: 'set' }).click()
+
+    await act(async () => {
+      screen.getByRole('button', { name: 'set' }).click()
+    })
 
     expect(onRender).toHaveBeenCalledTimes(2)
     expect(onRender).toHaveBeenLastCalledWith({
       age: 18,
       name: 'Ron',
     })
-    expect(window.location.search).toEqual('?name=Ron')
 
-    screen.getByRole('button', { name: 'reset' }).click()
+    await waitFor(() => {
+      expect(window.location.search).toEqual('?name=Ron')
+    })
+
+    await act(async () => {
+      screen.getByRole('button', { name: 'reset' }).click()
+    })
     expect(window.location.search).toEqual('')
   })
 
-  test(`using setter from hook directly`, () => {
+  test(`using setter from hook directly`, async () => {
     const { result, unmount } = renderHook(
       () => ({
         a: useQueryState('age', 18),
@@ -156,7 +165,7 @@ describe('Resetting to original value in batch with a following no-op', () => {
     expect(names.value).toEqual([])
 
     // set next values:
-    act(() => {
+    await act(async () => {
       age.setValue(31)
       names.setValue([])
     })
@@ -168,7 +177,7 @@ describe('Resetting to original value in batch with a following no-op', () => {
     expect(names.value).toEqual([])
 
     // reset to original values
-    act(() => {
+    await act(async () => {
       age.setValue(18)
       names.setValue([])
     })

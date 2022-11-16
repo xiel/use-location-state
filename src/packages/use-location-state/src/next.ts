@@ -7,10 +7,14 @@ import {
   QueryStringInterface,
 } from './useQueryState/useQueryState.types'
 import { GetServerSideProps } from 'next'
+import * as React from 'react'
 export * from './useLocationState/useLocationState'
+
+console.log(`React`, React.version)
 
 // Needed for updates that happen right after each other (sync) as we do not have access to the latest history ref (since react router v6)
 let virtualQueryString: null | string = null
+let stopPrevApplyPromise: (() => void) | null = null
 
 const useNextRouterQueryStringInterface = (): QueryStringInterface => {
   const router = useRouter()
@@ -26,14 +30,20 @@ const useNextRouterQueryStringInterface = (): QueryStringInterface => {
     setQueryString: (newQueryString, { method = 'replace' }) => {
       virtualQueryString = newQueryString
 
-      const startTransition = globalThis.requestAnimationFrame || setTimeout
+      if (stopPrevApplyPromise) {
+        stopPrevApplyPromise()
+        stopPrevApplyPromise = null
+      }
 
-      console.log('setQueryString', { startTransition, newQueryString, method })
-
-      startTransition(() => {
-        console.log('router set...')
-        router[method](router.pathname + '?' + newQueryString)
+      new Promise((resolve, reject) => {
+        stopPrevApplyPromise = reject
+        Promise.resolve().then(resolve)
       })
+        .then(() => {
+          console.log('router set...')
+          router[method](router.pathname + '?' + newQueryString)
+        })
+        .catch(() => console.warn('aborted', newQueryString))
     },
   }
 }
