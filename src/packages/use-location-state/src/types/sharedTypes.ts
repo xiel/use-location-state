@@ -12,6 +12,7 @@ export type ReducerState<R extends Reducer<any, any>> = R extends Reducer<
 >
   ? S
   : never
+
 export type ReducerAction<R extends Reducer<any, any>> = R extends Reducer<
   any,
   infer A

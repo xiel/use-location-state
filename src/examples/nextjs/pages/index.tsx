@@ -10,7 +10,8 @@ import { useQueryState } from 'use-location-state/next'
 export { getServerSideProps } from 'use-location-state/next'
 
 export default function Page() {
-  const [count, setCount] = useQueryState('count', 0)
+  const [countA, setCountA] = useQueryState('countA', 0)
+  const [countB, setCountB] = useQueryState('countB', 0)
 
   return (
     <div>
@@ -23,12 +24,34 @@ export default function Page() {
 
       <hr />
 
-      <button onClick={() => setCount(count + 1)}>increase {count}</button>
+      <button onClick={() => setCountA(countA + 1)}>
+        increase A: {countA}
+      </button>
+      <button onClick={() => setCountB(countB + 1)}>
+        increase B: {countB}
+      </button>
+      <button
+        onClick={() => {
+          setCountA((a) => a + 1)
+          setCountB((a) => a + 1)
+        }}
+      >
+        increase both
+      </button>
+      <button
+        type="reset"
+        onClick={() => {
+          setCountA(0)
+          setCountB(0)
+        }}
+      >
+        reset counts
+      </button>
 
       <hr />
 
       <Link href="/">
-        <a>Reset</a>
+        <a>Reset All (link)</a>
       </Link>
     </div>
   )

@@ -9,13 +9,40 @@ import {
 import { GetServerSideProps } from 'next'
 export * from './useLocationState/useLocationState'
 
+// Needed for updates that happen right after each other (sync) as we do not have access to the latest history ref (since react router v6)
+let virtualQueryString: null | string = null
+let abortUpdateWillBatch: (() => void) | null = null
+
 const useNextRouterQueryStringInterface = (): QueryStringInterface => {
   const router = useRouter()
 
+  // Use the real one again as soon as location changes and update was incorporated
+  virtualQueryString = null
+
   return {
-    getQueryString: () => router.asPath.split('?')[1],
+    getQueryString: () =>
+      typeof virtualQueryString === 'string'
+        ? virtualQueryString
+        : router.asPath.split('?')[1],
     setQueryString: (newQueryString, { method = 'replace' }) => {
-      router[method](router.pathname + '?' + newQueryString)
+      virtualQueryString = newQueryString
+
+      if (abortUpdateWillBatch) {
+        abortUpdateWillBatch()
+        abortUpdateWillBatch = null
+      }
+
+      // Wait a microtask before applying the update, to updates that happen sync after each other are batched into one router update
+      new Promise((resolve, reject) => {
+        abortUpdateWillBatch = reject
+        Promise.resolve().then(resolve)
+      })
+        .then(() => {
+          router[method](router.pathname + '?' + newQueryString)
+        })
+        .catch(() => {
+          // Ignore, the update will be batched and merged
+        })
     },
   }
 }

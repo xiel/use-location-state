@@ -1,12 +1,26 @@
 import { EMPTY_ARRAY_STRING } from 'query-state-core'
 import { act, renderHook } from '@testing-library/react-hooks'
-import { useQueryState, getServerSideProps, useQueryReducer } from '../next'
+import { getServerSideProps, useQueryReducer, useQueryState } from '../next'
 import * as NextExportsInRoot from '../../next'
-import { unwrapResult } from 'use-location-state-test-helpers/test-helpers'
+import {
+  unwrapABResult,
+  unwrapResult,
+} from 'use-location-state-test-helpers/test-helpers'
 import mockRouter from 'next-router-mock'
 import { useRouter } from 'next/router'
 
+import {
+  render,
+  screen,
+  waitFor,
+  act as actReact,
+} from '@testing-library/react'
+
 jest.mock('next/router', () => require('next-router-mock'))
+
+beforeEach(() => {
+  mockRouter.setCurrentUrl('')
+})
 
 describe.each`
   defaultValue               | newValue               | newValueQueryString
@@ -32,11 +46,7 @@ describe.each`
     let routerAsPath = ''
     let reducerState = ''
 
-    beforeEach(() => {
-      mockRouter.setCurrentUrl('')
-    })
-
-    test(`should return default value and set newValue successfully`, () => {
+    test(`should return default value and set newValue successfully`, async () => {
       const { result, unmount } = renderHook(() => {
         routerAsPath = useRouter().asPath
 
@@ -55,13 +65,13 @@ describe.each`
       expect(routerAsPath).toEqual('')
       expect(r.value).toEqual(defaultValue)
       // new value
-      act(() => r.setValue(newValue))
+      await act(async () => r.setValue(newValue))
       expect(routerAsPath).toEqual(newValueQueryString)
       expect(r.value).toEqual(newValue)
       expect(reducerState).toEqual(newValue)
 
       // back to default
-      act(() => r.setValue(defaultValue))
+      await act(async () => r.setValue(defaultValue))
       expect(r.value).toEqual(defaultValue)
       expect(routerAsPath).toEqual('')
 
@@ -83,4 +93,106 @@ test('Exports for next in root folder', () => {
     'useQueryReducer',
     'useQueryState',
   ])
+})
+
+describe('Resetting to original value in batch with a following no-op', () => {
+  test('using clicks', async () => {
+    const onRender = jest.fn()
+    let routerAsPath = ''
+
+    function Comp() {
+      const [name, setName] = useQueryState('name', '')
+      const [age, setAge] = useQueryState('age', 18)
+      const state = { age, name }
+      onRender(state)
+      routerAsPath = useRouter().asPath
+      return (
+        <>
+          <button
+            onClick={() => {
+              setName('Ron')
+              setAge(18)
+            }}
+          >
+            set
+          </button>
+          <button
+            onClick={() => {
+              setName('')
+              setAge(18)
+            }}
+          >
+            reset
+          </button>
+        </>
+      )
+    }
+
+    render(<Comp />)
+
+    expect(routerAsPath).toEqual('')
+
+    await actReact(async () => {
+      screen.getByRole('button', { name: 'set' }).click()
+    })
+
+    expect(onRender).toHaveBeenLastCalledWith({
+      age: 18,
+      name: 'Ron',
+    })
+
+    await waitFor(() => {
+      expect(routerAsPath).toEqual('?name=Ron')
+    })
+
+    await actReact(async () => {
+      screen.getByRole('button', { name: 'reset' }).click()
+    })
+    expect(routerAsPath).toEqual('')
+  })
+
+  test(`using setter from hook directly`, async () => {
+    let routerAsPath = ''
+    const { result, unmount } = renderHook(() => {
+      routerAsPath = useRouter().asPath
+      return {
+        a: useQueryState('age', 18),
+        b: useQueryState('names', [] as string[]),
+      }
+    })
+
+    const { a: age, b: names } = unwrapABResult(result)
+
+    // default
+    expect(result.error).toBe(undefined)
+    expect(routerAsPath).toEqual('')
+    expect(age.value).toEqual(18)
+    expect(names.value).toEqual([])
+
+    // set next values:
+    await act(async () => {
+      age.setValue(31)
+      names.setValue([])
+    })
+
+    // check new value
+    expect(result.error).toBe(undefined)
+    expect(routerAsPath).toEqual('?age=31')
+    expect(age.value).toEqual(31)
+    expect(names.value).toEqual([])
+
+    // reset to original values
+    await act(async () => {
+      age.setValue(18)
+      names.setValue([])
+    })
+
+    // check successful reset
+    expect(result.error).toBe(undefined)
+    expect(routerAsPath).toEqual('')
+    expect(age.value).toEqual(18)
+    expect(names.value).toEqual([])
+
+    unmount()
+  })
 })
