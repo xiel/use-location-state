@@ -7,14 +7,11 @@ import {
   QueryStringInterface,
 } from './useQueryState/useQueryState.types'
 import { GetServerSideProps } from 'next'
-import * as React from 'react'
 export * from './useLocationState/useLocationState'
-
-console.log(`React`, React.version)
 
 // Needed for updates that happen right after each other (sync) as we do not have access to the latest history ref (since react router v6)
 let virtualQueryString: null | string = null
-let stopPrevApplyPromise: (() => void) | null = null
+let abortUpdateWillBatch: (() => void) | null = null
 
 const useNextRouterQueryStringInterface = (): QueryStringInterface => {
   const router = useRouter()
@@ -30,20 +27,22 @@ const useNextRouterQueryStringInterface = (): QueryStringInterface => {
     setQueryString: (newQueryString, { method = 'replace' }) => {
       virtualQueryString = newQueryString
 
-      if (stopPrevApplyPromise) {
-        stopPrevApplyPromise()
-        stopPrevApplyPromise = null
+      if (abortUpdateWillBatch) {
+        abortUpdateWillBatch()
+        abortUpdateWillBatch = null
       }
 
+      // Wait a microtask before applying the update, to updates that happen sync after each other are batched into one router update
       new Promise((resolve, reject) => {
-        stopPrevApplyPromise = reject
+        abortUpdateWillBatch = reject
         Promise.resolve().then(resolve)
       })
         .then(() => {
-          console.log('router set...')
           router[method](router.pathname + '?' + newQueryString)
         })
-        .catch(() => console.warn('aborted', newQueryString))
+        .catch(() => {
+          // Ignore, the update will be batched and merged
+        })
     },
   }
 }
