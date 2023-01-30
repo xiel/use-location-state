@@ -10151,10 +10151,10 @@ neo-async@^2.6.0, neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-router-mock@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.8.0.tgz#e4400b166941d2e8f2617c9b5f4091bbd916d943"
-  integrity sha512-aw/QnDFRqGDIkC3y4mCL5HQCNK94IzIfrEYy2c17WVp6Q4V5GUarFx751Sccf8fUPdkzD2/RsldyScvNZGA8lw==
+next-router-mock@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/next-router-mock/-/next-router-mock-0.9.1.tgz#28adbda2c1bbd0d0b7567e7f83dcf0e211d9a4ba"
+  integrity sha512-GTrns944dnFNgycpinyRszOiwwk99LUJsvvX0FWRgUFHv6hOuzCns1rmTlzO+DRimYB9/XMA+87X2/dQLzjiUQ==
 
 next@^12.3.1:
   version "12.3.1"
