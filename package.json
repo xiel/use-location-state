@@ -10,7 +10,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^8.0.0",
     "@types/jest": "^29.0.0",
-    "@types/jsdom": "^20.0.0",
+    "@types/jsdom": "^21.1.0",
     "@types/react-test-renderer": "^18.0.0",
     "bundlesize": "^0.18.0",
     "codecov": "^3.6.1",
