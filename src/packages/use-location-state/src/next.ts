@@ -38,7 +38,7 @@ const useNextRouterQueryStringInterface = (): QueryStringInterface => {
         Promise.resolve().then(resolve)
       })
         .then(() => {
-          router[method](router.pathname + '?' + newQueryString)
+          router[method](router.asPath + '?' + newQueryString)
         })
         .catch(() => {
           // Ignore, the update will be batched and merged
